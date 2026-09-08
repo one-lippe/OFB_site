@@ -20,7 +20,7 @@ Cada item diz de quem é a bola. O site continua em **modo prévia**: `noindex` 
 
 **Header e rodapé** são escritos por extenso em cada página (decisão do Lippe, 04/09), e desde 08/09 quem os copia do `index.html` é o `_moldura.py`. O `verificar.sh` acusa se alguma página ficar para trás.
 
-**Git:** repositório local em `05_site/`, branch `main`, sem remoto. `.gitignore` deixa fora `_teste/`, provas, originais do Unsplash e cache do Notion.
+**Git:** `05_site/` → `one-lippe/OFB_site`, branch `main`, prévia em `https://one-lippe.github.io/OFB_site/`. `.gitignore` deixa fora `_teste/`, provas, originais do Unsplash e cache do Notion.
 
 ---
 
@@ -46,8 +46,9 @@ Tudo construído sem perguntar, como pedido. O que é decisão sua e pode mudar:
   `PUBLICAR.md` §3.1
 - A hospedagem Locaweb **roda PHP?** Sem isso o formulário não envia em produção
 
-### 3. GitHub Pages
-Criar o repositório público e apontar o remoto. Passo a passo em `PUBLICAR.md` §2. Nada sobe sem o seu "pode".
+### 3. GitHub Pages · no ar desde 08/09
+`https://one-lippe.github.io/OFB_site/`, repositório `one-lippe/OFB_site`. Atualizar é commit + push
+(`PUBLICAR.md` §2). Abrir no Safari e no celular antes de mandar para os decisores.
 
 ### 4. Blog: fonte de verdade
 A base do Notion está de pé e o gerador já lê dela (`--fonte notion`), por dois caminhos: um

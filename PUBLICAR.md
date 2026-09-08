@@ -29,23 +29,30 @@ O que já está pronto para esta etapa:
 | `noindex` em todo HTML | ✔ (`./_indexar.sh off` repõe se algo escapar) |
 | `robots.txt` bloqueando tudo | ✔ |
 | `.gitignore` deixando de fora `_teste/`, provas, originais do Unsplash, cache do Notion | ✔ |
-| Repositório git local em `05_site/`, branch `main` | ✔ (sem remoto ainda) |
+| Repositório git em `05_site/`, branch `main` | ✔ `one-lippe/OFB_site` |
 | Fallback WebP do hero para Safari antigo | ✔ `hero/dw` e `hero/mw` |
 | Formulário de cadastro | funciona em modo prévia: abre o e-mail do agente com a ficha preenchida |
 
-### O que falta, e é do Lippe
+### Feito em 08/09/2026, com o "pode" do Lippe
 
-1. **Criar o repositório público** no GitHub (a conta usada no Cruzeirista é `one-lippe`).
-   Sugestão de nome: `ofb-site`. Sem README, sem .gitignore gerado lá.
-2. Apontar o remoto e subir:
-   ```bash
-   cd 05_site
-   git remote add origin git@github.com:one-lippe/ofb-site.git
-   git push -u origin main
-   ```
-3. Em *Settings → Pages*: Source = **Deploy from a branch**, Branch = `main`, pasta `/ (root)`.
-4. Abrir `https://one-lippe.github.io/ofb-site/` no **Safari** e no celular. Conferir hero, Central,
-   blog, cadastro (o envio abre o e-mail com a ficha; é o esperado na prévia).
+- Repositório **`one-lippe/OFB_site`** (público), remoto `origin` por HTTPS, credencial no keychain
+  do macOS (`git credential-osxkeychain`, usuário `one-lippe`)
+- `main` no ar e Pages ligado pela API (branch `main`, pasta raiz)
+- **Prévia: `https://one-lippe.github.io/OFB_site/`**
+
+Para atualizar a prévia depois de qualquer mudança:
+```bash
+cd 05_site
+./verificar.sh && git add <caminhos> && git commit -m "…" && git push
+```
+O Pages reconstrói sozinho em um ou dois minutos.
+
+⚠️ Em site de projeto do Pages o `robots.txt` fica em `/OFB_site/robots.txt`, e os buscadores só
+leem o da raiz do domínio. Quem segura a indexação na prévia é o `<meta name="robots" noindex>`
+de cada página — e é por isso que o `verificar.sh` confere página por página.
+
+Conferir no **Safari** e no celular: hero, Central, blog, cadastro (o envio abre o e-mail com a
+ficha; é o esperado na prévia).
 
 **Peso do repositório:** ~60 MB, quase tudo hero (`d` 18 MB, `m` 8,5 MB, `dw` 20 MB, `mw` 8,5 MB).
 Dentro do limite do Pages (1 GB), mas o primeiro push demora.
