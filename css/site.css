@@ -2168,3 +2168,116 @@ p { max-width: 65ch; }
     .fase--escura h1, .fase--escura h2, .fase--escura p,
     .marcos dt, .marcos dd { text-shadow: none; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   CELULAR · revisão do Lippe no iPhone, 08/09/2026
+   Fica no fim da folha de propósito: vence as regras anteriores de
+   mesma especificidade. Tudo aqui só vale abaixo de 900px.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* As cópias móveis dos botões só existem no celular. */
+.consolidacao-acoes--movel,
+.agentetur-cta--movel { display: none; }
+
+@media (max-width: 900px) {
+
+    /* 1 · O header não encolhe no celular: as duas barras ficam. O hero
+       precisa começar abaixo das duas, senão os 40px de cima de cada
+       tela somem atrás da barra utilitária — era o filete e o recuo do
+       título sumindo no print do Lippe. */
+    #hero {
+        top: calc(var(--h-topo) + var(--h-barra));
+        height: calc(100vh - var(--h-topo) - var(--h-barra));
+        height: calc(100svh - var(--h-topo) - var(--h-barra));
+    }
+
+    /* 2 · Tela 2: tudo à esquerda, e os três números em linhas
+       alinhadas — número numa coluna, rótulo na outra, na mesma linha
+       de base. Empilhados um embaixo do outro eles comiam meia tela. */
+    .fase[data-fase="c"] .subtitulo { max-width: 24ch; text-wrap: balance; }
+    .marcos {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 14px;
+        row-gap: 12px;
+        align-items: baseline;
+        margin-top: var(--e-4);
+        padding-left: 14px;
+        border-left: 2px solid rgba(255, 255, 255, 0.55);
+    }
+    .marcos .marco { display: contents; }
+    .marcos dt { font-size: clamp(1.625rem, 7.5vw, 2.125rem); }
+    .marcos dd { margin-top: 0; font-size: 0.875rem; line-height: 1.3; }
+
+    /* 3 · Tela 3: o título sem a quebra forçada. */
+    .fase--clara h2 br { display: none; }
+    .fase--clara h2 { font-size: clamp(1.375rem, 6vw, 1.75rem); margin-bottom: 14px; }
+    .fase--clara .filete { margin-bottom: 10px; }
+
+    /* 4 · Tela 4: no celular o texto cai sobre o forte e a grama, os
+       trechos mais claros da chegada. Entra um degradê escuro preso à
+       base da tela, morrendo antes do meio — sem borda, sem caixa. O
+       desktop continua limpo (é o punch do vídeo). */
+    .fase--chegada::before {
+        opacity: 1;
+        background: linear-gradient(to top,
+            rgba(15, 13, 14, 0.70) 0%,
+            rgba(15, 13, 14, 0.46) 30%,
+            rgba(15, 13, 14, 0.14) 52%,
+            rgba(15, 13, 14, 0)    66%);
+    }
+    .fase--chegada .chegada-titulo {
+        max-width: none;
+        font-size: clamp(2rem, 9.6vw, 3rem);
+        margin-bottom: 14px;
+    }
+    .fase .chegada-fecho { font-size: 1.0625rem; max-width: 28ch; line-height: 1.4; }
+    .fase .chegada-fecho + .chegada-fecho { margin-top: 10px; font-weight: 600; }
+
+    /* 5 · Consolidação: texto, bilhete e só então os dois botões, lado
+       a lado. A cópia da coluna de texto some. */
+    .consolidacao-texto .consolidacao-acoes { display: none; }
+    .consolidacao-acoes--movel {
+        display: flex;
+        order: 3;
+        gap: 10px;
+        margin-top: calc(-1 * var(--e-4));
+    }
+    .consolidacao-acoes--movel .btn {
+        flex: 1 1 0;
+        min-width: 0;
+        padding-inline: 10px;
+        font-size: 0.8125rem;
+        white-space: nowrap;
+    }
+    .consolidacao-acoes--movel .btn svg { width: 14px; height: 14px; }
+
+    /* 6 · agente.tur: o botão por último, depois das telas. */
+    .agentetur-conteudo .agentetur-cta { display: none; }
+    .agentetur-cta--movel { display: inline-flex; width: 100%; margin-top: 0; }
+}
+
+/* Abaixo de 560px a tela do portfólio precisa caber inteira numa tela
+   de iPhone com as barras do Safari (~560px úteis). Os três pilares
+   viram três cartões lado a lado, foto em cima e nome embaixo; a
+   descrição de cada um sai — ela continua no desktop e no tablet. */
+@media (max-width: 560px) {
+    .pilares { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .fase--clara .pilar { display: block; min-height: 0; }
+    .fase--clara .pilar-foto { aspect-ratio: 4 / 3; min-height: 0; height: auto; }
+    /* "Hospedagem" é a palavra mais larga e precisa caber num cartão de
+       ~106px (iPhone de 375): corpo menor, margem menor, sem cortar. */
+    .fase--clara .pilar h3 {
+        margin: 8px 6px 10px;
+        font-size: clamp(0.6875rem, 3.2vw, 0.875rem);   /* 12px em 375, 13,8px em 430 */
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+        white-space: nowrap;
+    }
+    .fase--clara .pilar p { display: none; }
+    .fase--clara .secundarios { margin-top: 10px; gap: 6px 8px; }
+    .fase--clara .secundarios li { font-size: 0.875rem; padding: 7px 8px; }
+    .secundario-icone { width: 30px; height: 30px; }
+    .secundario-icone svg { width: 18px; height: 18px; }
+}

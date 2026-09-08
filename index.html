@@ -15,7 +15,7 @@
 <!-- As duas fontes que aparecem na primeira tela carregam antes. -->
 <link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/site.css?v=20260908-1">
+<link rel="stylesheet" href="css/site.css?v=20260908-4">
 
 <!-- O quadro de abertura e o pôster entram na primeira leva de downloads,
      junto com o CSS. Sem isso eles só começam a baixar depois que o JS
@@ -188,7 +188,7 @@
             <div class="fase fase--clara" data-fase="d" id="portfolio">
                 <div class="container fase-corpo fase-corpo--centro">
         <span class="filete" aria-hidden="true"></span>
-        <h2>Tudo o que o seu cliente precisa,<br>em um só lugar</h2>
+        <h2>Tudo o que o seu cliente precisa, <br>em um só lugar</h2>
 
         <!-- Os três pilares da casa, com foto. -->
         <div class="pilares" data-revela>
@@ -416,6 +416,23 @@
             </div>
         </div>
 
+        <!-- No celular os dois botões vêm DEPOIS do bilhete, lado a lado
+             (decisão do Lippe em 08/09/2026, olhando no iPhone). Esta é
+             a cópia que aparece abaixo de 900px; a de dentro da coluna de
+             texto some lá. Mesmos destinos, mesmos rótulos. -->
+        <div class="consolidacao-acoes consolidacao-acoes--movel">
+            <a class="btn btn--portal" href="https://portal.tpair.com.br/Agencias30/"
+               target="_blank" rel="noopener">
+                Acessar o portal
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9"/>
+                </svg>
+                <span class="sr-only"> (abre em nova aba)</span>
+            </a>
+            <a class="btn btn--primario" href="cadastro.html">Cadastre sua agência</a>
+        </div>
+
         <div class="consolidacao-texto" data-revela>
             <span class="filete" aria-hidden="true"></span>
 
@@ -591,6 +608,18 @@
             </div>
             <p class="agentetur-nota">Telas reais da plataforma agente.tur.</p>
         </div>
+
+        <!-- No celular o botão vem por último, depois das telas (decisão
+             do Lippe em 08/09/2026). Cópia só para abaixo de 900px. -->
+        <a class="btn btn--agentetur agentetur-cta agentetur-cta--movel" href="https://www.agente.tur.br"
+           target="_blank" rel="noopener">
+            Acessar o agente.tur
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7 17 17 7M8 7h9v9"/>
+            </svg>
+            <span class="sr-only"> (abre em nova aba)</span>
+        </a>
     </div>
 </section>
 
@@ -717,7 +746,7 @@
 </footer>
 
 
-<script src="js/site.js?v=20260908-1"></script>
+<script src="js/site.js?v=20260908-4"></script>
 <script src="js/hero.js?v=20260908-1"></script>
 <script src="js/contador.js"></script>
 <script src="js/consolidacao.js?v=20260904-2"></script>

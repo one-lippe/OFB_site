@@ -27,7 +27,15 @@ portfólio "Tudo o que o seu cliente precisa, em um só lugar"; Consolidação e
 o respaldo da OFB, representante da TP Air no Nordeste."); legendas curtas nas telas do agente.tur;
 cartões da Central reescritos; banner da Central em branco sobre véu escuro; legendas do cadastro
 "Dados da empresa" e "Seu contato". Detalhe em `03_copy/03_REVISAO_LOCAL_2026-09-08.md`.
-**O Codex edita sem commit e sem subir `?v=`**: ao retomar, `git status` primeiro. `.gitignore` deixa fora `_teste/`, provas, originais do Unsplash e cache do Notion.
+**O Codex edita sem commit e sem subir `?v=`**: ao retomar, `git status` primeiro.
+
+**Revisão no iPhone (Lippe, 08/09 à tarde), aplicada e publicada:** no celular o hero começa
+abaixo das duas barras do header (antes 40 px de cada tela sumiam atrás da barra de cima); tela 2
+com os três números em linhas alinhadas; tela 3 com três cartões lado a lado sem descrição e o
+título sem quebra forçada (cabe em iPhone com as barras do Safari); tela 4 com degradê escuro na
+base para a leitura; Consolidação com os dois botões lado a lado **depois** do bilhete; agente.tur
+com o botão por último, depois das telas. As duas cópias móveis dos botões vivem no `index.html`
+marcadas `--movel`; o desktop não muda. Bloco "CELULAR · revisão do Lippe" no fim da `site.css`. `.gitignore` deixa fora `_teste/`, provas, originais do Unsplash e cache do Notion.
 
 ---
 
