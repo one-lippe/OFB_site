@@ -100,6 +100,7 @@ Continuam esperando o site na Locaweb (`05_CADASTRO_DE_PROMOCOES.md` §7, `07_BL
 | `_medir_veu.py` | mede o vídeo e refaz `js/veu.js` (sem uso hoje) |
 | `_gerar_provas.py` | refaz `_provas_fases.html`; cópia do index, fica para trás |
 | `_teste/medir-avif.html` | mede o custo de AVIF e WebP no navegador em que abrir |
+| `_teste/capturar.mjs` | captura de tela pelo DevTools Protocol do Chrome (`node _teste/capturar.mjs '<json>'`): celular, movimento reduzido, JS antes da foto. O `chrome --screenshot` travava neste site |
 | `js/consolidacao.js` | bilhete e carimbo. `TESTE=true` põe em ciclo |
 | `js/cadastro.js` | máscaras, validação e envio da ficha |
 
