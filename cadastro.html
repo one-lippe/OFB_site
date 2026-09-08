@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Cadastre sua agência · OFB</title>
+<meta name="description" content="Preencha a ficha e o time comercial da OFB entra em contato para abrir o cadastro da sua agência de viagens.">
+
+<!-- Prévia e construção não entram na busca. Sai só na subida em ofb.com.br. -->
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" type="image/png" href="img/favicon.png">
+
+<link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
+
+<!-- A folha do site vem primeiro; a do cadastro só acrescenta o que é dela. -->
+<link rel="stylesheet" href="css/site.css?v=20260908-1">
+<link rel="stylesheet" href="css/cadastro.css?v=20260908-1">
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HEADER · cópia do index.html, escrita pelo _moldura.py.
+     Não editar aqui: editar no index.html e rodar o script.
+     ═══════════════════════════════════════════════════════════ -->
+<header class="cabecalho">
+
+    <div class="topo">
+        <div class="container">
+            <span class="topo-rotulo">Acessar</span>
+
+            <!-- agente.tur é sistema da casa e pode ser nomeado. -->
+            <a class="acesso" href="https://www.agente.tur.br" target="_blank" rel="noopener">
+                agente.tur
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9"/>
+                </svg>
+                <span class="sr-only"> (abre em nova aba)</span>
+            </a>
+
+            <span class="topo-sep" aria-hidden="true">|</span>
+
+            <!-- Do lado da consolidação o destino é o portal do parceiro,
+                 então o botão diz Consolidação, nunca o nome dele. -->
+            <a class="acesso" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
+                Consolidação
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9"/>
+                </svg>
+                <span class="sr-only"> (abre em nova aba)</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="barra">
+        <div class="container">
+            <a class="marca" href="index.html" aria-label="OFB, início">
+                <img src="img/ofb-logo.png" alt="OFB" width="800" height="303">
+            </a>
+
+            <button class="menu-toggle" type="button" aria-expanded="false"
+                    aria-controls="menu-principal" aria-label="Abrir o menu">
+                <span></span>
+            </button>
+
+            <!-- O agente.tur não entra aqui: ele já é um dos dois
+                 "Acessar" na barra de cima, e o mesmo nome duas vezes
+                 no topo confunde. Fora do menu, o sistema também
+                 nunca aparece antes da OFB. -->
+            <nav class="menu" id="menu-principal" aria-label="Principal">
+                <a href="index.html">Home</a>
+                <a href="index.html#a-ofb">Quem somos</a>
+                <a href="index.html#portfolio">O que oferecemos</a>
+                <a href="central.html">Central do Agente</a>
+                <a href="blog.html">Blog</a>
+                <a class="btn btn--primario" href="cadastro.html">Cadastre sua agência</a>
+            </nav>
+
+            <a class="btn btn--primario" href="cadastro.html">Cadastre sua agência</a>
+        </div>
+    </div>
+
+</header>
+<div class="veu" aria-hidden="true"></div>
+
+
+<main id="conteudo">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ABERTURA
+     O último quadro do vídeo do hero — Salvador em cor cheia — é a
+     imagem desta página, por decisão de 02/09 (03_HERO_ANALISE
+     §4): a viagem termina onde a proposta se fecha.
+     Copy do bloco 9 de 03_copy/01_COPY_BASE_HOME.md.
+     ═══════════════════════════════════════════════════════════ -->
+<section class="cad-abertura" aria-labelledby="cad-titulo">
+    <picture>
+        <source media="(max-width: 700px)" srcset="img/salvador-chegada-mobile.jpg" width="720" height="1080">
+        <img class="cad-abertura-foto" src="img/salvador-chegada.jpg" alt=""
+             width="1920" height="1080" fetchpriority="high">
+    </picture>
+    <div class="cad-abertura-conteudo">
+        <div class="container" data-revela>
+            <span class="filete" aria-hidden="true"></span>
+            <h1 id="cad-titulo">Comece a operar com a OFB</h1>
+            <p class="subtitulo">Preencha a ficha e nosso time comercial entra em contato
+               para abrir o cadastro da sua agência.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     A FICHA
+     Os campos são os do formulário que a OFB já usa (01_MAPA_DO_SITE
+     §1.3): razão social, nome fantasia, CNPJ, telefone, e-mail, CEP,
+     endereço, bairro, cidade. Dois acréscimos, os dois apontados no
+     mesmo parágrafo do mapa: o NOME DE QUEM PREENCHE (o comercial
+     ligava sem saber com quem falar) e a UF, porque cidade sozinha
+     é ambígua.
+
+     Sem JavaScript o formulário continua enviando: as validações
+     nativas (required, pattern, type) ficam no HTML e o cadastro.php
+     confere tudo de novo do lado do servidor.
+
+     Na prévia (local e GitHub Pages) não há PHP: o js/cadastro.js
+     detecta isso e abre o e-mail do agente com a ficha preenchida,
+     para a demonstração continuar útil. Na Locaweb ele envia de
+     verdade pelo cadastro.php.
+     ═══════════════════════════════════════════════════════════ -->
+<section class="secao cad-secao" aria-label="Ficha de cadastro">
+    <div class="container cad-grade">
+
+        <aside class="cad-lado" data-revela>
+            <h2>O que acontece depois</h2>
+            <ol class="cad-passos">
+                <li><b>Você envia a ficha.</b><span>Leva menos de dois minutos.</span></li>
+                <li><b>O comercial da OFB fala com você.</b><span>Por telefone ou e-mail, em horário comercial.</span></li>
+                <li><b>Cadastro aberto, sua agência começa a operar.</b><span>Consolidação aérea e operação terrestre, na mesma casa.</span></li>
+            </ol>
+
+            <div class="cad-contato">
+                <p class="cad-contato-rotulo">Prefere falar direto?</p>
+                <a href="mailto:comercial@ofb.com.br">comercial@ofb.com.br</a>
+                <a href="tel:+557133415100">(71) 3341-5100</a>
+                <p class="legenda">Segunda a sexta das 9h às 19h · Sábados das 9h às 13h</p>
+            </div>
+        </aside>
+
+        <form class="cad-form" id="cad-form" action="cadastro.php" method="post"
+              novalidate data-revela>
+
+            <!-- Campo-armadilha: gente não vê, robô preenche. -->
+            <div class="cad-armadilha" aria-hidden="true">
+                <label for="cad-site">Site</label>
+                <input type="text" id="cad-site" name="site" tabindex="-1" autocomplete="off">
+            </div>
+
+            <fieldset class="cad-bloco">
+                <legend>Sua agência</legend>
+
+                <div class="cad-campo cad-campo--largo">
+                    <label for="cad-razao">Razão social</label>
+                    <input type="text" id="cad-razao" name="razao_social" required
+                           autocomplete="organization" maxlength="120">
+                    <p class="cad-erro" id="cad-razao-erro" aria-live="polite"></p>
+                </div>
+
+                <div class="cad-campo">
+                    <label for="cad-fantasia">Nome fantasia</label>
+                    <input type="text" id="cad-fantasia" name="nome_fantasia" required maxlength="120">
+                    <p class="cad-erro" id="cad-fantasia-erro" aria-live="polite"></p>
+                </div>
+
+                <div class="cad-campo">
+                    <label for="cad-cnpj">CNPJ</label>
+                    <input type="text" id="cad-cnpj" name="cnpj" required inputmode="numeric"
+                           placeholder="00.000.000/0000-00" data-mascara="cnpj"
+                           pattern="\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}" maxlength="18">
+                    <p class="cad-erro" id="cad-cnpj-erro" aria-live="polite"></p>
+                </div>
+            </fieldset>
+
+            <fieldset class="cad-bloco">
+                <legend>Quem responde pela agência</legend>
+
+                <div class="cad-campo cad-campo--largo">
+                    <label for="cad-nome">Seu nome</label>
+                    <input type="text" id="cad-nome" name="responsavel" required
+                           autocomplete="name" maxlength="80">
+                    <p class="cad-erro" id="cad-nome-erro" aria-live="polite"></p>
+                </div>
+
+                <div class="cad-campo">
+                    <label for="cad-telefone">Telefone ou WhatsApp</label>
+                    <input type="tel" id="cad-telefone" name="telefone" required inputmode="tel"
+                           autocomplete="tel-national" placeholder="(71) 90000-0000"
+                           data-mascara="telefone" maxlength="15">
+                    <p class="cad-erro" id="cad-telefone-erro" aria-live="polite"></p>
+                </div>
+
+                <div class="cad-campo">
+                    <label for="cad-email">E-mail</label>
+                    <input type="email" id="cad-email" name="email" required
+                           autocomplete="email" maxlength="120">
+                    <p class="cad-erro" id="cad-email-erro" aria-live="polite"></p>
+                </div>
+            </fieldset>
+
+            <fieldset class="cad-bloco">
+                <legend>Endereço</legend>
+
+                <div class="cad-campo cad-campo--curto">
+                    <label for="cad-cep">CEP</label>
+                    <input type="text" id="cad-cep" name="cep" required inputmode="numeric"
+                           autocomplete="postal-code" placeholder="00000-000"
+                           data-mascara="cep" pattern="\d{5}-\d{3}" maxlength="9">
+                    <p class="cad-erro" id="cad-cep-erro" aria-live="polite"></p>
+                </div>
+
+                <div class="cad-campo cad-campo--largo">
+                    <label for="cad-endereco">Endereço</label>
+                    <input type="text" id="cad-endereco" name="endereco" required
+                           autocomplete="street-address" placeholder="Rua, número e complemento" maxlength="160">
+                    <p class="cad-erro" id="cad-endereco-erro" aria-live="polite"></p>
+                </div>
+
+                <div class="cad-campo">
+                    <label for="cad-bairro">Bairro</label>
+                    <input type="text" id="cad-bairro" name="bairro" required maxlength="80">
+                    <p class="cad-erro" id="cad-bairro-erro" aria-live="polite"></p>
+                </div>
+
+                <div class="cad-campo">
+                    <label for="cad-cidade">Cidade</label>
+                    <input type="text" id="cad-cidade" name="cidade" required
+                           autocomplete="address-level2" maxlength="80">
+                    <p class="cad-erro" id="cad-cidade-erro" aria-live="polite"></p>
+                </div>
+
+                <div class="cad-campo cad-campo--curto">
+                    <label for="cad-uf">Estado</label>
+                    <select id="cad-uf" name="uf" required autocomplete="address-level1">
+                        <option value="">UF</option>
+                        <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+                        <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+                        <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+                        <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+                        <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+                        <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+                        <option>SP</option><option>SE</option><option>TO</option>
+                    </select>
+                    <p class="cad-erro" id="cad-uf-erro" aria-live="polite"></p>
+                </div>
+            </fieldset>
+
+            <div class="cad-rodape">
+                <p class="legenda">Seus dados são usados só para o contato comercial da OFB.</p>
+                <button class="btn btn--primario cad-enviar" type="submit">
+                    <span class="cad-enviar-texto">Cadastrar</span>
+                    <span class="cad-enviar-espera" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <!-- Resultado do envio. Fica vazio até o JS ou o servidor falarem. -->
+            <div class="cad-resultado" role="status" aria-live="polite" hidden></div>
+        </form>
+
+    </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     RODAPÉ · cópia literal do index.html, escrita pelo _moldura.py.
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="rodape" id="rodape">
+    <div class="container rodape-grade">
+
+        <div class="rodape-marca">
+            <img class="rodape-logo" src="img/ofb-logo-negativo.png" alt="OFB"
+                 width="800" height="303">
+            <ul class="rodape-redes">
+                <li>
+                    <a href="https://www.instagram.com/ofboperadora/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5.2"/>
+                            <circle cx="12" cy="12" r="4.1"/>
+                            <circle cx="17.2" cy="6.8" r="1.15" fill="currentColor" stroke="none"/>
+                        </svg>
+                        <span class="sr-only">Instagram da OFB (abre em nova aba)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/ofbviagens" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M15.2 3.2h-2.6A3.6 3.6 0 0 0 9 6.8v3.1H6.5v3.4H9v7.5h3.4v-7.5h2.6l.5-3.4h-3.1V7.1a1 1 0 0 1 1-1h2.2z"/>
+                        </svg>
+                        <span class="sr-only">Facebook da OFB (abre em nova aba)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="rodape-acessar">
+            <span class="rodape-rotulo">Acessar</span>
+            <ul>
+                <li>
+                    <a href="https://www.agente.tur.br" target="_blank" rel="noopener">
+                        agente.tur
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                        <span class="sr-only"> (abre em nova aba)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
+                        Consolidação
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                        <span class="sr-only"> (abre em nova aba)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="rodape-contato">
+            <a class="rodape-destaque" href="mailto:comercial@ofb.com.br">comercial@ofb.com.br</a>
+            <a class="rodape-destaque" href="tel:+557133415100">(71) 3341-5100</a>
+            <address>
+                Av. Tancredo Neves, 805, Edf. Espaço Empresarial, Sala 601,<br>
+                Caminho das Árvores, Salvador BA, CEP 41820-021
+            </address>
+            <p class="rodape-horario">Segunda a sexta das 9h às 19h<br>
+               Sábados das 9h às 13h</p>
+        </div>
+
+    </div>
+
+    <div class="rodape-base">
+        <div class="container">
+            <p>CNPJ 34.300.087/0001-34</p>
+            <p class="rodape-credito">© 2026 por One Publicidade Criativa</p>
+        </div>
+    </div>
+</footer>
+
+
+<script src="js/site.js?v=20260908-1"></script>
+<script src="js/cadastro.js?v=20260908-1"></script>
+</body>
+</html>

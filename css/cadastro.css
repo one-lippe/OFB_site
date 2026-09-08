@@ -1,0 +1,262 @@
+/* ═══════════════════════════════════════════════════════════════
+   CADASTRO · só o que é desta página
+   Carrega depois da site.css e não repete token, botão, container,
+   seção nem reveal — vêm de lá.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Abertura: Salvador em cor cheia, com o texto por cima ──────
+   A foto é o último quadro do vídeo. O véu vem da esquerda e de
+   baixo, morrendo dentro da própria tela (regra da 03_HERO §4b:
+   nunca uma caixa), para o branco passar em contraste sobre o mar.
+   ── */
+.cad-abertura {
+    position: relative;
+    min-height: clamp(360px, 48vh, 520px);
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    background: var(--grafite);
+    color: var(--branco);
+}
+.cad-abertura-foto {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 60% 50%;
+}
+.cad-abertura::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to top,    rgba(20, 18, 19, 0.82) 0%, rgba(20, 18, 19, 0.35) 45%, rgba(20, 18, 19, 0) 100%),
+        linear-gradient(to right,  rgba(20, 18, 19, 0.55) 0%, rgba(20, 18, 19, 0) 60%);
+    pointer-events: none;
+}
+.cad-abertura-conteudo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-block: clamp(40px, 6vw, 72px);
+}
+.cad-abertura h1 {
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    max-width: 16ch;
+    margin-bottom: var(--e-3);
+}
+.cad-abertura .subtitulo {
+    max-width: 42ch;
+    color: rgba(255, 255, 255, 0.86);
+}
+
+/* ── A grade: o lado explicativo à esquerda, a ficha à direita ── */
+.cad-secao { background: var(--cinza-fundo); }
+.cad-grade {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.4fr);
+    gap: clamp(32px, 5vw, 80px);
+    align-items: start;
+}
+
+.cad-lado h2 {
+    font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+    margin-bottom: var(--e-4);
+}
+.cad-passos {
+    list-style: none;
+    counter-reset: passo;
+    display: grid;
+    gap: var(--e-4);
+}
+.cad-passos li {
+    counter-increment: passo;
+    position: relative;
+    padding-left: 52px;
+    display: grid;
+    gap: 2px;
+}
+.cad-passos li::before {
+    content: counter(passo);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--vermelho);
+    color: var(--branco);
+    font-weight: 600;
+    font-size: 0.9375rem;
+}
+.cad-passos b { font-weight: 600; }
+.cad-passos span { color: var(--cinza-texto); font-size: 0.9375rem; }
+
+.cad-contato {
+    margin-top: var(--e-6);
+    padding-top: var(--e-4);
+    border-top: 1px solid var(--cinza-borda);
+    display: grid;
+    gap: 4px;
+}
+.cad-contato-rotulo { font-weight: 600; margin-bottom: 4px; }
+.cad-contato a {
+    font-weight: 500;
+    width: fit-content;
+    transition: color 160ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+    .cad-contato a:hover { color: var(--vermelho); }
+}
+.cad-contato .legenda { margin-top: var(--e-2); }
+
+/* ── A ficha ────────────────────────────────────────────────── */
+.cad-form {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 16px;
+    padding: clamp(24px, 3vw, 40px);
+}
+.cad-bloco {
+    border: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--e-3) var(--e-3);
+    padding: 0;
+    margin: 0 0 var(--e-5);
+}
+.cad-bloco legend {
+    grid-column: 1 / -1;
+    font-weight: 800;
+    font-size: 1.0625rem;
+    margin-bottom: var(--e-3);
+    padding: 0;
+}
+.cad-campo { grid-column: span 3; display: grid; gap: 6px; min-width: 0; }
+.cad-campo--largo { grid-column: 1 / -1; }
+.cad-campo--curto { grid-column: span 2; }
+
+.cad-campo label {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+.cad-campo input,
+.cad-campo select {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: var(--raio);
+    background: var(--branco);
+    color: var(--grafite);
+    font: inherit;
+    font-size: 1rem;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.cad-campo select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23373435' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 18px;
+}
+.cad-campo input::placeholder { color: #A9A5A6; }
+.cad-campo input:focus-visible,
+.cad-campo select:focus-visible {
+    outline: 2px solid var(--vermelho);
+    outline-offset: 2px;
+    border-color: var(--vermelho);
+}
+/* Campo inválido: a borda avisa; o texto embaixo explica. O texto
+   fica grafite porque o vermelho não passa em contraste em corpo
+   pequeno; o vermelho vai no traço, que é onde ele lê. */
+.cad-campo.invalido input,
+.cad-campo.invalido select { border-color: var(--vermelho); }
+.cad-erro {
+    display: none;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--grafite);
+    padding-left: 10px;
+    border-left: 2px solid var(--vermelho);
+}
+.cad-campo.invalido .cad-erro { display: block; }
+
+/* O campo-armadilha some da tela e do leitor de tela, mas não do robô. */
+.cad-armadilha {
+    position: absolute;
+    left: -9999px;
+    width: 1px; height: 1px;
+    overflow: hidden;
+}
+
+.cad-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--e-4);
+    flex-wrap: wrap;
+}
+.cad-rodape .legenda { max-width: 36ch; }
+
+/* Botão de enviar com estado de espera: o texto some, o anel gira.
+   A largura não muda, senão a linha do rodapé dança. */
+.cad-enviar { position: relative; min-width: 160px; }
+.cad-enviar-espera {
+    position: absolute;
+    width: 18px; height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: var(--branco);
+    border-radius: 50%;
+    opacity: 0;
+    animation: cad-gira 700ms linear infinite;
+    animation-play-state: paused;
+}
+.cad-enviar.enviando .cad-enviar-texto  { opacity: 0; }
+.cad-enviar.enviando .cad-enviar-espera { opacity: 1; animation-play-state: running; }
+.cad-enviar.enviando { pointer-events: none; }
+@keyframes cad-gira { to { transform: rotate(360deg); } }
+
+/* Resultado: entra com o mesmo reveal do site (opacity + 16px). */
+.cad-resultado {
+    margin-top: var(--e-4);
+    padding: var(--e-3) var(--e-4);
+    border-radius: var(--raio);
+    border: 1px solid var(--cinza-borda);
+    background: var(--cinza-fundo);
+    animation: cad-entra 320ms var(--ease-out) backwards;
+}
+.cad-resultado.ok    { border-color: rgba(224, 50, 54, 0.35); background: rgba(224, 50, 54, 0.05); }
+.cad-resultado.falha { border-color: var(--grafite); }
+.cad-resultado b { font-weight: 600; }
+.cad-resultado p + p { margin-top: var(--e-2); }
+.cad-resultado a { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+@keyframes cad-entra {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+}
+/* Depois do envio a ficha some e sobra o resultado. */
+.cad-form.enviado > :not(.cad-resultado) { display: none; }
+
+@media (max-width: 900px) {
+    .cad-grade { grid-template-columns: 1fr; }
+    /* No celular a ficha vem primeiro: é ao que a pessoa veio. */
+    .cad-lado { order: 2; }
+    .cad-form { order: 1; }
+    .cad-campo, .cad-campo--curto { grid-column: 1 / -1; }
+    .cad-abertura-foto { object-position: 50% 50%; }
+}
+@media (min-width: 560px) and (max-width: 900px) {
+    .cad-campo { grid-column: span 3; }
+    .cad-campo--largo { grid-column: 1 / -1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cad-resultado { animation: none; }
+    .cad-enviar-espera { animation: none; border-color: var(--branco); }
+}

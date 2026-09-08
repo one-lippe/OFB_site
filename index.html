@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>OFB · Conectando agências ao mundo desde 1987</title>
+<meta name="description" content="A OFB trabalha exclusivamente para agências de viagens: consolidação aérea e operação completa na mesma casa, com suporte de gente do outro lado.">
+
+<!-- Prévia e construção não entram na busca. Sai só na subida em ofb.com.br. -->
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" type="image/png" href="img/favicon.png">
+
+<!-- As duas fontes que aparecem na primeira tela carregam antes. -->
+<link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css?v=20260908-1">
+
+<!-- O quadro de abertura e o pôster entram na primeira leva de downloads,
+     junto com o CSS. Sem isso eles só começam a baixar depois que o JS
+     roda, e o hero fica indefinido por um instante. -->
+<link rel="preload" as="image" href="hero/poster-d.jpg" media="(min-width: 901px)">
+<link rel="preload" as="image" href="hero/poster-m.jpg" media="(max-width: 900px)">
+<link rel="preload" as="image" href="hero/d/0001.avif" type="image/avif" media="(min-width: 901px)">
+<link rel="preload" as="image" href="hero/m/0001.avif" type="image/avif" media="(max-width: 900px)">
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HEADER
+     Três camadas com funções distintas, como manda o mapa do site:
+     a barra de cima sai para os sistemas, o menu navega a home,
+     o botão converte.
+     ═══════════════════════════════════════════════════════════ -->
+<header class="cabecalho">
+
+    <div class="topo">
+        <div class="container">
+            <span class="topo-rotulo">Acessar</span>
+
+            <!-- agente.tur é sistema da casa e pode ser nomeado. -->
+            <a class="acesso" href="https://www.agente.tur.br" target="_blank" rel="noopener">
+                agente.tur
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9"/>
+                </svg>
+                <span class="sr-only"> (abre em nova aba)</span>
+            </a>
+
+            <span class="topo-sep" aria-hidden="true">|</span>
+
+            <!-- Do lado da consolidação o destino é o portal do parceiro,
+                 então o botão diz Consolidação, nunca o nome dele. -->
+            <a class="acesso" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
+                Consolidação
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9"/>
+                </svg>
+                <span class="sr-only"> (abre em nova aba)</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="barra">
+        <div class="container">
+            <a class="marca" href="#pista" aria-label="OFB, início">
+                <img src="img/ofb-logo.png" alt="OFB" width="800" height="303">
+            </a>
+
+            <button class="menu-toggle" type="button" aria-expanded="false"
+                    aria-controls="menu-principal" aria-label="Abrir o menu">
+                <span></span>
+            </button>
+
+            <!-- O agente.tur não entra aqui: ele já é um dos dois
+                 "Acessar" na barra de cima, e o mesmo nome duas vezes
+                 no topo confunde. Fora do menu, o sistema também
+                 nunca aparece antes da OFB. -->
+            <nav class="menu" id="menu-principal" aria-label="Principal">
+                <a href="#pista">Home</a>
+                <a href="#a-ofb">Quem somos</a>
+                <a href="#portfolio">O que oferecemos</a>
+                <a href="central.html">Central do Agente</a>
+                <a href="blog.html">Blog</a>
+                <a class="btn btn--primario" href="cadastro.html">Cadastre sua agência</a>
+            </nav>
+
+            <a class="btn btn--primario" href="cadastro.html">Cadastre sua agência</a>
+        </div>
+    </div>
+
+</header>
+<div class="veu" aria-hidden="true"></div>
+
+
+<main id="conteudo">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HERO EM SCRUBBING
+     O vídeo é o pano de fundo contínuo dos quatro primeiros blocos.
+     A pista de rolagem (#pista) tem altura de sobra; #hero fica
+     grudado nela e o conteúdo se sucede em fases.
+
+     As fases saem da medição do vídeo, não de palpite:
+
+       fase   quadros    % vídeo   cena                cor do texto
+       ────   ───────    ───────   ─────────────────   ────────────
+       A      0–24       0–5%      cabine escura       nenhum
+       B      24–140     5–29%     a janela abre       branco
+       C      140–264    29–54%    tela cheia, céu     branco
+       ·      264–302    54–62%    entra na nuvem      nenhum
+       D      302–375    62–77%    dentro da nuvem     GRAFITE
+       ·      375–396    77–81%    sai da nuvem        nenhum
+       E      396–488    81–100%   Salvador            branco
+
+     Branco passa AA de 0 a 54% e de 81 a 100%. Grafite passa AA de
+     62 a 77%, e só ali. As duas viradas não aceitam texto nenhum e
+     por isso carregam o respiro entre um bloco e outro.
+     ═══════════════════════════════════════════════════════════ -->
+<div id="pista">
+    <section id="hero" aria-label="Apresentação da OFB">
+
+        <div id="quadros">
+            <canvas id="cv-a" class="quadro"></canvas>
+            <canvas id="cv-b" class="quadro"></canvas>
+        </div>
+
+        <div class="hero-palco">
+
+            <!-- BLOCO 1 · Hero · quadros 0–140 · a cabine e a janela abrindo
+                 Entra já no primeiro quadro: a tela não abre vazia. -->
+            <div class="fase fase--escura" data-fase="b">
+                <div class="container fase-corpo fase-corpo--centro">
+                    <!-- Abre a frase que a tela 2 fecha. A vírgula no fim é de
+                         propósito: a oração só se completa quando a janela abre.
+                         Não corrigir. -->
+                    <h1>Pela janela da OFB,</h1>
+                    <p class="subtitulo">Consolidação aérea e operação terrestre,
+                       exclusivo para quem vende viagem.</p>
+                    <div class="fase-botoes">
+                        <a class="btn btn--agentetur" href="https://www.agente.tur.br"
+                           target="_blank" rel="noopener">Acessar o agente.tur</a>
+                        <a class="btn btn--primario" href="cadastro.html">Cadastre sua agência</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCO 2 · Quem é a OFB · quadros 140–290 · a asa sobre as nuvens -->
+            <div class="fase fase--escura" data-fase="c" id="a-ofb">
+                <div class="container fase-corpo fase-corpo--alto">
+                    <!-- A assinatura vem truncada de propósito, sem "ao mundo":
+                         essa palavra pertence à tela 4, onde a imagem de
+                         Salvador a justifica. Não completar aqui. O rodapé
+                         não repete a frase (decisão do Lippe em 04/09/2026). -->
+                    <h2>Conectando agências desde 1987.</h2>
+                    <p class="subtitulo">É esse o alcance que o seu negócio passa a ter.</p>
+
+                    <!-- Os três provam "uma OFB, duas operações" sem uma linha de
+                         texto: tempo de casa, consolidação, operação. Ao trocar o
+                         valor, manter a lógica.
+                         Números oficiais, confirmados pelo Lippe em 02/09/2026. -->
+                    <dl class="marcos">
+                        <div class="marco">
+                            <dt class="numero" data-contador="39">39</dt>
+                            <dd>anos de mercado</dd>
+                        </div>
+                        <div class="marco">
+                            <dt class="numero" data-contador="600" data-prefixo="+">+600</dt>
+                            <dd>companhias aéreas para emitir</dd>
+                        </div>
+                        <div class="marco">
+                            <dt class="numero" data-contador="400000" data-prefixo="+">+400.000</dt>
+                            <dd>hotéis no mundo todo</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+
+            <!-- BLOCO 6 · Portfólio · quadros 290–400 · a travessia da nuvem
+                 Ocupa o trecho mais branco e mais liso do vídeo, que é onde
+                 a grade pode ser varrida com o olho. Os cards são sólidos e
+                 a camada branca lava a nuvem por baixo deles. -->
+            <div class="fase fase--clara" data-fase="d" id="portfolio">
+                <div class="container fase-corpo fase-corpo--centro">
+        <span class="filete" aria-hidden="true"></span>
+        <h2>Tudo o que sua agência precisa,<br>em um só lugar</h2>
+
+        <!-- Os três pilares da casa, com foto. -->
+        <div class="pilares" data-revela>
+            <article class="pilar">
+                <div class="pilar-foto">
+                    <img src="img/portfolio/aereo.jpg" alt="" width="900" height="600" loading="lazy">
+                </div>
+                <h3>Aéreo</h3>
+                <p>Nacional e internacional, com emissão e remarcação apoiadas por gente.</p>
+            </article>
+            <article class="pilar">
+                <div class="pilar-foto">
+                    <img src="img/portfolio/hospedagem.jpg" alt="" width="900" height="600" loading="lazy">
+                </div>
+                <h3>Hospedagem</h3>
+                <p>Do econômico ao resort, com disponibilidade real na hora de fechar.</p>
+            </article>
+            <article class="pilar pilar--cruzeiros">
+                <div class="pilar-foto">
+                    <img src="img/portfolio/cruzeiros.jpg?v=20260903-1" alt="" width="1627" height="1800" loading="lazy">
+                </div>
+                <h3>Cruzeiros</h3>
+                <p>As principais companhias, com a negociação feita por quem conhece o produto.</p>
+            </article>
+        </div>
+
+        <!-- Categorias complementares: ícone e nome, sem aparência ou
+             comportamento de botão. Os ícones são decorativos porque o
+             rótulo adjacente já comunica o conteúdo. -->
+        <ul class="secundarios" data-revela>
+            <li>
+                <span class="secundario-icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.2c0 4.7 3.1 8.2 7.5 9.8 4.4-1.6 7.5-5.1 7.5-9.8V6L12 3Z"/><path d="m8.7 12 2.1 2.1 4.6-4.6"/></svg>
+                </span>
+                <span>Seguro viagem</span>
+            </li>
+            <li>
+                <span class="secundario-icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="m5 16 1-5.2A2.3 2.3 0 0 1 8.3 9h7.4a2.3 2.3 0 0 1 2.3 1.8l1 5.2"/><path d="M4 16h16v3H4zM7 19v2M17 19v2M7.5 13h9"/></svg>
+                </span>
+                <span>Locação de carros</span>
+            </li>
+            <li>
+                <span class="secundario-icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="15" rx="3"/><path d="M6 11h12M9 7h6M9 21l2-3M15 21l-2-3"/><circle cx="9" cy="14.5" r=".8"/><circle cx="15" cy="14.5" r=".8"/></svg>
+                </span>
+                <span>Trem</span>
+            </li>
+            <li>
+                <span class="secundario-icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M4 7.5A1.5 1.5 0 0 1 5.5 6h13A1.5 1.5 0 0 1 20 7.5V10a2 2 0 0 0 0 4v2.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 16.5V14a2 2 0 0 0 0-4V7.5Z"/><path d="M12 8.5v7"/></svg>
+                </span>
+                <span>Ingressos e atrações</span>
+            </li>
+            <li>
+                <span class="secundario-icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M5 8h13M15 5l3 3-3 3M19 16H6M9 13l-3 3 3 3"/></svg>
+                </span>
+                <span>Traslados</span>
+            </li>
+            <li>
+                <span class="secundario-icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M18 9c0 4.5-6 10-6 10S6 13.5 6 9a6 6 0 1 1 12 0Z"/><circle cx="12" cy="9" r="2"/><path d="M5 21h14"/></svg>
+                </span>
+                <span>Circuitos e experiências</span>
+            </li>
+        </ul>
+                </div>
+            </div>
+
+            <!-- FECHAMENTO · a chegada a Salvador
+                 A imagem conclui a viagem; o texto fecha a narrativa e
+                 apresenta a OFB sem abrir outro argumento ou CTA. -->
+            <div class="fase fase--escura fase--chegada" data-fase="e">
+                <div class="container fase-corpo fase-corpo--chegada" data-revela>
+                    <h2 class="chegada-titulo">
+                        <span>De Salvador</span>
+                        <span>para o mundo.</span>
+                    </h2>
+                    <p class="chegada-fecho">Do primeiro contato ao pós-venda,
+                       conte com a gente.</p>
+                    <p class="chegada-fecho">Bem-vindo à OFB.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Nomeia o gesto, não a intenção: quem chega precisa saber que
+             a página se move rolando, e que a viagem começa por aí. -->
+        <div class="rolar" aria-hidden="true">
+            <span class="rolar-rotulo">Role para começar a viagem</span>
+            <span class="rolar-seta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v13M6 13l6 6 6-6"/>
+                </svg>
+            </span>
+        </div>
+    </section>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Daqui para baixo o hero soltou. Página normal.
+     ═══════════════════════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CONSOLIDAÇÃO AÉREA · a primeira seção fora do scrubbing
+     Chama-se Consolidação aérea, e não TP Air, porque o sujeito é a
+     frente da OFB, não o parceiro. Um bloco intitulado com a marca de
+     terceiro a poria no mesmo nível da plataforma da casa e feriria a
+     hierarquia OFB > benefício > ferramenta > parceiro (decisão 1.7 do
+     01_MAPA_DO_SITE.md): a TP Air é credencial dentro do conteúdo,
+     nunca marca fixa.
+
+     Vem antes do agente.tur porque a tela 1 do hero promete
+     "consolidação aérea e operação terrestre", nessa ordem, e porque o
+     sistema nunca aparece antes da OFB (regra 2). Sem item de menu e
+     sem página: "Consolidação" já é o botão do Acessar.
+
+     BILHETE À ESQUERDA, TEXTO À DIREITA: zigue-zague com o agente.tur,
+     que é texto à esquerda e tela à direita. No mobile a ordem inverte
+     e o texto vem primeiro.
+
+     A consolidação não tem produto visível; o objeto dela é o bilhete.
+     "Emitido por: Sua Agência de Viagens" e o arco "SUA AGÊNCIA" no
+     carimbo carregam o território do reposicionamento sem escrevê-lo:
+     quem aparece é a agência, a OFB é a retaguarda. Tudo no bilhete é
+     ilustrativo — nenhum dado real, nenhum preço, nenhuma cidade de
+     praça. Copy e desenho: 03_copy/02_SECAO_CONSOLIDACAO_HOME.md §3 e §4.
+     ═══════════════════════════════════════════════════════════ -->
+<section class="secao consolidacao" id="consolidacao">
+    <div class="container consolidacao-grade">
+
+        <div class="consolidacao-palco">
+            <div class="consol-bilhete-wrap">
+                <!-- A sombra é a silhueta exata do bilhete, mordidas
+                     incluídas, desenhada por JS. Não é box-shadow nem
+                     drop-shadow: com máscara e rotação os dois dão
+                     artefato no Safari. Ver §4.1. -->
+                <svg class="consol-sombra" aria-hidden="true">
+                    <!-- O borrão é filtro SVG, não filter:blur() do CSS: o
+                         WebKit não aplica o filter do CSS em filho de SVG, e
+                         no Safari a sombra saía como uma silhueta sólida
+                         deslocada. A região do filtro é folgada, senão o
+                         desfoque corta rente à borda. -->
+                    <defs>
+                        <filter id="consol-borrao-longe" x="-15%" y="-15%" width="130%" height="140%">
+                            <feGaussianBlur stdDeviation="12"/>
+                        </filter>
+                        <filter id="consol-borrao-perto" x="-10%" y="-10%" width="120%" height="120%">
+                            <feGaussianBlur stdDeviation="2"/>
+                        </filter>
+                    </defs>
+                    <path class="consol-sombra-longe" d="" filter="url(#consol-borrao-longe)"/>
+                    <path class="consol-sombra-perto" d="" filter="url(#consol-borrao-perto)"/>
+                </svg>
+                <!-- Discos da cor do fundo, por baixo do bilhete: só
+                     aparecem pelos furos da máscara, e é isso que faz o
+                     papel parecer furado de verdade. -->
+                <div class="consol-furos" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+                <article class="consol-bilhete" aria-label="Bilhete ilustrativo">
+                    <div class="consol-bilhete-topo">
+                        <div class="consol-bilhete-marca">OFB <span>·</span> Consolidação</div>
+                        <div class="consol-bilhete-tipo">Bilhete eletrônico</div>
+                    </div>
+
+                    <div class="consol-bilhete-corpo">
+                        <div class="consol-carimbo-marca" aria-hidden="true">
+                            <svg viewBox="0 0 200 200">
+                                <defs>
+                                    <path id="consol-arco-topo" d="M30,100 a70,70 0 1,1 140,0"/>
+                                    <path id="consol-arco-base" d="M170,100 a70,70 0 0,1 -140,0"/>
+                                </defs>
+                                <circle cx="100" cy="100" r="94" fill="none" stroke="#E03236" stroke-width="5"/>
+                                <circle cx="100" cy="100" r="84" fill="none" stroke="#E03236" stroke-width="2"/>
+                                <text font-size="12" font-weight="600" letter-spacing="5" fill="#E03236">
+                                    <textPath href="#consol-arco-topo" startOffset="50%" text-anchor="middle">SUA AGÊNCIA</textPath>
+                                </text>
+                                <text font-size="12" font-weight="600" letter-spacing="4" fill="#E03236">
+                                    <textPath href="#consol-arco-base" startOffset="50%" text-anchor="middle"
+                                              data-carimbo-data>04.09.2026</textPath>
+                                </text>
+                                <line x1="42" y1="78" x2="158" y2="78" stroke="#E03236" stroke-width="1.5" opacity=".5"/>
+                                <line x1="42" y1="122" x2="158" y2="122" stroke="#E03236" stroke-width="1.5" opacity=".5"/>
+                                <text x="100" y="109" text-anchor="middle" font-size="27" font-weight="800"
+                                      letter-spacing="4" fill="#E03236">EMITIDO</text>
+                            </svg>
+                        </div>
+
+                        <div class="consol-trecho">
+                            <div class="consol-cidade">SSA<small>Salvador</small></div>
+                            <div class="consol-rota" aria-hidden="true"></div>
+                            <div class="consol-cidade">LIS<small>Lisboa</small></div>
+                        </div>
+
+                        <div class="consol-campos">
+                            <div class="consol-campo"><b>Passageiro</b><span>M. Oliveira</span></div>
+                            <div class="consol-campo"><b>Data</b><span>12 MAR</span></div>
+                            <div class="consol-campo"><b>Voo</b><span>TP 022</span></div>
+                            <div class="consol-campo"><b>Tarifa</b><span>R$ •.•••,••</span></div>
+                            <div class="consol-campo"><b>Classe</b><span>Executiva</span></div>
+                            <div class="consol-campo"><b>Localizador</b><span>OFB7K2</span></div>
+                            <div class="consol-campo consol-campo--emissor">
+                                <b>Emitido por</b><span>Sua Agência de Viagens</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="consol-bilhete-rodape">
+                        <!-- O logo da TP Air aparece aqui e só aqui, sem
+                             legenda: no bilhete ele é credencial, não marca
+                             da seção. -->
+                        <img src="img/tpair.svg" alt="TP Air" width="250" height="150">
+                        <span class="consol-etkt">ETKT 0000 0000 0000</span>
+                    </div>
+                </article>
+            </div>
+
+            <!-- O carimbo de mesa, em CSS 3D visto de cima. A haste é um
+                 cilindro de facetas geradas por JS. -->
+            <div class="consol-carimbo" aria-hidden="true">
+                <div class="consol-carimbo-corpo"><div class="consol-carimbo-botao"></div></div>
+            </div>
+        </div>
+
+        <div class="consolidacao-texto" data-revela>
+            <span class="filete" aria-hidden="true"></span>
+
+            <h2>Nossa consolidação aérea</h2>
+
+            <p class="consolidacao-lead">Sua agência emite nacional e internacional com o
+               respaldo de quem representa a TP Air no Nordeste. Tarifa, emissão e remarcação
+               com atendimento direto.</p>
+
+            <ul class="consolidacao-itens" aria-label="O que a consolidação da OFB entrega">
+                <li>
+                    <span class="consolidacao-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></svg>
+                    </span>
+                    <div><b>Nacional e internacional</b><span>Do voo doméstico ao longo curso, no mesmo portal.</span></div>
+                </li>
+                <li>
+                    <span class="consolidacao-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M6 4.5v9.5h9.5l3 4.5"/><path d="M6 14l-1.5 5.5M9 14v-3.5h6.5a2 2 0 0 1 2 2V14"/><path d="M4.5 19.5h10"/></svg>
+                    </span>
+                    <div><b>Executiva e Primeira</b><span>Com a consolidadora especialista em cabine premium.</span></div>
+                </li>
+                <li>
+                    <span class="consolidacao-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><path d="M14.5 13a2.6 2.6 0 1 0 .8 2.9"/><path d="M15.4 12.4v2h-2"/></svg>
+                    </span>
+                    <div><b>Remarcação com atendimento direto</b><span>Mudou a data ou o voo, tem quem resolva com você.</span></div>
+                </li>
+                <li>
+                    <span class="consolidacao-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/><path d="M4.5 4.5l2 1.5M19.5 4.5l-2 1.5"/></svg>
+                    </span>
+                    <div><b>Plantão emergencial</b><span>Para o que acontece fora do horário, todos os dias.</span></div>
+                </li>
+            </ul>
+
+            <div class="consolidacao-acoes">
+                <!-- A raiz portal.tpair.com.br devolve 403. O endereço que o
+                     próprio site da TP Air usa é /Agencias30/. O botão herda a
+                     cor do portal, não o formato: diz "portal", nunca o nome
+                     do parceiro. -->
+                <a class="btn btn--portal" href="https://portal.tpair.com.br/Agencias30/"
+                   target="_blank" rel="noopener">
+                    Acessar o portal
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17 17 7M8 7h9v9"/>
+                    </svg>
+                    <span class="sr-only"> (abre em nova aba)</span>
+                </a>
+                <a class="btn btn--primario" href="cadastro.html">Cadastre sua agência</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Depois do fechamento sobre a chegada a Salvador, o hero solta.
+     Aqui começa a página normal, com fundo sólido. -->
+<section class="secao agentetur" id="agentetur">
+    <div class="container agentetur-grade" data-revela>
+        <div class="agentetur-conteudo">
+            <span class="agentetur-filete" aria-hidden="true"></span>
+
+            <h2>Conheça a nossa plataforma.</h2>
+
+            <p class="agentetur-intro">Mais autonomia para pesquisar, combinar e transformar
+               cotações em propostas completas, com o suporte da OFB quando precisar.</p>
+
+            <div class="agentetur-recursos" role="tablist"
+                 aria-label="Benefícios do agente.tur">
+                <button class="agentetur-recurso ativo" type="button" role="tab"
+                        id="agentetur-aba-busca" aria-selected="true" tabindex="0"
+                        aria-controls="agentetur-painel-busca" data-agentetur-aba="busca">
+                    <span class="agentetur-recurso-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="10.8" cy="10.8" r="6.3"/>
+                            <path d="m15.5 15.5 4 4"/>
+                        </svg>
+                    </span>
+                    <span class="agentetur-recurso-texto">
+                        <strong>Pesquise e compare</strong>
+                        <span>Encontre produtos e combinações no mesmo ambiente.</span>
+                    </span>
+                </button>
+
+                <button class="agentetur-recurso" type="button" role="tab"
+                        id="agentetur-aba-roteiro" aria-selected="false" tabindex="-1"
+                        aria-controls="agentetur-painel-roteiro" data-agentetur-aba="roteiro">
+                    <span class="agentetur-recurso-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="6" cy="6" r="2"/>
+                            <circle cx="18" cy="18" r="2"/>
+                            <path d="M8 6h4a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3H9a3 3 0 0 0-3 3"/>
+                        </svg>
+                    </span>
+                    <span class="agentetur-recurso-texto">
+                        <strong>Monte o roteiro</strong>
+                        <span>Organize itinerários multi-trechos e multi-cidades.</span>
+                    </span>
+                </button>
+
+                <button class="agentetur-recurso" type="button" role="tab"
+                        id="agentetur-aba-proposta" aria-selected="false" tabindex="-1"
+                        aria-controls="agentetur-painel-proposta" data-agentetur-aba="proposta">
+                    <span class="agentetur-recurso-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 3h7l4 4v14H7z"/>
+                            <path d="M14 3v5h5M10 13h5M10 17h4"/>
+                        </svg>
+                    </span>
+                    <span class="agentetur-recurso-texto">
+                        <strong>Apresente a proposta</strong>
+                        <span>Reúna a cotação em uma apresentação pronta para compartilhar.</span>
+                    </span>
+                </button>
+            </div>
+
+            <a class="btn btn--agentetur agentetur-cta" href="https://www.agente.tur.br"
+               target="_blank" rel="noopener">
+                Acessar o agente.tur
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9"/>
+                </svg>
+                <span class="sr-only"> (abre em nova aba)</span>
+            </a>
+        </div>
+
+        <div class="agentetur-demonstracao">
+            <div class="agentetur-janela">
+                <div class="agentetur-janela-topo" aria-hidden="true">
+                    <span class="agentetur-pontos"><i></i><i></i><i></i></span>
+                    <span class="agentetur-endereco">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="5" y="10" width="14" height="10" rx="2"/>
+                            <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                        </svg>
+                        www.agente.tur.br
+                    </span>
+                </div>
+
+                <div class="agentetur-paineis">
+                    <figure class="agentetur-painel ativo" role="tabpanel"
+                            id="agentetur-painel-busca" aria-labelledby="agentetur-aba-busca"
+                            aria-hidden="false" data-agentetur-painel="busca">
+                        <img src="img/agentetur-home-source.png"
+                             alt="Tela atual do agente.tur com categorias de produtos e formulário de pesquisa"
+                             width="1280" height="720">
+                        <figcaption><strong>Busca integrada</strong><span>Produtos e combinações em um só ambiente.</span></figcaption>
+                    </figure>
+
+                    <figure class="agentetur-painel" role="tabpanel"
+                            id="agentetur-painel-roteiro" aria-labelledby="agentetur-aba-roteiro"
+                            aria-hidden="true" data-agentetur-painel="roteiro">
+                        <img src="img/agentetur-planner.jpg?v=20260903-3"
+                             alt="Trip Planner do agente.tur com um roteiro de oito noites montado: Salvador, Lisboa, Madrid e Barcelona, com a rota traçada no mapa"
+                             width="1280" height="720" loading="lazy">
+                        <figcaption><strong>Trip Planner</strong><span>O roteiro montado trecho a trecho, sobre o mapa.</span></figcaption>
+                    </figure>
+
+                    <figure class="agentetur-painel" role="tabpanel"
+                            id="agentetur-painel-proposta" aria-labelledby="agentetur-aba-proposta"
+                            aria-hidden="true" data-agentetur-painel="proposta">
+                        <img src="img/agentetur-idea-source.png"
+                             alt="Exemplo público de proposta apresentada pelo agente.tur"
+                             width="1280" height="720" loading="lazy">
+                        <figcaption><strong>Trip Ideas</strong><span>Uma proposta organizada e pronta para compartilhar.</span></figcaption>
+                    </figure>
+                </div>
+            </div>
+            <p class="agentetur-nota">Telas reais da plataforma agente.tur.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CENTRAL DO AGENTE · blocos 7 e 8 da copy, juntos
+     Dois cartões: a Central inteira à esquerda, e a chamada direta
+     para as promoções à direita, sem passar pelo hub (mapa §1.9).
+     O cartão das promoções é grafite com três lâminas reais em
+     leque, para a página mostrar o material em vez de descrevê-lo.
+     As três miniaturas são só amostra: a lista viva é a da Central.
+     Copy: 03_copy/01_COPY_BASE_HOME.md §7 e §8.
+     ═══════════════════════════════════════════════════════════ -->
+<section class="secao secao--cinza central" id="central">
+    <div class="container central-grade" data-revela>
+
+        <div class="central-cartao central-cartao--hub">
+            <span class="filete" aria-hidden="true"></span>
+            <h2>Central do Agente</h2>
+            <p>O lugar onde sua agência encontra o material da OFB para usar: promoções
+               para repassar ao seu cliente, guia do sistema, tutoriais e respostas às
+               dúvidas do dia a dia.</p>
+            <a class="btn btn--secundario" href="central.html">Entrar na Central</a>
+        </div>
+
+        <div class="central-cartao central-cartao--promos">
+            <div class="central-leque" aria-hidden="true">
+                <img src="img/promos/mini/cartagena-baru.jpg" alt="" width="360" height="640" loading="lazy">
+                <img src="img/promos/mini/japao-essencial.jpg" alt="" width="360" height="640" loading="lazy">
+                <img src="img/promos/mini/reveillon-reykjavik.jpg" alt="" width="360" height="640" loading="lazy">
+            </div>
+            <div class="central-promos-texto">
+                <h2>Promoções prontas para você repassar</h2>
+                <p>Baixe a arte, copie o texto e mande para o seu cliente. Atualizado toda semana.</p>
+                <a class="btn btn--claro" href="central.html#promocoes">Ver promoções</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     RODAPÉ · o mesmo bloco em todas as páginas
+     Escrito por extenso em cada arquivo, e não injetado por JS
+     (decisão do Lippe em 04/09/2026): endereço, telefone e CNPJ
+     precisam estar no código-fonte para valerem na busca depois que
+     o noindex sair. São poucas páginas e o bloco quase não muda.
+
+     ⚠️ AO ALTERAR, ALTERAR EM TODAS AS PÁGINAS. Este é o original;
+     central.html, cadastro.html e blog.html copiam daqui, verbatim.
+
+     Absorve o "Fale com a OFB": o wireframe decidiu que página de
+     contato separada não se justifica. Não repete o menu — isso já é o
+     topo, e o Lippe cortou em 04/09/2026.
+     Copy: 03_copy/01_COPY_BASE_HOME.md §10.
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="rodape" id="rodape">
+    <div class="container rodape-grade">
+
+        <div class="rodape-marca">
+            <img class="rodape-logo" src="img/ofb-logo-negativo.png" alt="OFB"
+                 width="800" height="303">
+            <ul class="rodape-redes">
+                <li>
+                    <a href="https://www.instagram.com/ofboperadora/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5.2"/>
+                            <circle cx="12" cy="12" r="4.1"/>
+                            <circle cx="17.2" cy="6.8" r="1.15" fill="currentColor" stroke="none"/>
+                        </svg>
+                        <span class="sr-only">Instagram da OFB (abre em nova aba)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/ofbviagens" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M15.2 3.2h-2.6A3.6 3.6 0 0 0 9 6.8v3.1H6.5v3.4H9v7.5h3.4v-7.5h2.6l.5-3.4h-3.1V7.1a1 1 0 0 1 1-1h2.2z"/>
+                        </svg>
+                        <span class="sr-only">Facebook da OFB (abre em nova aba)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="rodape-acessar">
+            <span class="rodape-rotulo">Acessar</span>
+            <ul>
+                <li>
+                    <a href="https://www.agente.tur.br" target="_blank" rel="noopener">
+                        agente.tur
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                        <span class="sr-only"> (abre em nova aba)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
+                        Consolidação
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                        <span class="sr-only"> (abre em nova aba)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="rodape-contato">
+            <a class="rodape-destaque" href="mailto:comercial@ofb.com.br">comercial@ofb.com.br</a>
+            <a class="rodape-destaque" href="tel:+557133415100">(71) 3341-5100</a>
+            <address>
+                Av. Tancredo Neves, 805, Edf. Espaço Empresarial, Sala 601,<br>
+                Caminho das Árvores, Salvador BA, CEP 41820-021
+            </address>
+            <p class="rodape-horario">Segunda a sexta das 9h às 19h<br>
+               Sábados das 9h às 13h</p>
+        </div>
+
+    </div>
+
+    <div class="rodape-base">
+        <div class="container">
+            <p>CNPJ 34.300.087/0001-34</p>
+            <p class="rodape-credito">© 2026 por One Publicidade Criativa</p>
+        </div>
+    </div>
+</footer>
+
+
+<script src="js/site.js?v=20260908-1"></script>
+<script src="js/hero.js?v=20260908-1"></script>
+<script src="js/contador.js"></script>
+<script src="js/consolidacao.js?v=20260904-2"></script>
+</body>
+</html>

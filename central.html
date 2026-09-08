@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Central do Agente · OFB</title>
+<meta name="description" content="O material da OFB para a sua agência usar: promoções prontas para baixar e repassar ao seu cliente.">
+
+<!-- Prévia e construção não entram na busca. Sai só na subida em ofb.com.br. -->
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" type="image/png" href="img/favicon.png">
+
+<link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
+
+<!-- A folha do site vem primeiro; a da Central só acrescenta o que é dela. -->
+<link rel="stylesheet" href="css/site.css?v=20260908-1">
+<link rel="stylesheet" href="css/central.css?v=20260908-1">
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HEADER
+     Cópia do header da home, com uma diferença obrigatória: as
+     âncoras da home viram links para index.html, porque aqui elas
+     não existem na página. O item da Central fica marcado.
+     ═══════════════════════════════════════════════════════════ -->
+<header class="cabecalho">
+
+    <div class="topo">
+        <div class="container">
+            <span class="topo-rotulo">Acessar</span>
+
+            <!-- agente.tur é sistema da casa e pode ser nomeado. -->
+            <a class="acesso" href="https://www.agente.tur.br" target="_blank" rel="noopener">
+                agente.tur
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9"/>
+                </svg>
+                <span class="sr-only"> (abre em nova aba)</span>
+            </a>
+
+            <span class="topo-sep" aria-hidden="true">|</span>
+
+            <!-- Do lado da consolidação o destino é o portal do parceiro,
+                 então o botão diz Consolidação, nunca o nome dele. -->
+            <a class="acesso" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
+                Consolidação
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9"/>
+                </svg>
+                <span class="sr-only"> (abre em nova aba)</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="barra">
+        <div class="container">
+            <a class="marca" href="index.html" aria-label="OFB, início">
+                <img src="img/ofb-logo.png" alt="OFB" width="800" height="303">
+            </a>
+
+            <button class="menu-toggle" type="button" aria-expanded="false"
+                    aria-controls="menu-principal" aria-label="Abrir o menu">
+                <span></span>
+            </button>
+
+            <!-- O agente.tur não entra aqui: ele já é um dos dois
+                 "Acessar" na barra de cima, e o mesmo nome duas vezes
+                 no topo confunde. Fora do menu, o sistema também
+                 nunca aparece antes da OFB. -->
+            <nav class="menu" id="menu-principal" aria-label="Principal">
+                <a href="index.html">Home</a>
+                <a href="index.html#a-ofb">Quem somos</a>
+                <a href="index.html#portfolio">O que oferecemos</a>
+                <a class="ativo" href="central.html" aria-current="page">Central do Agente</a>
+                <a href="blog.html">Blog</a>
+                <a class="btn btn--primario" href="cadastro.html">Cadastre sua agência</a>
+            </nav>
+
+            <a class="btn btn--primario" href="cadastro.html">Cadastre sua agência</a>
+        </div>
+    </div>
+
+</header>
+<div class="veu" aria-hidden="true"></div>
+
+
+<main id="conteudo">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     BANNER DA CENTRAL
+     Faixa de largura total, antes das promoções.
+
+     Provisório, versão 2 (08/09/2026): foto gerada no Magnific
+     (Seedream 5 Pro), uma agente de viagens brasileira na mesa dela,
+     com o terço esquerdo limpo de propósito — é onde o texto entra.
+     Substituiu a arte do agente.tur, que abria a Central com o
+     sistema antes da OFB (regra 2). A definitiva o Lippe faz no
+     Photoshop; ao trocar, trocar também os dois aspect-ratio no CSS.
+
+     O TEXTO É HTML, NUNCA DENTRO DA IMAGEM (mesma regra do banner
+     "em breve"): leitor de tela lê, busca acha, tipografia é a da
+     marca, trocar uma palavra não custa arte nova.
+
+     <picture> com duas fotos: a de desktop é 21:9; no celular ela
+     viraria um fio, então entra uma 4:5 com a parede limpa em cima.
+     ═══════════════════════════════════════════════════════════ -->
+<section class="banner" aria-labelledby="banner-titulo">
+    <picture>
+        <source media="(max-width: 620px)" srcset="img/central-banner-cel.jpg"
+                width="900" height="1125">
+        <img class="banner-arte" src="img/central-banner.jpg" alt=""
+             width="1800" height="771" fetchpriority="high">
+    </picture>
+    <div class="banner-conteudo">
+        <div class="container" data-revela>
+            <span class="filete" aria-hidden="true"></span>
+            <h1 id="banner-titulo">Central do Agente</h1>
+            <p class="subtitulo">O material da OFB para a sua agência usar.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     1 · PROMOÇÕES ATIVAS
+     Banco de material, não vitrine de oferta. A arte é o card: é
+     ela que o agente baixa e manda para o cliente dele.
+
+     As cinco no ar são material real, de 03/09/2026: as lâminas
+     saem de 💼 OFB / 02 OPERACOES / APROVADO e a lista do que está
+     valendo é a página "Promoções Ativas" do Notion. Não há
+     campanha de aéreo puro ativa, e por isso não existe filtro
+     "Aéreo": os bloqueios levam o aéreo junto com a hospedagem.
+     ═══════════════════════════════════════════════════════════ -->
+<section class="secao" id="promocoes" aria-labelledby="promocoes-titulo">
+    <div class="container">
+
+        <div class="secao-cabeca" data-revela>
+            <h2 id="promocoes-titulo">Promoções ativas</h2>
+            <p class="subtitulo">Baixe e repasse ao seu cliente.</p>
+        </div>
+
+        <!-- Os filtros e a busca fazem a mesma coisa por dois caminhos:
+             quem sabe a categoria clica, quem sabe o destino digita.
+             Os dois valem ao mesmo tempo. -->
+        <div class="controles">
+
+            <!-- Grupo de botões, não links: eles não navegam, mudam o
+                 que a grade mostra. -->
+            <div class="filtros" role="group" aria-label="Filtrar promoções por tipo">
+                <button class="filtro" type="button" data-filtro="todas"     aria-pressed="true">Todas</button>
+                <button class="filtro" type="button" data-filtro="bloqueio"  aria-pressed="false">Bloqueios</button>
+                <button class="filtro" type="button" data-filtro="aereo"     aria-pressed="false">Aéreo</button>
+                <button class="filtro" type="button" data-filtro="hospedagem" aria-pressed="false">Hospedagem</button>
+                <button class="filtro" type="button" data-filtro="circuito"  aria-pressed="false">Circuitos</button>
+                <button class="filtro" type="button" data-filtro="cruzeiro"  aria-pressed="false">Cruzeiros</button>
+            </div>
+
+            <!-- A busca lê o texto alternativo de cada arte. É por isso
+                 que o alt de uma lâmina nova precisa trazer destino,
+                 noites e período: é ele que a torna encontrável. -->
+            <div class="busca">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7"/>
+                    <path d="M20 20l-3.5-3.5"/>
+                </svg>
+                <label class="sr-only" for="busca-promo">Buscar promoção por destino ou nome</label>
+                <input id="busca-promo" type="search" data-busca autocomplete="off"
+                       placeholder="Buscar destino ou nome">
+            </div>
+
+        </div>
+
+        <!-- Quem usa leitor de tela não vê a grade mudar: o resultado
+             do filtro precisa ser dito. -->
+        <p class="sr-only" role="status" data-contagem></p>
+
+        <!-- PROMOÇÃO NOVA: copiar um <li> inteiro e trocar quatro coisas.
+             1. data-tipo    · a categoria, igual ao data-filtro do botão
+             2. img src/href · a arte em img/promos/, 720 px de largura
+             3. alt          · o que a lâmina é, em uma frase. É o que
+                               uma pessoa cega ouve: descrição, não lista
+             4. data-termos  · como o agente procuraria: destino, região,
+                               cidade de saída, mês, sinônimo (reveillon,
+                               ano novo, virada), tipo de viagem
+             A ordem da grade é a da validade: o que vence antes vem antes. -->
+        <ul class="promos">
+
+            <li class="promo" data-tipo="hospedagem" style="--i:0"
+                data-vence="2026-10-15"
+                data-termos="dia das criancas feriado familia outubro balneario camboriu santa catarina sul brasil nacional praia">
+                <div class="promo-arte">
+                    <a href="img/promos/dia-das-criancas-balneario.jpg"
+                       aria-label="Ver a arte em tamanho maior: Dia das Crianças em Balneário Camboriú, de 09 a 15 de outubro de 2026">
+                        <img src="img/promos/dia-das-criancas-balneario.jpg" alt="Dia das Crianças em Balneário Camboriú, de 09 a 15 de outubro de 2026"
+                             width="720" height="1280">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/dia-das-criancas-balneario.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="hospedagem" style="--i:1"
+                data-vence="2026-10-01"
+                data-termos="reveillon ano novo virada dezembro janeiro nordeste vila gale resort all inclusive praia brasil nacional">
+                <div class="promo-arte">
+                    <a href="img/promos/reveillon-vila-gale.jpg"
+                       aria-label="Ver a arte em tamanho maior: Réveillon all inclusive no Nordeste, resorts Vila Galé">
+                        <img src="img/promos/reveillon-vila-gale.jpg" alt="Réveillon all inclusive no Nordeste, resorts Vila Galé"
+                             width="720" height="1280">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/reveillon-vila-gale.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="hospedagem" style="--i:2"
+                data-vence="2026-10-01"
+                data-termos="iberostar waves bahia praia do forte salvador nordeste resort all inclusive praia brasil nacional setembro outubro">
+                <div class="promo-arte">
+                    <a href="img/promos/iberostar-waves-bahia.jpg"
+                       aria-label="Ver a arte em tamanho maior: Iberostar Waves Bahia all inclusive, 02 noites">
+                        <img src="img/promos/iberostar-waves-bahia.jpg" alt="Iberostar Waves Bahia all inclusive, 02 noites"
+                             width="720" height="1280">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/iberostar-waves-bahia.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:3"
+                data-vence="2026-11-06"
+                data-termos="egito cairo piramides nilo istambul turquia africa oriente medio internacional circuito roteiro novembro">
+                <div class="promo-arte">
+                    <a href="img/promos/egito-istambul.jpg"
+                       aria-label="Ver a arte em tamanho maior: Egito e Istambul: viva a grandeza, sinta a tradição">
+                        <img src="img/promos/egito-istambul.jpg" alt="Egito e Istambul: viva a grandeza, sinta a tradição"
+                             width="720" height="1280">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/egito-istambul.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:4"
+                data-vence="2026-11-20"
+                data-termos="italia roma toscana veneza florenca europa internacional circuito roteiro em portugues dezembro">
+                <div class="promo-arte">
+                    <a href="img/promos/roma-toscana-veneza.jpg"
+                       aria-label="Ver a arte em tamanho maior: Maravilhas de Roma, Toscana e Veneza, em português">
+                        <img src="img/promos/roma-toscana-veneza.jpg" alt="Maravilhas de Roma, Toscana e Veneza, em português"
+                             width="720" height="1280">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/roma-toscana-veneza.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:5"
+                data-vence="2026-11-01"
+                data-termos="marrocos marraquexe casablanca deserto africa internacional circuito roteiro">
+                <div class="promo-arte">
+                    <a href="img/promos/marrocos-espetacular.jpg"
+                       aria-label="Ver a arte em tamanho maior: Marrocos Espetacular">
+                        <img src="img/promos/marrocos-espetacular.jpg" alt="Marrocos Espetacular"
+                             width="720" height="1280">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/marrocos-espetacular.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:6"
+                data-vence="2026-11-01"
+                data-termos="mendoza argentina america do sul vinho vinicola enoturismo mulheres feminino internacional">
+                <div class="promo-arte">
+                    <a href="img/promos/mendoza-so-para-elas.jpg"
+                       aria-label="Ver a arte em tamanho maior: Argentina: Mendoza só para elas">
+                        <img src="img/promos/mendoza-so-para-elas.jpg" alt="Argentina: Mendoza só para elas"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/mendoza-so-para-elas.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:7"
+                data-vence="2026-11-01"
+                data-termos="bogota cartagena colombia caribe america do sul internacional cinco estrelas praia">
+                <div class="promo-arte">
+                    <a href="img/promos/bogota-cartagena.jpg"
+                       aria-label="Ver a arte em tamanho maior: Bogotá e Cartagena, 05 noites em hotéis 5 estrelas">
+                        <img src="img/promos/bogota-cartagena.jpg" alt="Bogotá e Cartagena, 05 noites em hotéis 5 estrelas"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/bogota-cartagena.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:8"
+                data-vence="2026-11-01"
+                data-termos="cartagena isla baru colombia caribe praia america do sul internacional">
+                <div class="promo-arte">
+                    <a href="img/promos/cartagena-baru.jpg"
+                       aria-label="Ver a arte em tamanho maior: Cartagena e Isla Barú, 06 noites">
+                        <img src="img/promos/cartagena-baru.jpg" alt="Cartagena e Isla Barú, 06 noites"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/cartagena-baru.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="hospedagem" style="--i:9"
+                data-vence="2026-11-01"
+                data-termos="reveillon ano novo virada cumbuco ceara fortaleza nordeste praia brasil nacional dezembro janeiro">
+                <div class="promo-arte">
+                    <a href="img/promos/reveillon-cumbuco.jpg"
+                       aria-label="Ver a arte em tamanho maior: Réveillon em Cumbuco, Ceará, 05 noites">
+                        <img src="img/promos/reveillon-cumbuco.jpg" alt="Réveillon em Cumbuco, Ceará, 05 noites"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/reveillon-cumbuco.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="hospedagem" style="--i:10"
+                data-vence="2026-11-01"
+                data-termos="rio quente resorts goias hot park aguas termais parque brasil nacional feriado dezembro familia">
+                <div class="promo-arte">
+                    <a href="img/promos/rio-quente.jpg"
+                       aria-label="Ver a arte em tamanho maior: Rio Quente Resorts, 05 dias e 04 noites no feriado de 8 de dezembro">
+                        <img src="img/promos/rio-quente.jpg" alt="Rio Quente Resorts, 05 dias e 04 noites no feriado de 8 de dezembro"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/rio-quente.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:11"
+                data-vence="2026-11-01"
+                data-termos="reveillon ano novo virada reykjavik islandia auroras boreais europa internacional dezembro janeiro neve frio">
+                <div class="promo-arte">
+                    <a href="img/promos/reveillon-reykjavik.jpg"
+                       aria-label="Ver a arte em tamanho maior: Ano Novo em Reykjavík: auroras boreais, 07 noites">
+                        <img src="img/promos/reveillon-reykjavik.jpg" alt="Ano Novo em Reykjavík: auroras boreais, 07 noites"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/reveillon-reykjavik.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:12"
+                data-vence="2026-12-04"
+                data-termos="japao toquio quioto asia oriente internacional circuito roteiro">
+                <div class="promo-arte">
+                    <a href="img/promos/japao-essencial.jpg"
+                       aria-label="Ver a arte em tamanho maior: Japão Essencial">
+                        <img src="img/promos/japao-essencial.jpg" alt="Japão Essencial"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/japao-essencial.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:13"
+                data-vence="2026-12-01"
+                data-termos="vietna hanoi asia oriente internacional circuito roteiro em portugues">
+                <div class="promo-arte">
+                    <a href="img/promos/vietna-classico.jpg"
+                       aria-label="Ver a arte em tamanho maior: Vietnã Clássico, 08 noites, em português">
+                        <img src="img/promos/vietna-classico.jpg" alt="Vietnã Clássico, 08 noites, em português"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/vietna-classico.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="cruzeiro" style="--i:14"
+                data-vence="2026-12-01"
+                data-termos="cruzeiro navio maritimo explora journeys genova italia marselha barcelona malaga tanger cadiz lisboa portugal mediterraneo europa abril 2027">
+                <div class="promo-arte">
+                    <a href="img/promos/explora-iv-genova-lisboa.jpg"
+                       aria-label="Ver a arte em tamanho maior: Explora IV, de Gênova a Lisboa: 08 noites, de 15 a 23 de abril de 2027">
+                        <img src="img/promos/explora-iv-genova-lisboa.jpg" alt="Explora IV, de Gênova a Lisboa: 08 noites, de 15 a 23 de abril de 2027"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/explora-iv-genova-lisboa.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:15"
+                data-vence="2027-02-04"
+                data-termos="paris franca lourdes madri espanha lisboa portugal europa internacional circuito roteiro religioso">
+                <div class="promo-arte">
+                    <a href="img/promos/paris-madri-lisboa.jpg"
+                       aria-label="Ver a arte em tamanho maior: Maravilhas de Paris, Lourdes, Madri e Lisboa">
+                        <img src="img/promos/paris-madri-lisboa.jpg" alt="Maravilhas de Paris, Lourdes, Madri e Lisboa"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/paris-madri-lisboa.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="bloqueio" style="--i:16"
+                data-vence="2027-02-13"
+                data-termos="fernando de noronha pernambuco recife nordeste praia mergulho brasil nacional aereo voo bloqueio marco abril maio">
+                <div class="promo-arte">
+                    <a href="img/promos/bloqueio-noronha-recife.jpg"
+                       aria-label="Ver a arte em tamanho maior: Bloqueio aéreo saindo de Recife: Fernando de Noronha, 03 noites">
+                        <img src="img/promos/bloqueio-noronha-recife.jpg" alt="Bloqueio aéreo saindo de Recife: Fernando de Noronha, 03 noites"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/bloqueio-noronha-recife.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:17"
+                data-vence="2027-02-17"
+                data-termos="carnaval mendoza argentina america do sul vinho vinicola fevereiro internacional feriado">
+                <div class="promo-arte">
+                    <a href="img/promos/carnaval-mendoza.jpg"
+                       aria-label="Ver a arte em tamanho maior: Carnaval em Mendoza, 03 noites">
+                        <img src="img/promos/carnaval-mendoza.jpg" alt="Carnaval em Mendoza, 03 noites"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/carnaval-mendoza.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:18"
+                data-vence="2027-02-28"
+                data-termos="nova zelandia auckland oceania internacional circuito roteiro">
+                <div class="promo-arte">
+                    <a href="img/promos/nova-zelandia-magica.jpg"
+                       aria-label="Ver a arte em tamanho maior: Nova Zelândia Mágica, 04 noites">
+                        <img src="img/promos/nova-zelandia-magica.jpg" alt="Nova Zelândia Mágica, 04 noites"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/nova-zelandia-magica.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="circuito" style="--i:19"
+                data-vence="2027-02-01"
+                data-termos="vindima colheita mendoza argentina vinho vinicola enoturismo america do sul fevereiro marco internacional">
+                <div class="promo-arte">
+                    <a href="img/promos/vindima-mendoza.jpg"
+                       aria-label="Ver a arte em tamanho maior: Vindima em Mendoza, Argentina, 03 noites">
+                        <img src="img/promos/vindima-mendoza.jpg" alt="Vindima em Mendoza, Argentina, 03 noites"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/vindima-mendoza.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="bloqueio" style="--i:20"
+                data-vence="2027-03-10"
+                data-termos="fernando de noronha pernambuco fortaleza ceara nordeste praia mergulho brasil nacional aereo voo bloqueio">
+                <div class="promo-arte">
+                    <a href="img/promos/bloqueio-noronha-fortaleza.jpg"
+                       aria-label="Ver a arte em tamanho maior: De Fortaleza para Noronha: 03 noites com aéreo">
+                        <img src="img/promos/bloqueio-noronha-fortaleza.jpg" alt="De Fortaleza para Noronha: 03 noites com aéreo"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/bloqueio-noronha-fortaleza.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="bloqueio" style="--i:21"
+                data-vence="2027-04-01"
+                data-termos="fernando de noronha pernambuco natal rio grande do norte nordeste praia mergulho brasil nacional aereo voo bloqueio">
+                <div class="promo-arte">
+                    <a href="img/promos/bloqueio-noronha-natal.jpg"
+                       aria-label="Ver a arte em tamanho maior: Noronha saindo de Natal: 03 noites com aéreo incluso">
+                        <img src="img/promos/bloqueio-noronha-natal.jpg" alt="Noronha saindo de Natal: 03 noites com aéreo incluso"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/bloqueio-noronha-natal.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="bloqueio" style="--i:22"
+                data-termos="jericoacoara jeri fortaleza ceara nordeste praia brasil nacional aereo voo bloqueio salvador dezembro">
+                <div class="promo-arte">
+                    <a href="img/promos/bloqueio-jeri-fortaleza.jpg"
+                       aria-label="Ver a arte em tamanho maior: Bloqueio aéreo de Salvador: Jericoacoara e Fortaleza, 04 noites">
+                        <img src="img/promos/bloqueio-jeri-fortaleza.jpg" alt="Bloqueio aéreo de Salvador: Jericoacoara e Fortaleza, 04 noites"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/bloqueio-jeri-fortaleza.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="promo" data-tipo="cruzeiro" style="--i:23"
+                data-termos="cruzeiro navio maritimo explora journeys panama los angeles california estados unidos eua pacifico america central abril maio 2027">
+                <div class="promo-arte">
+                    <a href="img/promos/explora-iii-panama-los-angeles.jpg"
+                       aria-label="Ver a arte em tamanho maior: Explora III, do Panamá a Los Angeles: 11 noites">
+                        <img src="img/promos/explora-iii-panama-los-angeles.jpg" alt="Explora III, do Panamá a Los Angeles: 11 noites"
+                             width="720" height="1280"
+                             loading="lazy">
+                    </a>
+                </div>
+                <button class="btn promo-baixar" type="button"
+                        data-baixar="img/promos/explora-iii-panama-los-angeles.jpg">
+                    <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+                    <span data-rotulo-curto>Baixar a arte</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+                    </svg>
+                </button>
+            </li>
+
+        </ul>
+
+        <div class="mais">
+            <button class="btn btn--secundario" type="button" data-mais hidden></button>
+        </div>
+
+        <p class="vazio" data-vazio hidden>Nenhuma promoção deste tipo no ar agora.</p>
+
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     2 · O QUE VEM
+     Faixa de largura total, no mesmo formato do banner do topo. O
+     texto é HTML por cima da foto, e não parte da imagem: assim ele
+     é lido por leitor de tela, encontrado na busca e trocado sem
+     refazer arte. A foto é gerada e não tem texto nenhum dentro.
+     ═══════════════════════════════════════════════════════════ -->
+<section class="vem" aria-labelledby="vem-titulo">
+    <img class="vem-foto" src="img/central-embreve.jpg" alt=""
+         width="1920" height="1080" loading="lazy">
+
+    <div class="vem-conteudo">
+        <div class="container">
+            <p class="vem-etiqueta">Em breve</p>
+            <h2 id="vem-titulo">Guia, tutoriais e FAQ em construção</h2>
+            <p class="vem-linha">Estamos montando esta área. Enquanto isso, fale com o seu consultor OFB.</p>
+
+            <ul class="vem-lista">
+                <li>Guia da plataforma</li>
+                <li>Tutoriais em vídeo</li>
+                <li>Perguntas frequentes</li>
+                <li>Cursos</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     LUPA
+     Um <dialog> só, reaproveitado. Nativo por três motivos: o Esc
+     fecha sem código, o foco fica preso dentro enquanto está aberto
+     e o resto da página some para o leitor de tela.
+     Sem JavaScript o link do card continua levando à imagem.
+     ═══════════════════════════════════════════════════════════ -->
+<dialog class="lupa" aria-label="Arte da promoção">
+    <button class="lupa-fechar" type="button" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+    </button>
+    <div class="lupa-miolo">
+        <img alt="">
+        <button class="btn promo-baixar lupa-baixar" type="button" data-baixar="">
+            <span data-rotulo-longo>Baixar a arte com a sua logo</span>
+            <span data-rotulo-curto>Baixar a arte</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>
+            </svg>
+        </button>
+    </div>
+</dialog>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     BAIXAR
+     Duas saídas: a lâmina como está, ou a lâmina com a logo da
+     agência numa faixa branca em cima.
+
+     A montagem acontece aqui no navegador, num <canvas>. A logo do
+     agente não é enviada para lugar nenhum: ela é lida do disco
+     dele, guardada no navegador dele e desenhada na hora.
+     ═══════════════════════════════════════════════════════════ -->
+<dialog class="baixar" aria-labelledby="baixar-titulo">
+    <button class="lupa-fechar" type="button" aria-label="Fechar" data-baixar-fechar>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+    </button>
+
+    <div class="baixar-caixa">
+        <h2 id="baixar-titulo">Baixar a arte</h2>
+        <p>Você pode assinar a lâmina com a logo da sua agência: ela entra numa
+           faixa branca acima da arte, sem cobrir nada da promoção.</p>
+
+        <!-- Estado 1 · ainda não há logo -->
+        <div class="baixar-logo" data-logo-vazia>
+            <span class="baixar-logo-marca" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2"/>
+                    <path d="M3 16l5-5 4 4 3-3 6 6"/>
+                    <circle cx="9" cy="9.5" r="1.4"/>
+                </svg>
+            </span>
+            <p class="legenda">Nenhuma logo escolhida ainda.</p>
+        </div>
+
+        <!-- Estado 2 · a logo já está guardada neste navegador -->
+        <div class="baixar-logo" data-logo-cheia hidden>
+            <img alt="A logo que você escolheu" data-logo-previa>
+            <p class="legenda">
+                Guardada só neste computador.<br>
+                <button class="btn--link" type="button" data-trocar>Trocar</button>
+                <span aria-hidden="true">·</span>
+                <button class="btn--link" type="button" data-remover>Remover</button>
+            </p>
+        </div>
+
+        <p class="baixar-erro" role="alert" data-erro hidden></p>
+
+        <div class="baixar-acoes">
+            <button class="btn promo-baixar" type="button" data-com-logo>
+                Escolher a logo e baixar
+            </button>
+            <button class="btn btn--secundario" type="button" data-sem-logo>
+                Baixar sem logo
+            </button>
+        </div>
+
+        <p class="legenda">PNG ou JPEG, até 3 MB e 3500 px de lado.</p>
+
+        <input type="file" accept="image/png,image/jpeg" hidden data-arquivo>
+    </div>
+</dialog>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     RODAPÉ
+     Cópia do rodapé da home, escrito na sessão dela em 04/09/2026.
+     É persistente: o mesmo em todas as páginas. Não tem âncora
+     interna, então vem sem adaptação — diferente do header, cujas
+     âncoras precisaram virar index.html#.
+     Mudou lá? Copiar de novo. A fonte é o index.html.
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="rodape" id="rodape">
+    <div class="container rodape-grade">
+
+        <div class="rodape-marca">
+            <img class="rodape-logo" src="img/ofb-logo-negativo.png" alt="OFB"
+                 width="800" height="303">
+            <ul class="rodape-redes">
+                <li>
+                    <a href="https://www.instagram.com/ofboperadora/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5.2"/>
+                            <circle cx="12" cy="12" r="4.1"/>
+                            <circle cx="17.2" cy="6.8" r="1.15" fill="currentColor" stroke="none"/>
+                        </svg>
+                        <span class="sr-only">Instagram da OFB (abre em nova aba)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/ofbviagens" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M15.2 3.2h-2.6A3.6 3.6 0 0 0 9 6.8v3.1H6.5v3.4H9v7.5h3.4v-7.5h2.6l.5-3.4h-3.1V7.1a1 1 0 0 1 1-1h2.2z"/>
+                        </svg>
+                        <span class="sr-only">Facebook da OFB (abre em nova aba)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="rodape-acessar">
+            <span class="rodape-rotulo">Acessar</span>
+            <ul>
+                <li>
+                    <a href="https://www.agente.tur.br" target="_blank" rel="noopener">
+                        agente.tur
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                        <span class="sr-only"> (abre em nova aba)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
+                        Consolidação
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                        <span class="sr-only"> (abre em nova aba)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="rodape-contato">
+            <a class="rodape-destaque" href="mailto:comercial@ofb.com.br">comercial@ofb.com.br</a>
+            <a class="rodape-destaque" href="tel:+557133415100">(71) 3341-5100</a>
+            <address>
+                Av. Tancredo Neves, 805, Edf. Espaço Empresarial, Sala 601,<br>
+                Caminho das Árvores, Salvador BA, CEP 41820-021
+            </address>
+            <p class="rodape-horario">Segunda a sexta das 9h às 19h<br>
+               Sábados das 9h às 13h</p>
+        </div>
+
+    </div>
+
+    <div class="rodape-base">
+        <div class="container">
+            <p>CNPJ 34.300.087/0001-34</p>
+            <p class="rodape-credito">© 2026 por One Publicidade Criativa</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/site.js?v=20260908-1"></script>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FILTRO DAS PROMOÇÕES
+     Mora aqui, e não na js/site.js, porque só existe nesta página.
+     Sem JavaScript a grade continua inteira na tela: o filtro
+     acrescenta, não é pré-requisito.
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+'use strict';
+
+var filtros  = Array.prototype.slice.call(document.querySelectorAll('[data-filtro]'));
+var promos   = Array.prototype.slice.call(document.querySelectorAll('.promo'));
+var vazio    = document.querySelector('[data-vazio]');
+var contagem = document.querySelector('[data-contagem]');
+var maisBtn  = document.querySelector('[data-mais]');
+var buscaCpo = document.querySelector('[data-busca]');
+
+if (filtros.length && promos.length) {
+
+    /* ── Validade ────────────────────────────────────────────────
+       Promoção vencida some sozinha. A data de cada uma está no
+       data-vence do card; sem o atributo, ela não vence.
+
+       A comparação é entre textos no formato AAAA-MM-DD, e não entre
+       objetos de data: assim o fuso do computador do agente não muda
+       o resultado no virar do dia.
+
+       Decisões do Lippe em 03/09/2026: a promoção some NO PRÓPRIO dia
+       da validade, e validade sem dia no Notion ("até nov/2026") vira
+       o primeiro dia do mês.
+       ── */
+    function hojeTexto() {
+        /* ?hoje=2026-12-01 na URL permite conferir como a grade fica
+           numa data futura. Sem o parâmetro, vale o dia de hoje. */
+        var forcado = (location.search.match(/[?&]hoje=(\d{4}-\d{2}-\d{2})/) || [])[1];
+        if (forcado) return forcado;
+
+        var d = new Date();
+        var mes = String(d.getMonth() + 1);
+        var dia = String(d.getDate());
+        return d.getFullYear() + '-' +
+               (mes.length < 2 ? '0' + mes : mes) + '-' +
+               (dia.length < 2 ? '0' + dia : dia);
+    }
+
+    var HOJE = hojeTexto();
+
+    function venceu(promo) {
+        var data = promo.getAttribute('data-vence');
+        return !!data && HOJE >= data;
+    }
+
+    /* Sai da lista de uma vez: filtro, busca, contagem e "ver mais"
+       passam a trabalhar só com o que está no prazo. */
+    promos = promos.filter(function (promo) {
+        if (!venceu(promo)) return true;
+        promo.hidden = true;
+        return false;
+    });
+
+    /* De seis em seis: duas linhas de três, que é o que cabe sem
+       obrigar a rolar. O resto entra a pedido. */
+    var PASSO  = 6;
+    var limite = PASSO;
+    var tipo   = 'todas';
+    var termo  = '';
+
+    /* Sem acento e em minúsculas dos dois lados: quem digita "japao"
+       de pressa precisa achar "Japão". */
+    function simplificar(texto) {
+        return texto.toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '');
+    }
+
+    /* O que a busca lê, montado uma vez por lâmina, de três fontes:
+
+         1. o alt da arte — o que a lâmina é, em uma frase;
+         2. data-termos   — sinônimos, região, mês, cidade de saída.
+            Existe para o alt não virar depósito de palavra-chave:
+            ele é o que uma pessoa cega ouve no lugar da imagem, e
+            encher de sinônimo estragaria a descrição;
+         3. o rótulo do filtro — assim "cruzeiro" acha os cruzeiros
+            sem que ninguém precise repetir a palavra em cada card.
+       ── */
+    var rotulos = {};
+    filtros.forEach(function (b) {
+        rotulos[b.getAttribute('data-filtro')] = b.textContent.trim();
+    });
+
+    promos.forEach(function (promo) {
+        var arte = promo.querySelector('img');
+        promo.dataset.texto = simplificar([
+            arte ? arte.alt : '',
+            promo.getAttribute('data-termos') || '',
+            rotulos[promo.getAttribute('data-tipo')] || ''
+        ].join(' '));
+    });
+
+    /* Palavra a palavra, todas precisam aparecer — e não a frase
+       inteira em bloco. Sem isso "noronha recife" não acha nada, já
+       que a lâmina diz "saindo de Recife: Fernando de Noronha". */
+    var palavras = [];
+
+    function combinaBusca(promo) {
+        for (var i = 0; i < palavras.length; i++) {
+            if (promo.dataset.texto.indexOf(palavras[i]) === -1) return false;
+        }
+        return true;
+    }
+
+    function aplicar(animarDesde) {
+        var cabem  = 0;   /* quantas passam pelo filtro e pela busca */
+        var vistas = 0;   /* quantas estão na tela agora             */
+
+        promos.forEach(function (promo) {
+            var daCategoria = (tipo === 'todas' || promo.getAttribute('data-tipo') === tipo);
+            var daBusca     = combinaBusca(promo);
+            if (!daCategoria || !daBusca) { promo.hidden = true; return; }
+
+            cabem++;
+            var mostra = cabem <= limite;
+            promo.hidden = !mostra;
+            if (!mostra) return;
+
+            /* Anima só o que acabou de aparecer: ao trocar de filtro
+               é a grade inteira; no "ver mais", só o lote novo. */
+            if (vistas >= animarDesde) {
+                promo.style.setProperty('--i', vistas - animarDesde);
+                promo.classList.remove('entra');
+                void promo.offsetWidth;
+                promo.classList.add('entra');
+            }
+            vistas++;
+        });
+
+        var faltam = cabem - vistas;
+
+        if (maisBtn) {
+            maisBtn.hidden = faltam <= 0;
+            maisBtn.textContent = 'Ver mais promoções (' + faltam + ')';
+        }
+
+        if (vazio) {
+            vazio.hidden = cabem > 0;
+            vazio.textContent =
+                promos.length === 0
+                    ? 'Nenhuma promoção no ar neste momento. Fale com o seu consultor OFB.'
+                : termo
+                    ? 'Nada encontrado para “' + buscaCpo.value.trim() + '”.'
+                    : 'Nenhuma promoção deste tipo no ar agora.';
+        }
+
+        if (contagem) {
+            contagem.textContent = cabem === 0
+                ? 'Nenhuma promoção encontrada.'
+                : vistas + ' de ' + cabem + (cabem === 1 ? ' promoção na tela.' : ' promoções na tela.');
+        }
+    }
+
+    filtros.forEach(function (botao) {
+        botao.addEventListener('click', function () {
+            filtros.forEach(function (b) {
+                b.setAttribute('aria-pressed', b === botao ? 'true' : 'false');
+            });
+            tipo   = botao.getAttribute('data-filtro');
+            limite = PASSO;          /* filtro novo recomeça do zero */
+            aplicar(0);
+        });
+    });
+
+    if (buscaCpo) {
+        buscaCpo.addEventListener('input', function () {
+            termo    = simplificar(buscaCpo.value.trim());
+            palavras = termo ? termo.split(/\s+/) : [];
+            limite   = PASSO;        /* busca nova recomeça do zero */
+            aplicar(0);
+        });
+
+        /* Esc limpa o campo: é o que o teclado espera de uma busca. */
+        buscaCpo.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && buscaCpo.value) {
+                e.stopPropagation();
+                buscaCpo.value = '';
+                termo    = '';
+                palavras = [];
+                limite   = PASSO;
+                aplicar(0);
+            }
+        });
+    }
+
+    if (maisBtn) {
+        maisBtn.addEventListener('click', function () {
+            var antes = limite;
+            limite += PASSO;
+            aplicar(antes);
+
+            /* O foco vai para a primeira que chegou. Sem isso quem
+               navega por teclado fica no botão, que mudou de lugar ou
+               sumiu, e perde a referência do que aconteceu. */
+            var nova = promos.filter(function (p) { return !p.hidden; })[antes];
+            var alvo = nova && nova.querySelector('a');
+            if (alvo) alvo.focus({ preventScroll: true });
+        });
+    }
+
+    /* Sem nenhuma no prazo, filtrar e buscar não têm sentido: some o
+       que não serve e fica só o aviso. */
+    if (promos.length === 0) {
+        var controles = document.querySelector('.controles');
+        if (controles) controles.hidden = true;
+        if (maisBtn)   maisBtn.hidden = true;
+    }
+
+    /* Primeira pintura sem animação: a página ainda nem rolou. */
+    aplicar(Infinity);
+}
+
+
+/* ── Lupa ────────────────────────────────────────────────────────
+   Clicar na arte abre a lâmina grande aqui mesmo. Combinação de
+   teclas para abrir em outra aba continua funcionando, e navegador
+   sem <dialog> segue o link como antes.
+   ── */
+var lupa = document.querySelector('.lupa');
+
+if (lupa && typeof lupa.showModal === 'function') {
+    var lupaImg    = lupa.querySelector('img');
+    var lupaFechar = lupa.querySelector('.lupa-fechar');
+    var lupaBaixar = lupa.querySelector('.lupa-baixar');
+    var rolagem    = '';
+
+    function abrirLupa(link) {
+        var arte = link.querySelector('img');
+        lupaImg.src = link.getAttribute('href');
+        lupaImg.alt = arte ? arte.alt : '';
+        /* O download da lupa é o mesmo arquivo que está sendo visto. */
+        lupaBaixar.setAttribute('data-baixar', link.getAttribute('href'));
+        lupa.setAttribute('aria-label', lupaImg.alt);
+        lupa.classList.remove('fechando');
+        rolagem = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        lupa.showModal();
+    }
+
+    function fecharLupa() {
+        if (lupa.classList.contains('fechando')) return;
+
+        /* Movimento reduzido fecha na hora: não há saída para esperar. */
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return encerrar();
+        }
+        lupa.classList.add('fechando');
+
+        /* Relógio, e não o evento 'animationend': em aba de segundo
+           plano o navegador congela a animação, o evento não chega e a
+           lupa ficaria presa aberta. O tempo espelha a saída do CSS. */
+        setTimeout(encerrar, 140);
+    }
+
+    function encerrar() {
+        lupa.classList.remove('fechando');
+        lupa.close();
+        document.body.style.overflow = rolagem;
+        lupaImg.removeAttribute('src');
+    }
+
+    document.querySelectorAll('.promo-arte a').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            /* Ctrl, Cmd, Shift ou botão do meio: é pedido de nova aba. */
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            e.preventDefault();
+            abrirLupa(link);
+        });
+    });
+
+    lupaFechar.addEventListener('click', fecharLupa);
+
+    /* Clique no fundo, fora da arte. */
+    lupa.addEventListener('click', function (e) {
+        if (e.target === lupa) fecharLupa();
+    });
+
+    /* O Esc fecha sozinho; aqui a saída ganha a mesma animação. */
+    lupa.addEventListener('cancel', function (e) {
+        e.preventDefault();
+        fecharLupa();
+    });
+}
+
+/* ── Baixar, com ou sem a logo da agência ────────────────────────
+   Tudo acontece neste navegador: a logo é lida do disco do agente,
+   guardada aqui mesmo e desenhada num <canvas> junto da lâmina.
+   Nada é enviado para servidor nenhum — não há para onde enviar.
+   ── */
+var caixa = document.querySelector('.baixar');
+
+if (caixa && typeof caixa.showModal === 'function') {
+
+    var CHAVE     = 'ofb-central-logo';   /* onde a logo fica guardada */
+    var LIMITE    = 3 * 1024 * 1024;      /* 3 MB de arquivo escolhido */
+    var LADO_LOGO = 640;                  /* a logo é guardada reduzida */
+
+    /* A faixa tem altura fixa e a logo se ajusta a ela. Deixar a
+       faixa crescer conforme a marca fazia a lâmina mudar de
+       proporção a cada agência — e uma marca alta virava um bloco
+       branco maior que a própria promoção.
+
+       O respiro vertical é curto de propósito: é ele que decide o
+       tamanho da logo dentro de uma faixa que não cresce. */
+    var FAIXA       = 0.10;   /* altura, sobre a altura da lâmina  */
+    var RESPIRO_V   = 0.13;   /* acima e abaixo, sobre a faixa     */
+    var LARGURA_MAX = 0.62;   /* teto, sobre a largura da lâmina   */
+    /* As logos oficiais que a casa tem vão até 3000 px de lado
+       (EZLINK horizontal HD, com 72 KB). 3500 dá folga para todas e
+       ainda barra o arquivo de 6000 × 6000, que são 36 milhões de
+       pixels para o navegador decodificar de uma vez. */
+    var LADO_MAXIMO = 3500;   /* pixels no maior lado do arquivo   */
+
+    var arteAtual  = '';
+    var arqCampo   = caixa.querySelector('[data-arquivo]');
+    var previa     = caixa.querySelector('[data-logo-previa]');
+    var blocoVazio = caixa.querySelector('[data-logo-vazia]');
+    var blocoCheio = caixa.querySelector('[data-logo-cheia]');
+    var btnComLogo = caixa.querySelector('[data-com-logo]');
+    var btnSemLogo = caixa.querySelector('[data-sem-logo]');
+    var erro       = caixa.querySelector('[data-erro]');
+    var rolagemBx  = '';
+
+    function logoGuardada() {
+        try { return localStorage.getItem(CHAVE) || ''; } catch (e) { return ''; }
+    }
+
+    function mostrarErro(texto) {
+        erro.textContent = texto || '';
+        erro.hidden = !texto;
+    }
+
+    function pintarEstado() {
+        var logo = logoGuardada();
+        blocoVazio.hidden = !!logo;
+        blocoCheio.hidden = !logo;
+        if (logo) previa.src = logo;
+        btnComLogo.textContent = logo ? 'Baixar com a minha logo' : 'Escolher a logo e baixar';
+    }
+
+    function abrirBaixar(arte) {
+        arteAtual = arte;
+        mostrarErro('');
+        pintarEstado();
+        rolagemBx = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        caixa.showModal();
+    }
+
+    function fecharBaixar() {
+        caixa.close();
+        document.body.style.overflow = rolagemBx;
+    }
+
+    /* Um clique em qualquer "Baixar a arte", na grade ou na lupa. */
+    document.addEventListener('click', function (e) {
+        var botao = e.target.closest('[data-baixar]');
+        if (!botao) return;
+        var arte = botao.getAttribute('data-baixar');
+        if (!arte) return;
+        abrirBaixar(arte);
+    });
+
+    caixa.querySelector('[data-baixar-fechar]').addEventListener('click', fecharBaixar);
+    caixa.addEventListener('cancel', function (e) { e.preventDefault(); fecharBaixar(); });
+    caixa.addEventListener('click', function (e) { if (e.target === caixa) fecharBaixar(); });
+
+    /* ── Entregar o arquivo ── */
+    function entregar(blob, nome) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = nome;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        /* O navegador precisa do endereço até começar a gravar. */
+        setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+    }
+
+    function nomeDoArquivo(arte, sufixo) {
+        var base = arte.split('/').pop().replace(/\.jpg$/, '');
+        return base + sufixo + '.jpg';
+    }
+
+    /* ── Montar a lâmina com a faixa e a logo ── */
+    function montarComLogo(arte, logo, pronto, falhou) {
+        var lamina = new Image();
+        lamina.onerror = falhou;
+        lamina.onload = function () {
+            var marca = new Image();
+            marca.onerror = falhou;
+            marca.onload = function () {
+                var L = lamina.naturalWidth, A = lamina.naturalHeight;
+                var faixa = Math.round(A * FAIXA);
+
+                /* Marca deitada esbarra na largura; marca em pé ou
+                   quadrada esbarra na altura da faixa. Vale o que
+                   apertar primeiro, e a proporção nunca se perde. */
+                var altUtil  = faixa - Math.round(faixa * RESPIRO_V) * 2;
+                var largUtil = Math.round(L * LARGURA_MAX);
+                var escala   = Math.min(largUtil / marca.naturalWidth,
+                                        altUtil  / marca.naturalHeight);
+                var l = Math.round(marca.naturalWidth  * escala);
+                var a = Math.round(marca.naturalHeight * escala);
+
+                var tela = document.createElement('canvas');
+                tela.width  = L;
+                tela.height = A + faixa;
+
+                var pincel = tela.getContext('2d');
+                pincel.fillStyle = '#FFFFFF';
+                pincel.fillRect(0, 0, tela.width, faixa);
+                pincel.drawImage(lamina, 0, faixa);
+                pincel.drawImage(marca,
+                    Math.round((L - l) / 2),
+                    Math.round((faixa - a) / 2),
+                    l, a);
+
+                tela.toBlob(function (blob) {
+                    blob ? pronto(blob) : falhou();
+                }, 'image/jpeg', 0.92);
+            };
+            marca.src = logo;
+        };
+        lamina.src = arte;
+    }
+
+    /* ── Ler e guardar a logo escolhida ── */
+    function guardarLogo(arquivo, pronto) {
+        if (['image/png', 'image/jpeg'].indexOf(arquivo.type) === -1) {
+            return mostrarErro('A logo precisa ser PNG ou JPEG.');
+        }
+        if (arquivo.size > LIMITE) {
+            return mostrarErro('Esse arquivo tem ' +
+                (arquivo.size / 1048576).toFixed(1) + ' MB. O limite é 3 MB.');
+        }
+
+        var leitor = new FileReader();
+        leitor.onerror = function () { mostrarErro('Não consegui ler esse arquivo.'); };
+        leitor.onload = function () {
+            var img = new Image();
+            img.onerror = function () { mostrarErro('Esse arquivo não abriu como imagem.'); };
+            img.onload = function () {
+                /* Peso pequeno não quer dizer imagem pequena: um PNG
+                   de 6000 × 6000 cabe em poucos MB e mesmo assim
+                   obriga o navegador a abrir 36 milhões de pixels, o
+                   que trava celular. O lado também tem limite. */
+                if (Math.max(img.naturalWidth, img.naturalHeight) > LADO_MAXIMO) {
+                    return mostrarErro('Essa imagem tem ' + img.naturalWidth + ' × ' +
+                        img.naturalHeight + ' px. Use uma logo de até ' + LADO_MAXIMO + ' px de lado.');
+                }
+
+                /* Guardada reduzida: o espaço do navegador é pequeno, e
+                   na faixa ela nunca aparece maior que isto. */
+                var escala = Math.min(1, LADO_LOGO / Math.max(img.naturalWidth, img.naturalHeight));
+                var tela = document.createElement('canvas');
+                tela.width  = Math.round(img.naturalWidth  * escala);
+                tela.height = Math.round(img.naturalHeight * escala);
+                tela.getContext('2d').drawImage(img, 0, 0, tela.width, tela.height);
+
+                /* PNG para não perder o fundo transparente da marca. */
+                var dado = tela.toDataURL('image/png');
+                try {
+                    localStorage.setItem(CHAVE, dado);
+                } catch (err) {
+                    mostrarErro('Não consegui guardar a logo neste navegador, mas ela vale para este download.');
+                }
+                mostrarErro('');
+                pintarEstado();
+                pronto(dado);
+            };
+            img.src = leitor.result;
+        };
+        leitor.readAsDataURL(arquivo);
+    }
+
+    function baixarComLogo(logo) {
+        btnComLogo.disabled = true;
+        btnComLogo.textContent = 'Montando…';
+        montarComLogo(arteAtual, logo, function (blob) {
+            entregar(blob, nomeDoArquivo(arteAtual, '-com-logo'));
+            btnComLogo.disabled = false;
+            pintarEstado();
+            fecharBaixar();
+        }, function () {
+            btnComLogo.disabled = false;
+            pintarEstado();
+            mostrarErro('Não consegui montar a arte com a logo. Tente outro arquivo.');
+        });
+    }
+
+    btnComLogo.addEventListener('click', function () {
+        var logo = logoGuardada();
+        if (logo) return baixarComLogo(logo);
+        arqCampo.click();          /* ainda não há logo: escolher agora */
+    });
+
+    arqCampo.addEventListener('change', function () {
+        var arquivo = arqCampo.files && arqCampo.files[0];
+        arqCampo.value = '';       /* permite reescolher o mesmo arquivo */
+        if (arquivo) guardarLogo(arquivo, baixarComLogo);
+    });
+
+    caixa.querySelector('[data-trocar]').addEventListener('click', function () {
+        arqCampo.click();
+    });
+
+    caixa.querySelector('[data-remover]').addEventListener('click', function () {
+        try { localStorage.removeItem(CHAVE); } catch (e) {}
+        mostrarErro('');
+        pintarEstado();
+    });
+
+    /* Sem logo é o arquivo original, sem passar pelo canvas: nada a
+       recompor, nada a perder. */
+    btnSemLogo.addEventListener('click', function () {
+        var a = document.createElement('a');
+        a.href = arteAtual;
+        a.download = nomeDoArquivo(arteAtual, '');
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        fecharBaixar();
+    });
+}
+
+})();
+</script>
+
+</body>
+</html>

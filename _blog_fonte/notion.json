@@ -1,0 +1,68 @@
+[
+ {
+  "titulo": "[TESTE] Post de exemplo para o gerador do blog",
+  "slug": "teste-post-de-exemplo",
+  "trilha": "ofb",
+  "categoria": "Capacitação",
+  "data": "2026-09-04",
+  "status": "rascunho",
+  "capa": "",
+  "capa_alt": "",
+  "trecho": "Post de teste. Serve só para o gerador ler título, trecho, categoria, data e corpo com os blocos que um post real vai usar. Não publicar.",
+  "corpo": [
+   {
+    "tipo": "paragrafo",
+    "texto": "Este post existe para o gerador do blog ter o que ler enquanto a base ainda está vazia. Ele fica em **Rascunho** e nunca vai para o ar. Quando o primeiro post real entrar, este pode ser apagado."
+   },
+   {
+    "tipo": "paragrafo",
+    "texto": "Abaixo, os blocos que um post real vai usar, para o gerador tratar cada um."
+   },
+   {
+    "tipo": "subtitulo",
+    "texto": "Um subtítulo de seção"
+   },
+   {
+    "tipo": "paragrafo",
+    "texto": "Um parágrafo comum, com **negrito**, itálico e um [link](https://www.ofb.com.br). O texto corrido do site é grafite sobre branco, Montserrat Regular, no máximo 65 caracteres por linha."
+   },
+   {
+    "tipo": "subtitulo",
+    "texto": "Um subtítulo menor"
+   },
+   {
+    "tipo": "item",
+    "texto": "Um item de lista"
+   },
+   {
+    "tipo": "item",
+    "texto": "Outro item de lista"
+   },
+   {
+    "tipo": "item",
+    "texto": "Um terceiro, para ver o espaçamento"
+   },
+   {
+    "tipo": "item",
+    "texto": "Um passo numerado"
+   },
+   {
+    "tipo": "item",
+    "texto": "Outro passo"
+   },
+   {
+    "tipo": "citacao",
+    "texto": "Uma citação, para ver o tratamento do bloco."
+   },
+   {
+    "tipo": "paragrafo",
+    "texto": "Uma imagem entra colada direto aqui na página. O gerador baixa, converte para o peso do site e grava em blog/img/. A URL do Notion expira e nunca é embutida."
+   },
+   {
+    "tipo": "paragrafo",
+    "texto": "O post assina OFB. Não há autor."
+   }
+  ],
+  "_origem": "https://app.notion.com/p/3d120d241d0f81f793a0d93ba175eb19 · export pelo MCP em 2026-09-08"
+ }
+]

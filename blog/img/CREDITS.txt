@@ -1,0 +1,5 @@
+Créditos das imagens do blog. Gerado por _gerar_blog.py — não editar à mão.
+
+emitir-com-consolidadora-capa.jpg: Foto por CHUTTERSNAP (https://unsplash.com/@chuttersnap) no Unsplash
+alta-temporada-nordeste-capa.jpg: Foto por Elizeu Dias (https://unsplash.com/@elishavision) no Unsplash
+reveillon-decide-primeiro-capa.jpg: Foto por Sophie tailly (https://unsplash.com/@sophietailly) no Unsplash

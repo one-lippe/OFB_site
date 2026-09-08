@@ -1,0 +1,741 @@
+/* ═══════════════════════════════════════════════════════════════
+   CENTRAL DO AGENTE · folha da página
+   Carrega DEPOIS da site.css e só acrescenta o que é daqui.
+   Token, botão, container, seção, reveal e header vêm de lá e não
+   se repetem: o que estiver nas duas folhas vira divergência na
+   primeira vez que uma das duas mudar.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Banner da Central ──────────────────────────────────────────
+   Largura total, encostado no header. Fica fora do container de
+   propósito: é a única peça da página que sangra de ponta a ponta.
+   ── */
+.banner {
+    position: relative;
+    width: 100%;
+    display: grid;
+    align-items: center;
+    overflow: hidden;
+    background: var(--cinza-fundo);   /* enquanto carrega */
+}
+.banner picture { display: block; grid-area: 1 / 1; }
+
+/* A proporção é a da foto que está no ar, não uma medida escolhida
+   aqui: assim nada é cortado e a página não pula antes de a imagem
+   carregar. Trocando a foto, trocar também estes dois números. */
+.banner-arte {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1800 / 771;
+    object-fit: cover;
+    object-position: right center;
+}
+
+/* O texto mora no terço esquerdo, que a foto deixou limpo. A parede
+   é cinza médio onde a sombra cai, e o grafite ficava no limite: um
+   véu branco que morre antes da metade da foto clareia só ali, sem
+   desenhar caixa (regra da 03_HERO §4b: nunca uma borda dentro da
+   tela). O filete assina. */
+.banner::after {
+    content: '';
+    grid-area: 1 / 1;
+    background: linear-gradient(to right,
+        rgba(255, 255, 255, 0.62) 0%,
+        rgba(255, 255, 255, 0.40) 28%,
+        rgba(255, 255, 255, 0)   48%);
+    pointer-events: none;
+}
+.banner-conteudo {
+    grid-area: 1 / 1;
+    position: relative;
+    z-index: 1;
+}
+.banner h1 {
+    font-size: clamp(2rem, 4.2vw, 3.5rem);
+    max-width: 12ch;
+    margin-bottom: var(--e-3);
+}
+.banner .subtitulo {
+    max-width: 24ch;
+    color: var(--grafite);
+    font-weight: 500;
+}
+
+@media (max-width: 620px) {
+    .banner { align-items: start; }
+    .banner::after {
+        background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.62) 0%,
+            rgba(255, 255, 255, 0.40) 24%,
+            rgba(255, 255, 255, 0)   42%);
+    }
+    .banner-arte { aspect-ratio: 4 / 5; object-position: center bottom; }
+    .banner-conteudo { padding-top: clamp(28px, 8vw, 48px); }
+    .banner h1 { max-width: none; }
+}
+
+/* ── Cabeça de seção ────────────────────────────────────────────
+   Título e a linha que diz o que fazer com o material.
+   ── */
+/* .secao-cabeca agora é da site.css (promovida em 08/09/2026). */
+
+/* ── Controles: filtro à esquerda, busca à direita ──────────────
+   Os dois fazem a mesma coisa por caminhos diferentes, e por isso
+   dividem a mesma linha. Em tela estreita a busca desce inteira.
+   ── */
+.controles[hidden] { display: none; }
+.controles {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--e-4);
+    margin-bottom: var(--e-5);
+}
+
+/* ── Filtro por tipo ────────────────────────────────────────────
+   Botões, não links: eles não navegam, mudam o que a grade mostra.
+   O estado ligado é o vermelho da marca, que aqui assina o que o
+   agente escolheu — uso de botão, o único que o contraste permite.
+   ── */
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-2);
+}
+
+.filtro {
+    min-height: 44px;
+    padding: 10px 20px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 999px;
+    background: var(--branco);
+    color: var(--grafite);
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background-color 160ms ease,
+                border-color     160ms ease,
+                color            160ms ease,
+                transform        160ms var(--ease-out);
+}
+.filtro:active { transform: scale(0.97); }
+.filtro:focus-visible { outline: 2px solid var(--vermelho); outline-offset: 2px; }
+
+@media (hover: hover) and (pointer: fine) {
+    .filtro:hover { border-color: var(--grafite); }
+    .filtro[aria-pressed="true"]:hover {
+        background: var(--vermelho-hover);
+        border-color: var(--vermelho-hover);
+    }
+}
+
+.filtro[aria-pressed="true"] {
+    background: var(--vermelho);
+    border-color: var(--vermelho);
+    color: var(--branco);
+}
+
+/* ── Busca ──────────────────────────────────────────────────────
+   Encostada na direita. A lupa fica dentro do campo e não recebe
+   clique: quem clica no campo já está no lugar certo de digitar.
+   ── */
+.busca {
+    position: relative;
+    flex: none;
+    margin-left: auto;
+}
+.busca svg {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    width: 17px;
+    height: 17px;
+    color: var(--cinza-texto);
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: color 160ms ease;
+}
+.busca input {
+    width: 260px;
+    height: 44px;
+    padding: 0 var(--e-3) 0 42px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 999px;
+    background: var(--branco);
+    color: var(--grafite);
+    font: inherit;
+    font-size: 0.9375rem;
+    transition: border-color 160ms ease;
+}
+.busca input::placeholder { color: var(--cinza-texto); }
+/* Sem anel vermelho: num campo de texto o :focus-visible dispara
+   também no clique, e o anel destacado do contorno virava um segundo
+   traço em volta do campo. A borda escurece e engrossa por
+   box-shadow — indicação de foco continua, sem mexer no layout. */
+.busca input:focus-visible {
+    outline: none;
+    border-color: var(--grafite);
+    box-shadow: 0 0 0 1px var(--grafite);
+}
+.busca input:focus-visible + svg,
+.busca:focus-within svg { color: var(--grafite); }
+
+@media (hover: hover) and (pointer: fine) {
+    .busca input:hover { border-color: var(--grafite); }
+}
+
+/* Em tela estreita a busca ganha a linha inteira: espremida ao lado
+   dos chips ela não caberia nem para uma palavra. */
+@media (max-width: 860px) {
+    .controles { flex-wrap: wrap; }
+    .busca { width: 100%; margin-left: 0; }
+    .busca input { width: 100%; }
+}
+
+/* ── A grade ────────────────────────────────────────────────────
+   A arte é o card. O que o agente quer é vê-la grande e levá-la;
+   título e legenda em cima dela só afastariam o material.
+   ── */
+.promos {
+    display: grid;
+    /* Três colunas: a lâmina em pé precisa de largura para o preço e
+       as condições serem lidos direto na grade. */
+    grid-template-columns: repeat(3, 1fr);
+    /* A distância entre cards é o que separa um do outro agora que o
+       botão encostou na arte: precisa ser bem maior que o zero de
+       dentro do card. */
+    gap: var(--e-6) var(--e-4);
+    list-style: none;
+}
+
+/* No celular a arte inteira em uma coluna vira uma tela por
+   promoção. Duas colunas deixam o agente varrer o que está no ar. */
+@media (max-width: 620px) {
+    .promos { grid-template-columns: repeat(2, 1fr); gap: var(--e-4) var(--e-3); }
+    /* Em duas colunas o rótulo do botão quebra em duas linhas com o
+       padding do site. Aperta o lado, não a altura de toque. */
+    .promo-baixar { padding-inline: 12px; font-size: 0.875rem; }
+}
+
+/* O rótulo longo diz o que a página oferece; em card estreito ele
+   viraria três linhas, e aí vale o curto — a opção da logo continua
+   sendo oferecida dentro do próprio popup, que é o mesmo. */
+[data-rotulo-curto] { display: none; }
+@media (max-width: 620px) {
+    [data-rotulo-longo] { display: none; }
+    [data-rotulo-curto] { display: inline; }
+}
+
+.promo {
+    /* O quanto a lâmina cresce sob o ponteiro, e o inverso exato,
+       que a sombra usa para não crescer junto. Os dois andam
+       casados: mexeu num, calcule o outro (1 ÷ cresce).
+       Vêm escritos, e não por calc(1 / var(...)), porque o navegador
+       recusa divisão por variável dentro de calc — a regra inteira é
+       descartada e a sombra volta a crescer com o card. */
+    --cresce:  1.015;
+    --encolhe: 0.985222;
+
+    position: relative;
+    /* z-index no repouso, e não só no hover: ele cria o contexto de
+       empilhamento que mantém a sombra presa atrás deste card. Sem
+       ele, no instante em que o ponteiro sai, o card perde o
+       empilhamento antes de a sombra apagar e ela pisca por trás do
+       fundo da página. */
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 240ms var(--ease-out);
+    /* Sem folga: encostados, a arte e o botão leem como uma peça só,
+       e não sobra espaço para o botão parecer do card de baixo. */
+    gap: 0;
+}
+/* Um display declarado vence o display:block que o navegador dá a
+   [hidden]: sem esta linha o filtro esconde e o card continua na
+   tela. Vale para qualquer elemento com display próprio. */
+.promo[hidden] { display: none; }
+
+/* A proporção é a da lâmina que a casa já produz: 720 × 1280. */
+.promo-arte {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 720 / 1280;
+    border: 1px solid var(--cinza-borda);
+    border-bottom: none;
+    border-radius: var(--raio) var(--raio) 0 0;
+    background: var(--cinza-fundo);
+    overflow: hidden;
+}
+.promo-arte a   { display: block; width: 100%; height: 100%; }
+.promo-arte img { width: 100%; height: 100%; object-fit: cover; }
+/* O foco desenha em volta da moldura inteira, não do link por dentro
+   dela: sem isso o anel some atrás do overflow do card. */
+.promo-arte:has(a:focus-visible) { outline: 2px solid var(--vermelho); outline-offset: 2px; }
+.promo-arte a:focus-visible      { outline: none; }
+
+/* ── Sombra ao passar o mouse ───────────────────────────────────
+   Sombra sem deslocamento, igual dos quatro lados: a lâmina levanta
+   da página em vez de ganhar um contorno.
+
+   Desenhada num pseudo-elemento e acesa por opacity, porque
+   box-shadow não se anima sem custo de repintura — a régua da casa
+   é animar só transform e opacity. O pseudo fica fora do fluxo e
+   não recebe clique: a sombra cai para fora da caixa, então não
+   cobre nem a arte nem o botão.
+   ── */
+.promo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--raio);
+    box-shadow: 0 0 28px rgba(55, 52, 53, 0.20);
+    opacity: 0;
+    pointer-events: none;
+    /* Atrás da arte e do botão. A sombra encolhida desenha o halo
+       para dentro das bordas do card; pintada por cima, ela aparecia
+       como uma faixa escura sobre o topo da lâmina. */
+    z-index: -1;
+    transition: opacity   200ms var(--ease-out),
+                transform 240ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    /* Cresce 1,5% — uns cinco pixels na largura. O bastante para a
+       lâmina descolar da página, pouco o bastante para não empurrar
+       as vizinhas de lugar. O z-index põe a que cresceu na frente. */
+    .promo:hover {
+        transform: scale(var(--cresce));
+        z-index: 2;
+    }
+
+    /* A sombra fica do tamanho de antes. Ela é filha do card, então
+       cresceria junto: a escala inversa desfaz exatamente o que o
+       card aplicou, e o que se vê é a lâmina saindo da página com a
+       sombra parada por baixo. Mesma duração e mesma curva do card,
+       senão as duas se descolam no meio do caminho. */
+    .promo:hover::after {
+        opacity: 1;
+        transform: scale(var(--encolhe));
+    }
+}
+
+/* ── O botão de baixar ──────────────────────────────────────────
+   Grafite cheio, e não o vermelho da marca: ele se repete em cada
+   card, e vermelho repetido 24 vezes tira do "Cadastre sua agência"
+   o lugar de único botão cheio da página. O vermelho volta no hover,
+   no instante do clique.
+
+   Encostado na arte e com o raio só embaixo: os dois formam uma
+   peça só, e some a dúvida sobre a qual lâmina o botão pertence.
+   ── */
+.promo-baixar {
+    width: 100%;
+    border-radius: 0 0 var(--raio) var(--raio);
+    background: var(--grafite);
+    border-color: var(--grafite);
+    color: var(--branco);
+}
+.promo-baixar svg { width: 16px; height: 16px; flex: none; }
+
+@media (hover: hover) and (pointer: fine) {
+    .promo-baixar:hover {
+        background: var(--vermelho);
+        border-color: var(--vermelho);
+    }
+}
+.promo-baixar:active {
+    background: var(--vermelho-active);
+    border-color: var(--vermelho-active);
+}
+
+/* ── Entrada ao filtrar ─────────────────────────────────────────
+   Só quem entra anima: quem sai já não está sob o olho de quem
+   acabou de escolher outro tipo. Curva de saída, deslocamento
+   curto e stagger de 40ms entre irmãos.
+   ── */
+.promo.entra {
+    /* backwards, e não both: com "both" o transform do último quadro
+       fica grudado no card depois que a animação acaba, e valor de
+       animação ganha de :hover — as lâminas que chegaram pelo "ver
+       mais" paravam de crescer sob o ponteiro. "backwards" segura só
+       o primeiro quadro durante o atraso do stagger, que é do que a
+       entrada precisa; o último quadro é igual ao estado normal. */
+    animation: promo-entra 240ms var(--ease-out) backwards;
+    animation-delay: calc(var(--i, 0) * 40ms);
+}
+@keyframes promo-entra {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* O "ver mais" fica centrado abaixo da grade e longe dela: colado no
+   "Baixar a arte" da última linha ele parece pertencer àquele card em
+   vez de à grade inteira. */
+.mais {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--e-7);
+}
+.mais button { padding-inline: var(--e-5); }
+.mais button[hidden] { display: none; }
+
+.vazio {
+    color: var(--cinza-texto);
+    padding-block: var(--e-5);
+}
+
+/* ── O que vem ──────────────────────────────────────────────────
+   Faixa de largura total com a foto ao fundo e o texto por cima.
+   Não é banner de arte fechada: o texto é HTML, então ele é lido,
+   é encontrado e se troca sem refazer imagem.
+
+   A foto entra como <img> e não como background do CSS por dois
+   motivos: o navegador sabe carregá-la depois (loading lazy) e a
+   proporção fica reservada antes de ela chegar, sem a página pular.
+   ── */
+.vem {
+    position: relative;
+    isolation: isolate;   /* prende o véu e a foto dentro da faixa */
+    display: grid;
+    align-items: center;
+    width: 100%;
+    min-height: clamp(320px, 42vw, 520px);
+    overflow: hidden;
+    background: var(--grafite);
+}
+
+.vem-foto {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* A pessoa fica à direita; o lado esquerdo é a parede, que é
+       onde o texto cabe sem disputar com ela. */
+    object-position: 70% center;
+}
+
+/* Véu que vem da esquerda: o texto precisa de contraste, e a foto
+   precisa continuar aparecendo do outro lado. */
+.vem::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(100deg,
+        rgba(55, 52, 53, 0.94) 0%,
+        rgba(55, 52, 53, 0.86) 34%,
+        rgba(55, 52, 53, 0.35) 62%,
+        rgba(55, 52, 53, 0.10) 100%);
+}
+
+.vem-conteudo { padding-block: clamp(48px, 7vw, 88px); }
+.vem-conteudo .container > * { max-width: 30rem; }
+
+.vem-etiqueta {
+    display: inline-block;
+    margin-bottom: var(--e-3);
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--vermelho);
+    color: var(--branco);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.vem h2 { color: var(--branco); }
+
+.vem-linha {
+    margin-top: var(--e-3);
+    color: rgba(255, 255, 255, 0.82);
+}
+
+/* O que vem, em quatro itens: é o "em breve" dizendo o que é, em vez
+   de só avisar que não está pronto. */
+.vem-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-2) var(--e-4);
+    margin-top: var(--e-5);
+    list-style: none;
+}
+.vem-lista li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--branco);
+    font-size: 0.9375rem;
+    font-weight: 600;
+}
+/* Um traço vermelho no lugar do marcador: a marca assina a lista
+   sem precisar de ícone. */
+.vem-lista li::before {
+    content: '';
+    width: 14px;
+    height: 2px;
+    background: var(--vermelho);
+    flex: none;
+}
+
+/* No celular a foto não tem largura para o texto ficar ao lado dela:
+   o véu passa a vir de baixo e o texto se apoia nele. */
+@media (max-width: 760px) {
+    .vem { min-height: 0; align-items: end; }
+    .vem-foto { object-position: 62% 30%; aspect-ratio: 4 / 5; height: auto; position: relative; }
+    .vem::before {
+        background: linear-gradient(to top,
+            rgba(55, 52, 53, 0.96) 0%,
+            rgba(55, 52, 53, 0.88) 42%,
+            rgba(55, 52, 53, 0.30) 78%,
+            rgba(55, 52, 53, 0.10) 100%);
+    }
+    .vem-conteudo { position: absolute; inset: auto 0 0 0; padding-block: var(--e-5); }
+    .vem-conteudo .container > * { max-width: none; }
+}
+
+/* ── Movimento reduzido ─────────────────────────────────────────
+   O que informa continua, o que desloca sai.
+   ── */
+@media (prefers-reduced-motion: reduce) {
+    .promo.entra { animation: none; }
+    /* A sombra fica: ela informa qual lâmina está sob o ponteiro sem
+       deslocar nada. O que sai é o crescimento. */
+    .promo           { transition: none; }
+    .promo:hover     { transform: none; }
+    .promo::after    { transition: opacity 200ms ease; }
+    .promo:hover::after { transform: none; }
+    .filtro { transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease; }
+    .filtro:active { transform: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LUPA
+   A lâmina grande, aberta na própria página. O <dialog> ocupa a
+   tela inteira e carrega o próprio fundo: assim clicar em qualquer
+   lugar fora da arte fecha, e o ::backdrop não precisa existir.
+   ═══════════════════════════════════════════════════════════════ */
+.lupa {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    padding: clamp(16px, 4vh, 48px);
+    border: none;
+    background: rgba(55, 52, 53, 0.86);
+    overflow: hidden;
+}
+.lupa::backdrop { background: transparent; }
+
+.lupa[open] {
+    display: grid;
+    place-items: center;
+    /* minmax(0, 1fr), e não 1fr puro: a linha de um grid cresce com o
+       conteúdo, e aí o max-height:100% da arte passa a medir a própria
+       arte e nunca a limita. Travando a linha na tela, a lâmina em pé
+       encolhe até caber inteira. */
+    grid-template-rows: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
+}
+
+/* Arte e botão empilhados. min-height:0 no miolo e na arte porque um
+   item de flex não encolhe abaixo do próprio conteúdo sem isso, e a
+   lâmina em pé passaria da tela levando o botão para fora. */
+.lupa-miolo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--e-3);
+    max-height: 100%;
+    min-height: 0;
+}
+
+.lupa img {
+    max-width: min(100%, 520px);
+    min-height: 0;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--raio);
+    /* A arte precisa se destacar do fundo escuro sem ganhar moldura. */
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* O mesmo botão da grade, aqui com a largura do próprio texto: quem
+   abriu a lâmina para ler não deveria ter de fechar para baixar. */
+.lupa-baixar {
+    width: auto;
+    flex: none;
+    border-radius: var(--raio);
+    padding-inline: var(--e-4);
+    /* Como item de flex ele recebe a largura que sobra e não a que
+       pede: sem isso o rótulo quebra em duas linhas. */
+    white-space: nowrap;
+}
+
+.lupa-fechar {
+    position: absolute;
+    top: clamp(8px, 2vh, 20px);
+    right: clamp(8px, 2vw, 20px);
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    color: var(--branco);
+    cursor: pointer;
+    transition: background-color 160ms ease, transform 160ms var(--ease-out);
+}
+.lupa-fechar svg { width: 20px; height: 20px; }
+.lupa-fechar:active { transform: scale(0.94); }
+.lupa-fechar:focus-visible { outline: 2px solid var(--branco); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) {
+    .lupa-fechar:hover { background: rgba(255, 255, 255, 0.26); }
+}
+
+/* Entrada e saída. A arte não vem de scale(0): ela já existia na
+   grade, só cresceu. Saída mais rápida que a entrada — o sistema
+   responde, não delibera.
+
+   A saída tem keyframes próprios, e não a mesma animação em
+   `reverse`: trocando só a duração e o sentido, o nome da animação
+   continua o mesmo, o navegador não a reinicia e o `animationend`
+   que fecha o diálogo nunca chega. */
+.lupa[open]        { animation: lupa-fundo-entra 200ms var(--ease-out); }
+.lupa[open] .lupa-miolo { animation: lupa-arte-entra  240ms var(--ease-out); }
+.lupa.fechando     { animation: lupa-fundo-sai   140ms var(--ease-out) both; }
+.lupa.fechando .lupa-miolo { animation: lupa-arte-sai    140ms var(--ease-out) both; }
+
+@keyframes lupa-fundo-entra { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lupa-fundo-sai   { from { opacity: 1; } to { opacity: 0; } }
+
+@keyframes lupa-arte-entra {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+}
+@keyframes lupa-arte-sai {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0; transform: scale(0.98); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lupa[open] .lupa-miolo { animation: none; }
+    .lupa[open]     { animation: lupa-fundo-entra 140ms ease; }
+    .lupa-fechar    { transition: background-color 160ms ease; }
+    .lupa-fechar:active { transform: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BAIXAR
+   O mesmo fundo e o mesmo fechar da lupa, com uma caixa branca de
+   conteúdo no meio. Duas saídas: com a logo da agência ou sem.
+   ═══════════════════════════════════════════════════════════════ */
+.baixar {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    padding: clamp(16px, 4vh, 48px);
+    border: none;
+    background: rgba(55, 52, 53, 0.86);
+    overflow: hidden;
+}
+.baixar::backdrop { background: transparent; }
+
+.baixar[open] {
+    display: grid;
+    place-items: center;
+    grid-template-rows: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.baixar-caixa {
+    width: min(440px, 100%);
+    max-height: 100%;
+    overflow-y: auto;
+    padding: var(--e-6) var(--e-5);
+    border-radius: var(--raio);
+    background: var(--branco);
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+.baixar-caixa h2 { font-size: clamp(1.25rem, 2.4vw, 1.625rem); }
+.baixar-caixa p  { margin-inline: auto; margin-top: var(--e-2); }
+.baixar-caixa > p:first-of-type { color: var(--cinza-texto); }
+
+/* ── A logo escolhida ─────────────────────────────────────────── */
+.baixar-logo {
+    display: grid;
+    place-items: center;
+    gap: var(--e-2);
+    margin-block: var(--e-5);
+    padding: var(--e-4);
+    border: 1px dashed var(--cinza-borda);
+    border-radius: var(--raio);
+    background: var(--cinza-fundo);
+}
+.baixar-logo[hidden] { display: none; }
+.baixar-logo-marca { color: var(--cinza-texto); }
+.baixar-logo-marca svg { width: 30px; height: 30px; }
+
+/* Fundo branco atrás da prévia: é assim que ela vai aparecer na
+   faixa, e marca de contorno claro sumiria sobre o cinza. */
+.baixar-logo .legenda span { color: var(--cinza-borda); }
+.baixar-logo img {
+    max-width: 200px;
+    max-height: 84px;
+    width: auto;
+    object-fit: contain;
+    padding: var(--e-2) var(--e-3);
+    border-radius: 4px;
+    background: var(--branco);
+}
+
+/* Botão de texto, para as ações pequenas que acompanham a legenda. */
+.btn--link {
+    padding: 0 2px;
+    border: none;
+    background: none;
+    font: inherit;
+    font-weight: 600;
+    color: var(--grafite);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+.btn--link:focus-visible { outline: 2px solid var(--vermelho); outline-offset: 2px; border-radius: 2px; }
+@media (hover: hover) and (pointer: fine) {
+    .btn--link:hover { color: var(--vermelho); }
+}
+
+.baixar-erro {
+    margin-top: var(--e-3);
+    color: var(--vermelho);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+.baixar-erro[hidden] { display: none; }
+
+.baixar-acoes {
+    display: grid;
+    gap: var(--e-2);
+    margin-top: var(--e-5);
+    margin-bottom: var(--e-3);
+}
+.baixar-acoes .btn { width: 100%; border-radius: var(--raio); }
+
+/* Entrada igual à da lupa: mesma casa, mesmo movimento. */
+.baixar[open]              { animation: lupa-fundo-entra 200ms var(--ease-out); }
+.baixar[open] .baixar-caixa{ animation: lupa-arte-entra  240ms var(--ease-out); }
+
+@media (prefers-reduced-motion: reduce) {
+    .baixar[open] .baixar-caixa { animation: none; }
+}

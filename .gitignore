@@ -1,0 +1,16 @@
+# ═══ O que NÃO sobe para o GitHub Pages ═══════════════════════════
+# O repositório é público. Aqui fica só o que o site precisa para rodar.
+.DS_Store
+.claude/
+
+# Ferramentas de diagnóstico e provas: úteis na máquina, não no ar.
+_teste/
+_provas_fases.html
+
+# Fontes do blog: os originais do Unsplash (pesados) e o cache do Notion.
+# O posts.json e o notion.json ficam, para o gerador rodar em qualquer máquina.
+_blog_fonte/unsplash/
+_blog_fonte/notion_cache/
+
+# Perfil do Chrome de captura de tela, se alguém rodar aqui dentro.
+chrome-profile*/

@@ -1,0 +1,4 @@
+# Prévia do site OFB. Enquanto o site estiver no GitHub Pages, nada entra na busca.
+# Na subida para ofb.com.br, trocar por:  User-agent: *  /  Allow: /  /  Sitemap: https://www.ofb.com.br/sitemap.xml
+User-agent: *
+Disallow: /

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Blog · OFB</title>
+<meta name="description" content="Notícias de turismo e conteúdo da OFB para agências de viagens.">
+
+<!-- Prévia e construção não entram na busca. Sai só na subida em ofb.com.br. -->
+<meta name="robots" content="noindex, nofollow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blog · OFB">
+<meta property="og:description" content="Notícias de turismo e conteúdo da OFB para agências de viagens.">
+<meta property="og:url" content="https://www.ofb.com.br/blog.html">
+
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="Blog da OFB" href="feed.xml">
+
+<link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css?v=20260908-1">
+<link rel="stylesheet" href="blog/blog.css?v=20260908">
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="cabecalho">
+
+    <div class="topo">
+        <div class="container">
+            <span class="topo-rotulo">Acessar</span>
+
+            <!-- agente.tur é sistema da casa e pode ser nomeado. -->
+            <a class="acesso" href="https://www.agente.tur.br" target="_blank" rel="noopener">
+                agente.tur
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9"/>
+                </svg>
+                <span class="sr-only"> (abre em nova aba)</span>
+            </a>
+
+            <span class="topo-sep" aria-hidden="true">|</span>
+
+            <!-- Do lado da consolidação o destino é o portal do parceiro,
+                 então o botão diz Consolidação, nunca o nome dele. -->
+            <a class="acesso" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
+                Consolidação
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9"/>
+                </svg>
+                <span class="sr-only"> (abre em nova aba)</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="barra">
+        <div class="container">
+            <a class="marca" href="index.html" aria-label="OFB, início">
+                <img src="img/ofb-logo.png" alt="OFB" width="800" height="303">
+            </a>
+
+            <button class="menu-toggle" type="button" aria-expanded="false"
+                    aria-controls="menu-principal" aria-label="Abrir o menu">
+                <span></span>
+            </button>
+
+            <!-- O agente.tur não entra aqui: ele já é um dos dois
+                 "Acessar" na barra de cima, e o mesmo nome duas vezes
+                 no topo confunde. Fora do menu, o sistema também
+                 nunca aparece antes da OFB. -->
+            <nav class="menu" id="menu-principal" aria-label="Principal">
+                <a href="index.html">Home</a>
+                <a href="index.html#a-ofb">Quem somos</a>
+                <a href="index.html#portfolio">O que oferecemos</a>
+                <a href="central.html">Central do Agente</a>
+                <a class="ativo" href="blog.html" aria-current="page">Blog</a>
+                <a class="btn btn--primario" href="cadastro.html">Cadastre sua agência</a>
+            </nav>
+
+            <a class="btn btn--primario" href="cadastro.html">Cadastre sua agência</a>
+        </div>
+    </div>
+
+</header>
+<div class="veu" aria-hidden="true"></div>
+
+<main id="conteudo">
+
+<section class="secao" id="blog" aria-labelledby="blog-titulo">
+    <div class="container">
+
+        <div class="secao-cabeca" data-revela>
+            <h1 id="blog-titulo">Blog</h1>
+            <p class="subtitulo">Notícia de turismo e conteúdo da OFB, para quem vende viagem.</p>
+        </div>
+
+        <!-- As duas trilhas da decisão 7 do mapa do site. Sem JavaScript
+             a lista continua inteira: o filtro acrescenta, não é
+             pré-requisito. -->
+        <div class="filtros" role="group" aria-label="Filtrar por tipo">
+            <button class="filtro" type="button" data-trilha="todas"    aria-pressed="true">Todos</button>
+            <button class="filtro" type="button" data-trilha="noticia"  aria-pressed="false">Notícia de turismo</button>
+            <button class="filtro" type="button" data-trilha="ofb"      aria-pressed="false">Conteúdo OFB</button>
+        </div>
+
+        <p class="sr-only" role="status" data-contagem></p>
+
+        <ul class="lista">
+            <li class="lista-item" data-trilha="ofb">
+                <a class="lista-cartao" href="blog/emitir-com-consolidadora.html">
+                    <span class="lista-capa">
+                        <img src="blog/img/emitir-com-consolidadora-capa.jpg" alt="" loading="lazy"
+                             width="1600" height="900">
+                    </span>
+                    <span class="lista-texto">
+                        <span class="lista-etiquetas">
+                            <span class="post-trilha">Conteúdo OFB</span>
+                            <span class="post-categoria">Capacitação</span>
+                        </span>
+                        <span class="lista-titulo">O que muda quando a agência emite com uma consolidadora</span>
+                        <span class="lista-trecho">Emissão, remarcação e reembolso deixam de depender de acordo próprio com cada companhia. O que a agência ganha, e o que continua sendo dela.</span>
+                        <time datetime="2026-09-02">2 de setembro de 2026</time>
+                    </span>
+                </a>
+            </li>
+            <li class="lista-item" data-trilha="noticia">
+                <a class="lista-cartao" href="blog/alta-temporada-nordeste.html">
+                    <span class="lista-capa">
+                        <img src="blog/img/alta-temporada-nordeste-capa.jpg" alt="" loading="lazy"
+                             width="1600" height="900">
+                    </span>
+                    <span class="lista-texto">
+                        <span class="lista-etiquetas">
+                            <span class="post-trilha">Notícia de turismo</span>
+                            <span class="post-categoria">Destino</span>
+                        </span>
+                        <span class="lista-titulo">Alta temporada no Nordeste: o que fechar antes de outubro</span>
+                        <span class="lista-trecho">Aéreo e hospedagem no Nordeste se comportam de formas diferentes conforme o fim do ano chega. Um roteiro do que costuma apertar primeiro.</span>
+                        <time datetime="2026-08-28">28 de agosto de 2026</time>
+                    </span>
+                </a>
+            </li>
+            <li class="lista-item" data-trilha="noticia">
+                <a class="lista-cartao" href="blog/reveillon-decide-primeiro.html">
+                    <span class="lista-capa">
+                        <img src="blog/img/reveillon-decide-primeiro-capa.jpg" alt="" loading="lazy"
+                             width="1600" height="900">
+                    </span>
+                    <span class="lista-texto">
+                        <span class="lista-etiquetas">
+                            <span class="post-trilha">Notícia de turismo</span>
+                            <span class="post-categoria">Tendência</span>
+                        </span>
+                        <span class="lista-titulo">Réveillon é a viagem que o cliente decide primeiro</span>
+                        <span class="lista-trecho">Enquanto o resto do calendário se decide em cima da hora, a virada do ano é planejada com meses de antecedência. O que isso significa para o funil da agência.</span>
+                        <time datetime="2026-08-20">20 de agosto de 2026</time>
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+        <p class="vazio" data-vazio hidden>Nenhum post deste tipo ainda.</p>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="rodape" id="rodape">
+    <div class="container rodape-grade">
+
+        <div class="rodape-marca">
+            <img class="rodape-logo" src="img/ofb-logo-negativo.png" alt="OFB"
+                 width="800" height="303">
+            <ul class="rodape-redes">
+                <li>
+                    <a href="https://www.instagram.com/ofboperadora/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5.2"/>
+                            <circle cx="12" cy="12" r="4.1"/>
+                            <circle cx="17.2" cy="6.8" r="1.15" fill="currentColor" stroke="none"/>
+                        </svg>
+                        <span class="sr-only">Instagram da OFB (abre em nova aba)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/ofbviagens" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M15.2 3.2h-2.6A3.6 3.6 0 0 0 9 6.8v3.1H6.5v3.4H9v7.5h3.4v-7.5h2.6l.5-3.4h-3.1V7.1a1 1 0 0 1 1-1h2.2z"/>
+                        </svg>
+                        <span class="sr-only">Facebook da OFB (abre em nova aba)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="rodape-acessar">
+            <span class="rodape-rotulo">Acessar</span>
+            <ul>
+                <li>
+                    <a href="https://www.agente.tur.br" target="_blank" rel="noopener">
+                        agente.tur
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                        <span class="sr-only"> (abre em nova aba)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
+                        Consolidação
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                        <span class="sr-only"> (abre em nova aba)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="rodape-contato">
+            <a class="rodape-destaque" href="mailto:comercial@ofb.com.br">comercial@ofb.com.br</a>
+            <a class="rodape-destaque" href="tel:+557133415100">(71) 3341-5100</a>
+            <address>
+                Av. Tancredo Neves, 805, Edf. Espaço Empresarial, Sala 601,<br>
+                Caminho das Árvores, Salvador BA, CEP 41820-021
+            </address>
+            <p class="rodape-horario">Segunda a sexta das 9h às 19h<br>
+               Sábados das 9h às 13h</p>
+        </div>
+
+    </div>
+
+    <div class="rodape-base">
+        <div class="container">
+            <p>CNPJ 34.300.087/0001-34</p>
+            <p class="rodape-credito">© 2026 por One Publicidade Criativa</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/site.js?v=20260908-1"></script>
+<script>
+/* Filtro das duas trilhas. Mesmo desenho do filtro da Central: botões
+   que não navegam, estado no aria-pressed, e o resultado dito em voz
+   alta para quem não vê a lista mudar. */
+(function () {
+'use strict';
+var filtros = Array.prototype.slice.call(document.querySelectorAll('[data-trilha][type]'));
+var itens   = Array.prototype.slice.call(document.querySelectorAll('.lista-item'));
+var vazio   = document.querySelector('[data-vazio]');
+var conta   = document.querySelector('[data-contagem]');
+if (!filtros.length || !itens.length) return;
+
+function aplicar(trilha) {
+    var vistos = 0;
+    itens.forEach(function (item) {
+        var fica = (trilha === 'todas' || item.getAttribute('data-trilha') === trilha);
+        item.hidden = !fica;
+        if (fica) vistos++;
+    });
+    if (vazio) vazio.hidden = vistos > 0;
+    if (conta) conta.textContent = vistos === 0
+        ? 'Nenhum post deste tipo.'
+        : vistos + (vistos === 1 ? ' post na tela.' : ' posts na tela.');
+}
+
+filtros.forEach(function (botao) {
+    botao.addEventListener('click', function () {
+        filtros.forEach(function (b) {
+            b.setAttribute('aria-pressed', b === botao ? 'true' : 'false');
+        });
+        aplicar(botao.getAttribute('data-trilha'));
+    });
+});
+aplicar('todas');
+})();
+</script>
+</body>
+</html>

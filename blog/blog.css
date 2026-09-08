@@ -1,0 +1,258 @@
+/* ═══════════════════════════════════════════════════════════════
+   BLOG · folha das páginas do blog
+   Carrega DEPOIS da site.css e só acrescenta o que é do blog.
+   Token, botão, container, seção e header vêm de lá e não se
+   repetem aqui.
+
+   Mora em blog/ e não em css/ porque esta sessão é dona de blog/ —
+   o que daqui merecer virar padrão do site vai numa lista para o
+   Lippe, e a promoção acontece na sessão da home.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* .secao-cabeca agora é da site.css (promovida em 08/09/2026). */
+
+/* ── Filtro das duas trilhas ───────────────────────────────────
+   Botões, não links: não navegam, mudam o que a lista mostra.
+   ── */
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-2);
+    margin-bottom: var(--e-6);
+}
+.filtro {
+    min-height: 44px;
+    padding: 10px 20px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 999px;
+    background: var(--branco);
+    color: var(--grafite);
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background-color 160ms ease,
+                border-color     160ms ease,
+                color            160ms ease,
+                transform        160ms var(--ease-out);
+}
+.filtro:active { transform: scale(0.97); }
+.filtro:focus-visible { outline: 2px solid var(--vermelho); outline-offset: 2px; }
+.filtro[aria-pressed="true"] {
+    background: var(--vermelho);
+    border-color: var(--vermelho);
+    color: var(--branco);
+}
+@media (hover: hover) and (pointer: fine) {
+    .filtro:hover { border-color: var(--grafite); }
+    .filtro[aria-pressed="true"]:hover {
+        background: var(--vermelho-hover);
+        border-color: var(--vermelho-hover);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   A LISTAGEM
+   ═══════════════════════════════════════════════════════════════ */
+.lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: var(--e-6) var(--e-5);
+    list-style: none;
+}
+.lista-item[hidden] { display: none; }
+
+.lista-cartao {
+    display: grid;
+    gap: var(--e-3);
+    height: 100%;
+}
+
+/* A capa em 16:9 dá a mesma altura a todos os cartões, seja qual for
+   a foto que vier do Notion. */
+.lista-capa {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--raio);
+    background: var(--cinza-fundo);
+}
+.lista-capa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 400ms var(--ease-out);
+}
+
+.lista-texto { display: grid; gap: var(--e-2); align-content: start; }
+
+.lista-titulo {
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+}
+.lista-trecho {
+    color: var(--cinza-texto);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+}
+.lista-cartao time {
+    color: var(--cinza-texto);
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+
+/* A foto avança de leve e o título assume o vermelho: o cartão
+   inteiro é o alvo do clique, então ele inteiro responde. */
+@media (hover: hover) and (pointer: fine) {
+    .lista-cartao:hover .lista-capa img { transform: scale(1.04); }
+    .lista-cartao:hover .lista-titulo { color: var(--vermelho); }
+}
+.lista-cartao:focus-visible {
+    outline: 2px solid var(--vermelho);
+    outline-offset: 4px;
+    border-radius: var(--raio);
+}
+
+/* ── Etiquetas de trilha e categoria ───────────────────────────
+   A trilha é a divisão do mapa do site; a categoria é o assunto.
+   A primeira assina em vermelho, a segunda fica neutra — juntas
+   dizem "que tipo de post é" sem precisar de legenda.
+   ── */
+.lista-etiquetas,
+.post-etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-2);
+    align-items: center;
+}
+.post-trilha,
+.post-categoria {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.post-trilha { color: var(--vermelho); }
+.post-categoria {
+    color: var(--cinza-texto);
+    padding-left: var(--e-2);
+    border-left: 1px solid var(--cinza-borda);
+}
+
+.vazio { color: var(--cinza-texto); padding-block: var(--e-5); }
+.vazio[hidden] { display: none; }
+
+/* ═══════════════════════════════════════════════════════════════
+   A PÁGINA DO POST
+   Coluna estreita: 65ch é a largura de leitura do design system, e
+   é ela que manda aqui — não o container de 1240px.
+   ═══════════════════════════════════════════════════════════════ */
+.post-topo { padding-block: clamp(40px, 6vw, 72px) var(--e-6); }
+.post-topo .container > * { max-width: 44rem; }
+
+.post-migalha {
+    margin-bottom: var(--e-4);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+.post-migalha a { color: var(--cinza-texto); }
+.post-migalha a:hover { color: var(--vermelho); }
+
+.post-topo h1 {
+    margin-top: var(--e-3);
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    line-height: 1.1;
+}
+.post-trecho {
+    margin-top: var(--e-4);
+    font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+    line-height: 1.5;
+    color: var(--cinza-texto);
+}
+.post-data {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-2);
+    margin-top: var(--e-5);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--cinza-texto);
+}
+/* Sem escritor na tela: o post assina OFB (decisão da §3.1). */
+.post-assina { padding-left: var(--e-2); border-left: 1px solid var(--cinza-borda); }
+
+.post-capa {
+    width: min(var(--container), 100% - 2 * var(--gutter));
+    margin: 0 auto var(--e-7);
+    border-radius: var(--raio);
+    overflow: hidden;
+    background: var(--cinza-fundo);
+}
+.post-capa img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+
+.post-corpo { padding-bottom: clamp(48px, 7vw, 88px); }
+.post-corpo .container > * { max-width: 40rem; }
+
+.post-corpo p { margin-bottom: var(--e-4); }
+.post-corpo h2 {
+    margin-top: var(--e-7);
+    margin-bottom: var(--e-3);
+    font-size: clamp(1.375rem, 2.4vw, 1.75rem);
+}
+.post-corpo ul {
+    margin-bottom: var(--e-4);
+    padding-left: 0;
+    list-style: none;
+}
+.post-corpo li {
+    position: relative;
+    margin-bottom: var(--e-2);
+    padding-left: var(--e-4);
+    line-height: 1.6;
+}
+/* Traço vermelho no lugar do marcador, como na Central. */
+.post-corpo li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 12px;
+    height: 2px;
+    background: var(--vermelho);
+}
+.post-corpo a { color: var(--vermelho); text-decoration: underline; text-underline-offset: 3px; }
+
+.post-corpo blockquote {
+    margin: var(--e-6) 0;
+    padding-left: var(--e-4);
+    border-left: 3px solid var(--vermelho);
+}
+.post-corpo blockquote p {
+    margin-bottom: 0;
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.post-corpo figure { margin: var(--e-6) 0; }
+.post-corpo figure img { width: 100%; border-radius: var(--raio); }
+.post-corpo figcaption {
+    margin-top: var(--e-2);
+    font-size: 0.8125rem;
+    color: var(--cinza-texto);
+}
+
+.post-fim {
+    padding-block: var(--e-6);
+    border-top: 1px solid var(--cinza-borda);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lista-capa img { transition: none; }
+    .lista-cartao:hover .lista-capa img { transform: none; }
+    .filtro { transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease; }
+    .filtro:active { transform: none; }
+}

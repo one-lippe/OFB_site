@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Blog da OFB</title>
+    <link>https://www.ofb.com.br/blog.html</link>
+    <description>Notícia de turismo e conteúdo da OFB, para quem vende viagem.</description>
+    <language>pt-BR</language>
+    <lastBuildDate>Tue, 08 Sep 2026 15:38:13 +0000</lastBuildDate>
+    <item>
+      <title>O que muda quando a agência emite com uma consolidadora</title>
+      <link>https://www.ofb.com.br/blog/emitir-com-consolidadora.html</link>
+      <guid>https://www.ofb.com.br/blog/emitir-com-consolidadora.html</guid>
+      <description>Emissão, remarcação e reembolso deixam de depender de acordo próprio com cada companhia. O que a agência ganha, e o que continua sendo dela.</description>
+      <pubDate>Wed, 02 Sep 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Alta temporada no Nordeste: o que fechar antes de outubro</title>
+      <link>https://www.ofb.com.br/blog/alta-temporada-nordeste.html</link>
+      <guid>https://www.ofb.com.br/blog/alta-temporada-nordeste.html</guid>
+      <description>Aéreo e hospedagem no Nordeste se comportam de formas diferentes conforme o fim do ano chega. Um roteiro do que costuma apertar primeiro.</description>
+      <pubDate>Fri, 28 Aug 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Réveillon é a viagem que o cliente decide primeiro</title>
+      <link>https://www.ofb.com.br/blog/reveillon-decide-primeiro.html</link>
+      <guid>https://www.ofb.com.br/blog/reveillon-decide-primeiro.html</guid>
+      <description>Enquanto o resto do calendário se decide em cima da hora, a virada do ano é planejada com meses de antecedência. O que isso significa para o funil da agência.</description>
+      <pubDate>Thu, 20 Aug 2026 09:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
