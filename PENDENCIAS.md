@@ -20,7 +20,14 @@ Cada item diz de quem é a bola. O site continua em **modo prévia**: `noindex` 
 
 **Header e rodapé** são escritos por extenso em cada página (decisão do Lippe, 04/09), e desde 08/09 quem os copia do `index.html` é o `_moldura.py`. O `verificar.sh` acusa se alguma página ficar para trás.
 
-**Git:** `05_site/` → `one-lippe/OFB_site`, branch `main`, prévia em `https://one-lippe.github.io/OFB_site/`. `.gitignore` deixa fora `_teste/`, provas, originais do Unsplash e cache do Notion.
+**Git:** `05_site/` → `one-lippe/OFB_site`, branch `main`, prévia em `https://one-lippe.github.io/OFB_site/`.
+
+**Revisão de texto de 08/09 à tarde (Codex, aprovada pelo Lippe e publicada):** título do
+portfólio "Tudo o que o seu cliente precisa, em um só lugar"; Consolidação em uma linha ("Emita com
+o respaldo da OFB, representante da TP Air no Nordeste."); legendas curtas nas telas do agente.tur;
+cartões da Central reescritos; banner da Central em branco sobre véu escuro; legendas do cadastro
+"Dados da empresa" e "Seu contato". Detalhe em `03_copy/03_REVISAO_LOCAL_2026-09-08.md`.
+**O Codex edita sem commit e sem subir `?v=`**: ao retomar, `git status` primeiro. `.gitignore` deixa fora `_teste/`, provas, originais do Unsplash e cache do Notion.
 
 ---
 
