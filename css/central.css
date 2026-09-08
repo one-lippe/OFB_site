@@ -56,9 +56,11 @@
     margin-bottom: var(--e-3);
 }
 .banner .subtitulo {
-    max-width: 24ch;
+    max-width: 34ch;
     color: var(--grafite);
     font-weight: 500;
+    font-size: clamp(1.0625rem, 1.5vw, 1.3125rem);
+    line-height: 1.45;
 }
 
 @media (max-width: 620px) {
@@ -70,8 +72,9 @@
             rgba(255, 255, 255, 0)   42%);
     }
     .banner-arte { aspect-ratio: 4 / 5; object-position: center bottom; }
-    .banner-conteudo { padding-top: clamp(28px, 8vw, 48px); }
-    .banner h1 { max-width: none; }
+    .banner-conteudo { padding-top: clamp(24px, 7vw, 44px); }
+    .banner h1 { max-width: none; font-size: clamp(1.75rem, 8vw, 2.25rem); }
+    .banner .subtitulo { max-width: none; font-size: 1rem; }
 }
 
 /* ── Cabeça de seção ────────────────────────────────────────────

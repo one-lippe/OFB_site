@@ -36,8 +36,9 @@ Tudo construído sem perguntar, como pedido. O que é decisão sua e pode mudar:
 - **Central na home:** dois cartões (branco + grafite com três lâminas em leque). Copy é a dos
   blocos 7 e 8, intacta. As três lâminas do leque são fixas (`img/promos/mini/`); trocar é trocar
   três `src`
-- **Banner da Central:** foto gerada no Magnific, texto em HTML. Você faz o definitivo no
-  Photoshop; ao trocar, manter o texto fora da imagem (regra do `06_CENTRAL` §2b)
+- **Banner da Central:** foto gerada no Magnific, texto em HTML. Copy revista a seu pedido em
+  08/09 ("o ponto de apoio da sua agência na OFB…"): diz o que a Central é, não o que se baixa.
+  Você faz a foto definitiva no Photoshop; ao trocar, manter o texto fora da imagem (`06_CENTRAL` §2b)
 
 ### 2. Antes da Locaweb, confirmar com a OFB
 - `cadastro.php`: **`REMETENTE`** precisa ser um e-mail real do domínio `ofb.com.br`, e
