@@ -419,8 +419,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* A pessoa fica à direita; o lado esquerdo é a parede, que é
-       onde o texto cabe sem disputar com ela. */
+    /* A fita cruza o meio e a esquerda do quadro é sombra: é lá
+       que o texto cabe sem disputar com a imagem. */
     object-position: 70% center;
 }
 

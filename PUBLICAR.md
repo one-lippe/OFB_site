@@ -16,7 +16,7 @@ O `verificar.sh` confere placeholder, `noindex` em todo HTML, link e âncora que
 e rodapé iguais ao `index.html`, `?v=` alinhado e `robots.txt`. Se acusar versão desalinhada,
 `./_versionar.sh`; se acusar header ou rodapé, `python3 _moldura.py`.
 
-**Testar no Safari antes.** É o navegador do Lippe, e é onde o hero mostra defeito que o Chrome esconde.
+O hero mostra em Safari defeito que o Chrome esconde: conferência em Chrome vale para layout, não para o scrubbing.
 
 ---
 
@@ -51,8 +51,8 @@ O Pages reconstrói sozinho em um ou dois minutos.
 leem o da raiz do domínio. Quem segura a indexação na prévia é o `<meta name="robots" noindex>`
 de cada página — e é por isso que o `verificar.sh` confere página por página.
 
-Conferir no **Safari** e no celular: hero, Central, blog, cadastro (o envio abre o e-mail com a
-ficha; é o esperado na prévia).
+O Lippe confere no Safari e no celular: hero, Central, blog, cadastro (o envio abre o e-mail com
+a ficha; é o esperado na prévia).
 
 **Peso do repositório:** ~60 MB, quase tudo hero (`d` 18 MB, `m` 8,5 MB, `dw` 20 MB, `mw` 8,5 MB).
 Dentro do limite do Pages (1 GB), mas o primeiro push demora.

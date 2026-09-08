@@ -10,7 +10,7 @@ Cada item diz de quem é a bola. O site continua em **modo prévia**: `noindex` 
 | Página | Estado |
 |---|---|
 | **Home** `index.html` | hero em scrubbing (4 telas) → Consolidação aérea (bilhete e carimbo) → agente.tur (3 telas reais) → **Central do Agente + Promoções** (dois cartões, feito em 08/09) → rodapé |
-| **Central** `central.html` | banner com foto e texto em HTML (v2, 08/09) → 24 promoções com filtro, busca, lupa e download com logo → "o que vem" → rodapé |
+| **Central** `central.html` | banner com foto e texto em HTML (v2, 08/09) → 24 promoções com filtro, busca, lupa e download com logo → "Área em construção" (foto `img/central-construcao.jpg` e título trocados pelo Codex em 08/09 à noite; a foto antiga `central-embreve.jpg` foi apagada e continua nos backups) → rodapé |
 | **Blog** `blog.html` + `blog/` | listagem com filtro das duas trilhas e 3 posts. **Os 3 posts são exemplo, não conteúdo aprovado** (`_blog_fonte/LEIA.md`) |
 | **Cadastro** `cadastro.html` | **feito em 08/09**: abertura com Salvador, ficha com validação (máscara, dígito do CNPJ, mensagem por campo), `cadastro.php` para a Locaweb. Na prévia, "Cadastrar" abre o e-mail do agente com a ficha preenchida |
 
@@ -91,8 +91,8 @@ não mexer; fica registrado.
 - **Fallback WebP no Safari antigo**: não há Safari < 16.4 aqui. O caminho foi conferido no
   código (detecção por imagem AVIF de 1×1, troca de pasta e extensão); a prova real é abrir num
   iPhone com iOS 15
-- **Safari atual**: as capturas desta sessão foram no Chrome headless. **Testar no Safari antes
-  de mostrar a alguém** (regra que não se perde, abaixo)
+- **Hero**: as capturas desta sessão foram no Chrome headless, e o Chrome esconde o defeito de
+  scrubbing. Valem como prova de layout, não do hero
 
 ### 9. Quando o site sair de prévia
 `./_indexar.sh on` tira o `noindex` de tudo e abre o `robots.txt`. O `_gerar_blog.py` escreve
@@ -121,7 +121,7 @@ Continuam esperando o site na Locaweb (`05_CADASTRO_DE_PROMOCOES.md` §7, `07_BL
 | `js/consolidacao.js` | bilhete e carimbo. `TESTE=true` põe em ciclo |
 | `js/cadastro.js` | máscaras, validação e envio da ficha |
 
-**Versões de arquivo por página (a mão):** `central.css` 20260908-1 · `cadastro.css` 20260908-1 ·
+**Versões de arquivo por página (a mão):** `central.css` 20260908-4 · `cadastro.css` 20260908-1 ·
 `hero.js` 20260908-1 · `consolidacao.js` 20260904-2 · `cadastro.js` 20260908-1.
 
 ---
@@ -141,8 +141,7 @@ O hero é scrubbing de AVIF, e a regra que governa tudo está em
 **o gargalo é decodificar, não baixar**, e por isso os quadros carregam e decodificam em ordem,
 um por vez.
 
-- testar scrubbing só no Chrome não prova nada — ele decodifica adiantado e esconde o defeito.
-  O navegador de teste do Lippe é o **Safari**
+- conferir scrubbing no Chrome não prova nada — ele decodifica adiantado e esconde o defeito
 - subir o `?v=` em toda mudança, senão o Safari serve o antigo. Para `site.css` e `site.js`,
   `./_versionar.sh`; os demais, à mão
 - **AVIF vs WebP já foi decidido** (§9). O WebP entrou só como reserva para quem não tem AVIF
