@@ -1,14 +1,5 @@
-/* ═══════════════════════════════════════════════════════════════
-   CADASTRO · só o que é desta página
-   Carrega depois da site.css e não repete token, botão, container,
-   seção nem reveal — vêm de lá.
-   ═══════════════════════════════════════════════════════════════ */
 
-/* ── Abertura: Salvador em cor cheia, com o texto por cima ──────
-   A foto é o último quadro do vídeo. O véu vem da esquerda e de
-   baixo, morrendo dentro da própria tela (regra da 03_HERO §4b:
-   nunca uma caixa), para o branco passar em contraste sobre o mar.
-   ── */
+
 .cad-abertura {
     position: relative;
     min-height: clamp(360px, 48vh, 520px);
@@ -51,7 +42,6 @@
     color: rgba(255, 255, 255, 0.86);
 }
 
-/* ── A grade: o lado explicativo à esquerda, a ficha à direita ── */
 .cad-secao { background: var(--cinza-fundo); }
 .cad-grade {
     display: grid;
@@ -113,7 +103,6 @@
 }
 .cad-contato .legenda { margin-top: var(--e-2); }
 
-/* ── A ficha ────────────────────────────────────────────────── */
 .cad-form {
     background: var(--branco);
     border: 1px solid var(--cinza-borda);
@@ -172,9 +161,7 @@
     outline-offset: 2px;
     border-color: var(--vermelho);
 }
-/* Campo inválido: a borda avisa; o texto embaixo explica. O texto
-   fica grafite porque o vermelho não passa em contraste em corpo
-   pequeno; o vermelho vai no traço, que é onde ele lê. */
+
 .cad-campo.invalido input,
 .cad-campo.invalido select { border-color: var(--vermelho); }
 .cad-erro {
@@ -187,7 +174,6 @@
 }
 .cad-campo.invalido .cad-erro { display: block; }
 
-/* O campo-armadilha some da tela e do leitor de tela, mas não do robô. */
 .cad-armadilha {
     position: absolute;
     left: -9999px;
@@ -204,8 +190,6 @@
 }
 .cad-rodape .legenda { max-width: 36ch; }
 
-/* Botão de enviar com estado de espera: o texto some, o anel gira.
-   A largura não muda, senão a linha do rodapé dança. */
 .cad-enviar { position: relative; min-width: 160px; }
 .cad-enviar-espera {
     position: absolute;
@@ -222,7 +206,6 @@
 .cad-enviar.enviando { pointer-events: none; }
 @keyframes cad-gira { to { transform: rotate(360deg); } }
 
-/* Resultado: entra com o mesmo reveal do site (opacity + 16px). */
 .cad-resultado {
     margin-top: var(--e-4);
     padding: var(--e-3) var(--e-4);
@@ -240,12 +223,12 @@
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: none; }
 }
-/* Depois do envio a ficha some e sobra o resultado. */
+
 .cad-form.enviado > :not(.cad-resultado) { display: none; }
 
 @media (max-width: 900px) {
     .cad-grade { grid-template-columns: 1fr; }
-    /* No celular a ficha vem primeiro: é ao que a pessoa veio. */
+
     .cad-lado { order: 2; }
     .cad-form { order: 1; }
     .cad-campo, .cad-campo--curto { grid-column: 1 / -1; }

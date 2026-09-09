@@ -1,15 +1,8 @@
 #!/usr/bin/env python3
-"""Regenera _provas_fases.html a partir do index.html.
-
-Arquivo de trabalho. As provas são uma CÓPIA dos blocos do index, então
-precisam ser regeradas a cada mudança no HTML — senão mostram a versão
-velha e a conferência mente. Rodar:  python3 _gerar_provas.py
-"""
 import os, re
 
 S = os.path.dirname(os.path.abspath(__file__))
 html = open(os.path.join(S, 'index.html'), encoding='utf-8').read()
-
 
 def bloco(fase):
     i = html.index('data-fase="%s"' % fase)
@@ -21,7 +14,6 @@ def bloco(fase):
             return html[i:html.index('>', i + m.end()) + 1]
     return ''
 
-# (fase, nome, quadro do meio da faixa, PIOR quadro da faixa)
 CASOS = [('b', '1 · Hero',              70, 140),
          ('c', '2 · Quem é a OFB',     215, 290),
          ('d', '6 · Portfólio',        330, 380)]
@@ -52,8 +44,7 @@ for f, nome, meio, pior in CASOS:
         tt = max(0.0, min(1.0, t))
         c = camada(f, tt); k = conteudo(f, tt)
         corpo = bloco(f).replace('class="fase fase--', 'class="fase no-ar fase--')
-        # o reveal roda no site pelo evento de fase; aqui a prova é parada,
-        # então os grupos já entram revelados
+
         corpo = corpo.replace('class="pilares"', 'class="pilares revelado"')
         corpo = corpo.replace('class="secundarios"', 'class="secundarios revelado"')
         corpo = corpo.replace('data-fase="%s"' % f,

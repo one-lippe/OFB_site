@@ -1,28 +1,15 @@
-/* ═══════════════════════════════════════════════════════════════
-   CENTRAL DO AGENTE · folha da página
-   Carrega DEPOIS da site.css e só acrescenta o que é daqui.
-   Token, botão, container, seção, reveal e header vêm de lá e não
-   se repetem: o que estiver nas duas folhas vira divergência na
-   primeira vez que uma das duas mudar.
-   ═══════════════════════════════════════════════════════════════ */
 
-/* ── Banner da Central ──────────────────────────────────────────
-   Largura total, encostado no header. Fica fora do container de
-   propósito: é a única peça da página que sangra de ponta a ponta.
-   ── */
+
 .banner {
     position: relative;
     width: 100%;
     display: grid;
     align-items: center;
     overflow: hidden;
-    background: var(--grafite);   /* enquanto carrega */
+    background: var(--grafite);
 }
 .banner picture { display: block; grid-area: 1 / 1; }
 
-/* A proporção é a da foto que está no ar, não uma medida escolhida
-   aqui: assim nada é cortado e a página não pula antes de a imagem
-   carregar. Trocando a foto, trocar também estes dois números. */
 .banner-arte {
     display: block;
     width: 100%;
@@ -31,8 +18,6 @@
     object-position: right center;
 }
 
-/* Texto branco sobre proteção escura contínua na área de leitura.
-   O degradê termina suavemente na foto, sem caixa atrás do texto. */
 .banner::after {
     content: '';
     position: absolute;
@@ -78,15 +63,6 @@
     .banner .subtitulo { max-width: none; font-size: 1rem; }
 }
 
-/* ── Cabeça de seção ────────────────────────────────────────────
-   Título e a linha que diz o que fazer com o material.
-   ── */
-/* .secao-cabeca agora é da site.css (promovida em 08/09/2026). */
-
-/* ── Controles: filtro à esquerda, busca à direita ──────────────
-   Os dois fazem a mesma coisa por caminhos diferentes, e por isso
-   dividem a mesma linha. Em tela estreita a busca desce inteira.
-   ── */
 .controles[hidden] { display: none; }
 .controles {
     display: flex;
@@ -96,11 +72,6 @@
     margin-bottom: var(--e-5);
 }
 
-/* ── Filtro por tipo ────────────────────────────────────────────
-   Botões, não links: eles não navegam, mudam o que a grade mostra.
-   O estado ligado é o vermelho da marca, que aqui assina o que o
-   agente escolheu — uso de botão, o único que o contraste permite.
-   ── */
 .filtros {
     display: flex;
     flex-wrap: wrap;
@@ -141,10 +112,6 @@
     color: var(--branco);
 }
 
-/* ── Busca ──────────────────────────────────────────────────────
-   Encostada na direita. A lupa fica dentro do campo e não recebe
-   clique: quem clica no campo já está no lugar certo de digitar.
-   ── */
 .busca {
     position: relative;
     flex: none;
@@ -174,10 +141,7 @@
     transition: border-color 160ms ease;
 }
 .busca input::placeholder { color: var(--cinza-texto); }
-/* Sem anel vermelho: num campo de texto o :focus-visible dispara
-   também no clique, e o anel destacado do contorno virava um segundo
-   traço em volta do campo. A borda escurece e engrossa por
-   box-shadow — indicação de foco continua, sem mexer no layout. */
+
 .busca input:focus-visible {
     outline: none;
     border-color: var(--grafite);
@@ -190,42 +154,27 @@
     .busca input:hover { border-color: var(--grafite); }
 }
 
-/* Em tela estreita a busca ganha a linha inteira: espremida ao lado
-   dos chips ela não caberia nem para uma palavra. */
 @media (max-width: 860px) {
     .controles { flex-wrap: wrap; }
     .busca { width: 100%; margin-left: 0; }
     .busca input { width: 100%; }
 }
 
-/* ── A grade ────────────────────────────────────────────────────
-   A arte é o card. O que o agente quer é vê-la grande e levá-la;
-   título e legenda em cima dela só afastariam o material.
-   ── */
 .promos {
     display: grid;
-    /* Três colunas: a lâmina em pé precisa de largura para o preço e
-       as condições serem lidos direto na grade. */
+
     grid-template-columns: repeat(3, 1fr);
-    /* A distância entre cards é o que separa um do outro agora que o
-       botão encostou na arte: precisa ser bem maior que o zero de
-       dentro do card. */
+
     gap: var(--e-6) var(--e-4);
     list-style: none;
 }
 
-/* No celular a arte inteira em uma coluna vira uma tela por
-   promoção. Duas colunas deixam o agente varrer o que está no ar. */
 @media (max-width: 620px) {
     .promos { grid-template-columns: repeat(2, 1fr); gap: var(--e-4) var(--e-3); }
-    /* Em duas colunas o rótulo do botão quebra em duas linhas com o
-       padding do site. Aperta o lado, não a altura de toque. */
+
     .promo-baixar { padding-inline: 12px; font-size: 0.875rem; }
 }
 
-/* O rótulo longo diz o que a página oferece; em card estreito ele
-   viraria três linhas, e aí vale o curto — a opção da logo continua
-   sendo oferecida dentro do próprio popup, que é o mesmo. */
 [data-rotulo-curto] { display: none; }
 @media (max-width: 620px) {
     [data-rotulo-longo] { display: none; }
@@ -233,35 +182,22 @@
 }
 
 .promo {
-    /* O quanto a lâmina cresce sob o ponteiro, e o inverso exato,
-       que a sombra usa para não crescer junto. Os dois andam
-       casados: mexeu num, calcule o outro (1 ÷ cresce).
-       Vêm escritos, e não por calc(1 / var(...)), porque o navegador
-       recusa divisão por variável dentro de calc — a regra inteira é
-       descartada e a sombra volta a crescer com o card. */
+
     --cresce:  1.015;
     --encolhe: 0.985222;
 
     position: relative;
-    /* z-index no repouso, e não só no hover: ele cria o contexto de
-       empilhamento que mantém a sombra presa atrás deste card. Sem
-       ele, no instante em que o ponteiro sai, o card perde o
-       empilhamento antes de a sombra apagar e ela pisca por trás do
-       fundo da página. */
+
     z-index: 0;
     display: flex;
     flex-direction: column;
     transition: transform 240ms var(--ease-out);
-    /* Sem folga: encostados, a arte e o botão leem como uma peça só,
-       e não sobra espaço para o botão parecer do card de baixo. */
+
     gap: 0;
 }
-/* Um display declarado vence o display:block que o navegador dá a
-   [hidden]: sem esta linha o filtro esconde e o card continua na
-   tela. Vale para qualquer elemento com display próprio. */
+
 .promo[hidden] { display: none; }
 
-/* A proporção é a da lâmina que a casa já produz: 720 × 1280. */
 .promo-arte {
     position: relative;
     display: grid;
@@ -275,21 +211,10 @@
 }
 .promo-arte a   { display: block; width: 100%; height: 100%; }
 .promo-arte img { width: 100%; height: 100%; object-fit: cover; }
-/* O foco desenha em volta da moldura inteira, não do link por dentro
-   dela: sem isso o anel some atrás do overflow do card. */
+
 .promo-arte:has(a:focus-visible) { outline: 2px solid var(--vermelho); outline-offset: 2px; }
 .promo-arte a:focus-visible      { outline: none; }
 
-/* ── Sombra ao passar o mouse ───────────────────────────────────
-   Sombra sem deslocamento, igual dos quatro lados: a lâmina levanta
-   da página em vez de ganhar um contorno.
-
-   Desenhada num pseudo-elemento e acesa por opacity, porque
-   box-shadow não se anima sem custo de repintura — a régua da casa
-   é animar só transform e opacity. O pseudo fica fora do fluxo e
-   não recebe clique: a sombra cai para fora da caixa, então não
-   cobre nem a arte nem o botão.
-   ── */
 .promo::after {
     content: '';
     position: absolute;
@@ -298,9 +223,7 @@
     box-shadow: 0 0 28px rgba(55, 52, 53, 0.20);
     opacity: 0;
     pointer-events: none;
-    /* Atrás da arte e do botão. A sombra encolhida desenha o halo
-       para dentro das bordas do card; pintada por cima, ela aparecia
-       como uma faixa escura sobre o topo da lâmina. */
+
     z-index: -1;
     transition: opacity   200ms var(--ease-out),
                 transform 240ms var(--ease-out);
@@ -308,34 +231,17 @@
 
 @media (hover: hover) and (pointer: fine) {
 
-    /* Cresce 1,5% — uns cinco pixels na largura. O bastante para a
-       lâmina descolar da página, pouco o bastante para não empurrar
-       as vizinhas de lugar. O z-index põe a que cresceu na frente. */
     .promo:hover {
         transform: scale(var(--cresce));
         z-index: 2;
     }
 
-    /* A sombra fica do tamanho de antes. Ela é filha do card, então
-       cresceria junto: a escala inversa desfaz exatamente o que o
-       card aplicou, e o que se vê é a lâmina saindo da página com a
-       sombra parada por baixo. Mesma duração e mesma curva do card,
-       senão as duas se descolam no meio do caminho. */
     .promo:hover::after {
         opacity: 1;
         transform: scale(var(--encolhe));
     }
 }
 
-/* ── O botão de baixar ──────────────────────────────────────────
-   Grafite cheio, e não o vermelho da marca: ele se repete em cada
-   card, e vermelho repetido 24 vezes tira do "Cadastre sua agência"
-   o lugar de único botão cheio da página. O vermelho volta no hover,
-   no instante do clique.
-
-   Encostado na arte e com o raio só embaixo: os dois formam uma
-   peça só, e some a dúvida sobre a qual lâmina o botão pertence.
-   ── */
 .promo-baixar {
     width: 100%;
     border-radius: 0 0 var(--raio) var(--raio);
@@ -356,18 +262,8 @@
     border-color: var(--vermelho-active);
 }
 
-/* ── Entrada ao filtrar ─────────────────────────────────────────
-   Só quem entra anima: quem sai já não está sob o olho de quem
-   acabou de escolher outro tipo. Curva de saída, deslocamento
-   curto e stagger de 40ms entre irmãos.
-   ── */
 .promo.entra {
-    /* backwards, e não both: com "both" o transform do último quadro
-       fica grudado no card depois que a animação acaba, e valor de
-       animação ganha de :hover — as lâminas que chegaram pelo "ver
-       mais" paravam de crescer sob o ponteiro. "backwards" segura só
-       o primeiro quadro durante o atraso do stagger, que é do que a
-       entrada precisa; o último quadro é igual ao estado normal. */
+
     animation: promo-entra 240ms var(--ease-out) backwards;
     animation-delay: calc(var(--i, 0) * 40ms);
 }
@@ -376,9 +272,6 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* O "ver mais" fica centrado abaixo da grade e longe dela: colado no
-   "Baixar a arte" da última linha ele parece pertencer àquele card em
-   vez de à grade inteira. */
 .mais {
     display: flex;
     justify-content: center;
@@ -392,18 +285,9 @@
     padding-block: var(--e-5);
 }
 
-/* ── O que vem ──────────────────────────────────────────────────
-   Faixa de largura total com a foto ao fundo e o texto por cima.
-   Não é banner de arte fechada: o texto é HTML, então ele é lido,
-   é encontrado e se troca sem refazer imagem.
-
-   A foto entra como <img> e não como background do CSS por dois
-   motivos: o navegador sabe carregá-la depois (loading lazy) e a
-   proporção fica reservada antes de ela chegar, sem a página pular.
-   ── */
 .vem {
     position: relative;
-    isolation: isolate;   /* prende o véu e a foto dentro da faixa */
+    isolation: isolate;
     display: grid;
     align-items: center;
     width: 100%;
@@ -419,13 +303,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* A fita cruza o meio e a esquerda do quadro é sombra: é lá
-       que o texto cabe sem disputar com a imagem. */
+
     object-position: 70% center;
 }
 
-/* Véu que vem da esquerda: o texto precisa de contraste, e a foto
-   precisa continuar aparecendo do outro lado. */
 .vem::before {
     content: '';
     position: absolute;
@@ -461,8 +342,6 @@
     color: rgba(255, 255, 255, 0.82);
 }
 
-/* O que vem, em quatro itens: é o "em breve" dizendo o que é, em vez
-   de só avisar que não está pronto. */
 .vem-lista {
     display: flex;
     flex-wrap: wrap;
@@ -478,8 +357,7 @@
     font-size: 0.9375rem;
     font-weight: 600;
 }
-/* Um traço vermelho no lugar do marcador: a marca assina a lista
-   sem precisar de ícone. */
+
 .vem-lista li::before {
     content: '';
     width: 14px;
@@ -488,8 +366,6 @@
     flex: none;
 }
 
-/* No celular a foto não tem largura para o texto ficar ao lado dela:
-   o véu passa a vir de baixo e o texto se apoia nele. */
 @media (max-width: 760px) {
     .vem { min-height: 0; align-items: end; }
     .vem-foto { object-position: 62% 30%; aspect-ratio: 4 / 5; height: auto; position: relative; }
@@ -504,13 +380,9 @@
     .vem-conteudo .container > * { max-width: none; }
 }
 
-/* ── Movimento reduzido ─────────────────────────────────────────
-   O que informa continua, o que desloca sai.
-   ── */
 @media (prefers-reduced-motion: reduce) {
     .promo.entra { animation: none; }
-    /* A sombra fica: ela informa qual lâmina está sob o ponteiro sem
-       deslocar nada. O que sai é o crescimento. */
+
     .promo           { transition: none; }
     .promo:hover     { transform: none; }
     .promo::after    { transition: opacity 200ms ease; }
@@ -519,12 +391,6 @@
     .filtro:active { transform: none; }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   LUPA
-   A lâmina grande, aberta na própria página. O <dialog> ocupa a
-   tela inteira e carrega o próprio fundo: assim clicar em qualquer
-   lugar fora da arte fecha, e o ::backdrop não precisa existir.
-   ═══════════════════════════════════════════════════════════════ */
 .lupa {
     width: 100%;
     max-width: 100%;
@@ -540,17 +406,11 @@
 .lupa[open] {
     display: grid;
     place-items: center;
-    /* minmax(0, 1fr), e não 1fr puro: a linha de um grid cresce com o
-       conteúdo, e aí o max-height:100% da arte passa a medir a própria
-       arte e nunca a limita. Travando a linha na tela, a lâmina em pé
-       encolhe até caber inteira. */
+
     grid-template-rows: minmax(0, 1fr);
     grid-template-columns: minmax(0, 1fr);
 }
 
-/* Arte e botão empilhados. min-height:0 no miolo e na arte porque um
-   item de flex não encolhe abaixo do próprio conteúdo sem isso, e a
-   lâmina em pé passaria da tela levando o botão para fora. */
 .lupa-miolo {
     display: flex;
     flex-direction: column;
@@ -567,19 +427,16 @@
     height: auto;
     object-fit: contain;
     border-radius: var(--raio);
-    /* A arte precisa se destacar do fundo escuro sem ganhar moldura. */
+
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
-/* O mesmo botão da grade, aqui com a largura do próprio texto: quem
-   abriu a lâmina para ler não deveria ter de fechar para baixar. */
 .lupa-baixar {
     width: auto;
     flex: none;
     border-radius: var(--raio);
     padding-inline: var(--e-4);
-    /* Como item de flex ele recebe a largura que sobra e não a que
-       pede: sem isso o rótulo quebra em duas linhas. */
+
     white-space: nowrap;
 }
 
@@ -605,14 +462,6 @@
     .lupa-fechar:hover { background: rgba(255, 255, 255, 0.26); }
 }
 
-/* Entrada e saída. A arte não vem de scale(0): ela já existia na
-   grade, só cresceu. Saída mais rápida que a entrada — o sistema
-   responde, não delibera.
-
-   A saída tem keyframes próprios, e não a mesma animação em
-   `reverse`: trocando só a duração e o sentido, o nome da animação
-   continua o mesmo, o navegador não a reinicia e o `animationend`
-   que fecha o diálogo nunca chega. */
 .lupa[open]        { animation: lupa-fundo-entra 200ms var(--ease-out); }
 .lupa[open] .lupa-miolo { animation: lupa-arte-entra  240ms var(--ease-out); }
 .lupa.fechando     { animation: lupa-fundo-sai   140ms var(--ease-out) both; }
@@ -637,11 +486,6 @@
     .lupa-fechar:active { transform: none; }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   BAIXAR
-   O mesmo fundo e o mesmo fechar da lupa, com uma caixa branca de
-   conteúdo no meio. Duas saídas: com a logo da agência ou sem.
-   ═══════════════════════════════════════════════════════════════ */
 .baixar {
     width: 100%;
     max-width: 100%;
@@ -675,7 +519,6 @@
 .baixar-caixa p  { margin-inline: auto; margin-top: var(--e-2); }
 .baixar-caixa > p:first-of-type { color: var(--cinza-texto); }
 
-/* ── A logo escolhida ─────────────────────────────────────────── */
 .baixar-logo {
     display: grid;
     place-items: center;
@@ -690,8 +533,6 @@
 .baixar-logo-marca { color: var(--cinza-texto); }
 .baixar-logo-marca svg { width: 30px; height: 30px; }
 
-/* Fundo branco atrás da prévia: é assim que ela vai aparecer na
-   faixa, e marca de contorno claro sumiria sobre o cinza. */
 .baixar-logo .legenda span { color: var(--cinza-borda); }
 .baixar-logo img {
     max-width: 200px;
@@ -703,7 +544,6 @@
     background: var(--branco);
 }
 
-/* Botão de texto, para as ações pequenas que acompanham a legenda. */
 .btn--link {
     padding: 0 2px;
     border: none;
@@ -736,7 +576,6 @@
 }
 .baixar-acoes .btn { width: 100%; border-radius: var(--raio); }
 
-/* Entrada igual à da lupa: mesma casa, mesmo movimento. */
 .baixar[open]              { animation: lupa-fundo-entra 200ms var(--ease-out); }
 .baixar[open] .baixar-caixa{ animation: lupa-arte-entra  240ms var(--ease-out); }
 

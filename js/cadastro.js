@@ -1,17 +1,4 @@
-/* ═══════════════════════════════════════════════════════════════
-   CADASTRO · máscaras, validação e envio
-   Vanilla, sem dependência. Sem este arquivo a ficha continua
-   funcionando com a validação nativa do HTML e o envio direto ao
-   cadastro.php; aqui entram a máscara enquanto digita, a mensagem
-   por campo, a conferência do dígito do CNPJ e o envio sem sair da
-   página.
 
-   ONDE ESTÁ RODANDO decide o que "enviar" significa:
-   · Locaweb (produção): POST no cadastro.php, que manda o e-mail
-   · Prévia (localhost, GitHub Pages): não há PHP. Abre o e-mail do
-     agente com a ficha preenchida para comercial@ofb.com.br, e avisa
-     que é prévia. A demonstração continua útil sem mentir.
-   ═══════════════════════════════════════════════════════════════ */
 (function () {
 'use strict';
 
@@ -25,8 +12,6 @@ var botao     = form.querySelector('.cad-enviar');
 var h = location.hostname;
 var PREVIA = (h === 'localhost' || h === '127.0.0.1' || h === '' || /\.github\.io$/.test(h));
 
-
-/* ── Máscaras: só dígitos entram; a pontuação é desenhada ────── */
 var MASCARAS = {
     cnpj: function (d) {
         d = d.slice(0, 14);
@@ -56,8 +41,6 @@ Array.prototype.forEach.call(form.querySelectorAll('[data-mascara]'), function (
     });
 });
 
-
-/* ── CNPJ: o dígito verificador, não só o formato ─────────────── */
 function cnpjValido(v) {
     var d = v.replace(/\D/g, '');
     if (d.length !== 14 || /^(\d)\1{13}$/.test(d)) return false;
@@ -72,8 +55,6 @@ function cnpjValido(v) {
     return dv(d, p1) === parseInt(d[12], 10) && dv(d, p2) === parseInt(d[13], 10);
 }
 
-
-/* ── Validação por campo ──────────────────────────────────────── */
 var MENSAGENS = {
     vazio:    'Preencha este campo.',
     cnpj:     'Confira o CNPJ: são 14 dígitos e o número não bateu.',
@@ -110,7 +91,7 @@ function marcar(campo, msg) {
 var campos = Array.prototype.slice.call(form.querySelectorAll('.cad-campo input, .cad-campo select'));
 
 campos.forEach(function (campo) {
-    /* Valida ao sair do campo; depois de marcado, corrige enquanto digita. */
+
     campo.addEventListener('blur', function () { marcar(campo, mensagemDe(campo)); });
     campo.addEventListener('input', function () {
         if (campo.closest('.cad-campo').classList.contains('invalido')) marcar(campo, mensagemDe(campo));
@@ -126,8 +107,6 @@ function validarTudo() {
     return !primeiro;
 }
 
-
-/* ── Envio ────────────────────────────────────────────────────── */
 function dados() {
     var o = {};
     campos.forEach(function (c) { o[c.name] = c.value.trim(); });
@@ -201,7 +180,7 @@ function enviarServidor(d) {
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (form.querySelector('[name="site"]').value) return;   /* robô */
+    if (form.querySelector('[name="site"]').value) return;
     if (!validarTudo()) return;
     var d = dados();
     if (PREVIA) enviarPrevia(d);

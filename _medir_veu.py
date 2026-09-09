@@ -1,31 +1,14 @@
 #!/usr/bin/env python3
-"""Gera js/veu.js medindo o vídeo do hero, quadro a quadro.
-
-Arquivo de trabalho. Rodar quando o vídeo mudar, quando um bloco mudar de
-faixa de quadros, ou quando o texto mudar de lugar na tela — as regiões
-abaixo têm que refletir onde o texto realmente cai.
-
-    python3 _medir_veu.py
-
-O que ele faz: para cada quadro, mede a luminância da região onde o texto
-daquele bloco fica e calcula a opacidade mínima de véu para o corpo de
-texto chegar a 5,5:1 (margem sobre o AA de 4,5). Onde o vídeo já é escuro
-o bastante — a cabine fechada, o miolo da nuvem — o valor dá zero, e nada
-é desenhado por cima da imagem.
-"""
 import os, re, subprocess, json
 
 S     = os.path.dirname(os.path.abspath(__file__))
 VIDEO = os.path.normpath(os.path.join(S, '..', '01_hero', 'HERO VIDEO.mp4'))
 N     = 489
 PASSO = 4
-ALVO  = 4.5   # AA. Era 5,5 — margem minha, e ela custava imagem sem norma que a exigisse
+ALVO  = 4.5
 
-# bloco: (quadro inicial, quadro final, região do texto x/y/w/h em fração,
-#         'claro' quando o texto é grafite e o véu é branco)
 BLOCOS = {
-    # a região é a do CORPO de texto, não a do bloco todo: a headline é
-    # grande e passa em 3:1, então não pode ditar o véu da tela inteira
+
     'b': (  0, 140, (0.06, 0.50, 0.48, 0.24), False),
     'c': (140, 290, (0.06, 0.10, 0.46, 0.38), False),
     'd': (290, 400, (0.06, 0.28, 0.64, 0.44), True),
@@ -44,14 +27,12 @@ def ct_grafite(Y):
     return (a + 0.05) / (b + 0.05)
 
 def alpha(Y, claro):
-    """Opacidade mínima de véu para o texto atingir o alvo neste fundo."""
     a, cor, ct = 0.0, (250 if claro else 18), (ct_grafite if claro else ct_branco)
     while a < 0.85 and ct(Y * (1 - a) + cor * a) < ALVO:
         a += 0.01
     return a
 
 def medir(x, y, w, h, campo):
-    """Luminância da região, quadro a quadro, direto do ffmpeg."""
     saida = subprocess.run(
         ['ffmpeg', '-v', 'error', '-i', VIDEO,
          '-vf', f'crop=iw*{w}:ih*{h}:iw*{x}:ih*{y},scale=120:-2,'
@@ -63,14 +44,13 @@ def medir(x, y, w, h, campo):
 
 por_quadro = [0.0] * N
 for k, (ini, fim, reg, claro) in BLOCOS.items():
-    # texto claro sofre no ponto mais CLARO do quadro; texto escuro, no mais escuro
+
     campo = 'YLOW' if claro else 'YHIGH'
     Y = medir(*reg, campo)
     bruto = [alpha(Y[i], claro) for i in range(ini, min(fim, len(Y)))]
 
-    # o pior da vizinhança manda, senão o véu pisca entre quadros vizinhos
     pico  = [max(bruto[max(0, i-6):i+7]) for i in range(len(bruto))]
-    # média móvel curta tira o degrau que sobrou
+
     suave = [sum(pico[max(0, i-8):i+9]) / len(pico[max(0, i-8):i+9])
              for i in range(len(pico))]
 

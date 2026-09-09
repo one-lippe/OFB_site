@@ -1,13 +1,4 @@
 #!/bin/bash
-# Fallback WebP da sequência do hero, para navegador sem AVIF (Safari < 16.4,
-# ~6% em 09/2026). Decidido em 03_HERO_ANALISE_TECNICA.md §9: o WebP não
-# precisa de qualidade equivalente, precisa existir e pesar pouco. Por isso
-# sai menor (1440×810) e em q80, não em q92.
-#
-# O intermediário é o próprio decodificador do ffmpeg (raw → webp), sem
-# JPEG no meio — a regra do _gerar_hero.sh continua valendo.
-#
-# Uso: ./_gerar_hero_webp.sh        (gera hero/dw e hero/mw)
 set -e
 AQUI="$(cd "$(dirname "$0")" && pwd)"
 VIDEO="$(dirname "$AQUI")/01_hero/HERO VIDEO.mp4"

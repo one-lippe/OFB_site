@@ -7,7 +7,6 @@
 <title>Blog · OFB</title>
 <meta name="description" content="Notícias de turismo e conteúdo da OFB para agências de viagens.">
 
-<!-- Prévia e construção não entram na busca. Sai só na subida em ofb.com.br. -->
 <meta name="robots" content="noindex, nofollow">
 
 <meta property="og:type" content="website">
@@ -32,7 +31,6 @@
         <div class="container">
             <span class="topo-rotulo">Acessar</span>
 
-            <!-- agente.tur é sistema da casa e pode ser nomeado. -->
             <a class="acesso" href="https://www.agente.tur.br" target="_blank" rel="noopener">
                 agente.tur
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -44,8 +42,6 @@
 
             <span class="topo-sep" aria-hidden="true">|</span>
 
-            <!-- Do lado da consolidação o destino é o portal do parceiro,
-                 então o botão diz Consolidação, nunca o nome dele. -->
             <a class="acesso" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
                 Consolidação
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -68,10 +64,6 @@
                 <span></span>
             </button>
 
-            <!-- O agente.tur não entra aqui: ele já é um dos dois
-                 "Acessar" na barra de cima, e o mesmo nome duas vezes
-                 no topo confunde. Fora do menu, o sistema também
-                 nunca aparece antes da OFB. -->
             <nav class="menu" id="menu-principal" aria-label="Principal">
                 <a href="index.html">Home</a>
                 <a href="index.html#a-ofb">Quem somos</a>
@@ -98,9 +90,6 @@
             <p class="subtitulo">Notícia de turismo e conteúdo da OFB, para quem vende viagem.</p>
         </div>
 
-        <!-- As duas trilhas da decisão 7 do mapa do site. Sem JavaScript
-             a lista continua inteira: o filtro acrescenta, não é
-             pré-requisito. -->
         <div class="filtros" role="group" aria-label="Filtrar por tipo">
             <button class="filtro" type="button" data-trilha="todas"    aria-pressed="true">Todos</button>
             <button class="filtro" type="button" data-trilha="noticia"  aria-pressed="false">Notícia de turismo</button>
@@ -241,9 +230,6 @@
 
 <script src="js/site.js?v=20260908-4"></script>
 <script>
-/* Filtro das duas trilhas. Mesmo desenho do filtro da Central: botões
-   que não navegam, estado no aria-pressed, e o resultado dito em voz
-   alta para quem não vê a lista mudar. */
 (function () {
 'use strict';
 var filtros = Array.prototype.slice.call(document.querySelectorAll('[data-trilha][type]'));

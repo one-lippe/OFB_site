@@ -7,7 +7,6 @@
 <title>Central do Agente · OFB</title>
 <meta name="description" content="Central do Agente: o ponto de apoio da sua agência na OFB. Promoções para repassar ao seu cliente, guia da plataforma, tutoriais e respostas para o dia a dia da operação.">
 
-<!-- Prévia e construção não entram na busca. Sai só na subida em ofb.com.br. -->
 <meta name="robots" content="noindex, nofollow">
 
 <link rel="icon" type="image/png" href="img/favicon.png">
@@ -15,7 +14,6 @@
 <link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
 
-<!-- A folha do site vem primeiro; a da Central só acrescenta o que é dela. -->
 <link rel="stylesheet" href="css/site.css?v=20260908-4">
 <link rel="stylesheet" href="css/central.css?v=20260908-4">
 </head>
@@ -23,19 +21,12 @@
 
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     HEADER
-     Cópia do header da home, com uma diferença obrigatória: as
-     âncoras da home viram links para index.html, porque aqui elas
-     não existem na página. O item da Central fica marcado.
-     ═══════════════════════════════════════════════════════════ -->
 <header class="cabecalho">
 
     <div class="topo">
         <div class="container">
             <span class="topo-rotulo">Acessar</span>
 
-            <!-- agente.tur é sistema da casa e pode ser nomeado. -->
             <a class="acesso" href="https://www.agente.tur.br" target="_blank" rel="noopener">
                 agente.tur
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -47,8 +38,6 @@
 
             <span class="topo-sep" aria-hidden="true">|</span>
 
-            <!-- Do lado da consolidação o destino é o portal do parceiro,
-                 então o botão diz Consolidação, nunca o nome dele. -->
             <a class="acesso" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
                 Consolidação
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -71,10 +60,6 @@
                 <span></span>
             </button>
 
-            <!-- O agente.tur não entra aqui: ele já é um dos dois
-                 "Acessar" na barra de cima, e o mesmo nome duas vezes
-                 no topo confunde. Fora do menu, o sistema também
-                 nunca aparece antes da OFB. -->
             <nav class="menu" id="menu-principal" aria-label="Principal">
                 <a href="index.html">Home</a>
                 <a href="index.html#a-ofb">Quem somos</a>
@@ -91,27 +76,8 @@
 </header>
 <div class="veu" aria-hidden="true"></div>
 
-
 <main id="conteudo">
 
-<!-- ═══════════════════════════════════════════════════════════════
-     BANNER DA CENTRAL
-     Faixa de largura total, antes das promoções.
-
-     Provisório, versão 2 (08/09/2026): foto gerada no Magnific
-     (Seedream 5 Pro), uma agente de viagens brasileira na mesa dela,
-     com o terço esquerdo limpo de propósito — é onde o texto entra.
-     Substituiu a arte do agente.tur, que abria a Central com o
-     sistema antes da OFB (regra 2). A definitiva o Lippe faz no
-     Photoshop; ao trocar, trocar também os dois aspect-ratio no CSS.
-
-     O TEXTO É HTML, NUNCA DENTRO DA IMAGEM (mesma regra do banner
-     "em breve"): leitor de tela lê, busca acha, tipografia é a da
-     marca, trocar uma palavra não custa arte nova.
-
-     <picture> com duas fotos: a de desktop é 21:9; no celular ela
-     viraria um fio, então entra uma 4:5 com a parede limpa em cima.
-     ═══════════════════════════════════════════════════════════ -->
 <section class="banner" aria-labelledby="banner-titulo">
     <picture>
         <source media="(max-width: 620px)" srcset="img/central-banner-cel.jpg"
@@ -123,8 +89,6 @@
         <div class="container" data-revela>
             <span class="filete" aria-hidden="true"></span>
             <h1 id="banner-titulo">Central do Agente</h1>
-            <!-- Diz o que a Central É (mapa §3: o lugar único de tudo que o
-                 agente usa), não o que se baixa nela. Copy de 08/09/2026. -->
             <p class="subtitulo">O ponto de apoio da sua agência na OFB: promoções para
                repassar ao seu cliente, guia da plataforma, tutoriais e respostas para o
                dia a dia da operação.</p>
@@ -132,17 +96,6 @@
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     1 · PROMOÇÕES ATIVAS
-     Banco de material, não vitrine de oferta. A arte é o card: é
-     ela que o agente baixa e manda para o cliente dele.
-
-     As cinco no ar são material real, de 03/09/2026: as lâminas
-     saem de 💼 OFB / 02 OPERACOES / APROVADO e a lista do que está
-     valendo é a página "Promoções Ativas" do Notion. Não há
-     campanha de aéreo puro ativa, e por isso não existe filtro
-     "Aéreo": os bloqueios levam o aéreo junto com a hospedagem.
-     ═══════════════════════════════════════════════════════════ -->
 <section class="secao" id="promocoes" aria-labelledby="promocoes-titulo">
     <div class="container">
 
@@ -151,13 +104,8 @@
             <p class="subtitulo">Baixe e repasse ao seu cliente.</p>
         </div>
 
-        <!-- Os filtros e a busca fazem a mesma coisa por dois caminhos:
-             quem sabe a categoria clica, quem sabe o destino digita.
-             Os dois valem ao mesmo tempo. -->
         <div class="controles">
 
-            <!-- Grupo de botões, não links: eles não navegam, mudam o
-                 que a grade mostra. -->
             <div class="filtros" role="group" aria-label="Filtrar promoções por tipo">
                 <button class="filtro" type="button" data-filtro="todas"     aria-pressed="true">Todas</button>
                 <button class="filtro" type="button" data-filtro="bloqueio"  aria-pressed="false">Bloqueios</button>
@@ -167,9 +115,6 @@
                 <button class="filtro" type="button" data-filtro="cruzeiro"  aria-pressed="false">Cruzeiros</button>
             </div>
 
-            <!-- A busca lê o texto alternativo de cada arte. É por isso
-                 que o alt de uma lâmina nova precisa trazer destino,
-                 noites e período: é ele que a torna encontrável. -->
             <div class="busca">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" aria-hidden="true">
@@ -183,19 +128,8 @@
 
         </div>
 
-        <!-- Quem usa leitor de tela não vê a grade mudar: o resultado
-             do filtro precisa ser dito. -->
         <p class="sr-only" role="status" data-contagem></p>
 
-        <!-- PROMOÇÃO NOVA: copiar um <li> inteiro e trocar quatro coisas.
-             1. data-tipo    · a categoria, igual ao data-filtro do botão
-             2. img src/href · a arte em img/promos/, 720 px de largura
-             3. alt          · o que a lâmina é, em uma frase. É o que
-                               uma pessoa cega ouve: descrição, não lista
-             4. data-termos  · como o agente procuraria: destino, região,
-                               cidade de saída, mês, sinônimo (reveillon,
-                               ano novo, virada), tipo de viagem
-             A ordem da grade é a da validade: o que vence antes vem antes. -->
         <ul class="promos">
 
             <li class="promo" data-tipo="hospedagem" style="--i:0"
@@ -729,14 +663,6 @@
     </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     2 · O QUE VEM
-     Faixa de largura total, no mesmo formato do banner do topo. O
-     texto é HTML por cima da foto, e não parte da imagem: assim ele
-     é lido por leitor de tela, encontrado na busca e trocado sem
-     refazer arte. A foto é gerada e não tem texto nenhum dentro.
-     ═══════════════════════════════════════════════════════════ -->
 <section class="vem" aria-labelledby="vem-titulo">
     <img class="vem-foto" src="img/central-construcao.jpg" alt=""
          width="2560" height="1440" loading="lazy">
@@ -757,13 +683,6 @@
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     LUPA
-     Um <dialog> só, reaproveitado. Nativo por três motivos: o Esc
-     fecha sem código, o foco fica preso dentro enquanto está aberto
-     e o resto da página some para o leitor de tela.
-     Sem JavaScript o link do card continua levando à imagem.
-     ═══════════════════════════════════════════════════════════ -->
 <dialog class="lupa" aria-label="Arte da promoção">
     <button class="lupa-fechar" type="button" aria-label="Fechar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -784,15 +703,6 @@
     </div>
 </dialog>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     BAIXAR
-     Duas saídas: a lâmina como está, ou a lâmina com a logo da
-     agência numa faixa branca em cima.
-
-     A montagem acontece aqui no navegador, num <canvas>. A logo do
-     agente não é enviada para lugar nenhum: ela é lida do disco
-     dele, guardada no navegador dele e desenhada na hora.
-     ═══════════════════════════════════════════════════════════ -->
 <dialog class="baixar" aria-labelledby="baixar-titulo">
     <button class="lupa-fechar" type="button" aria-label="Fechar" data-baixar-fechar>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -806,7 +716,6 @@
         <p>Você pode assinar a lâmina com a logo da sua agência: ela entra numa
            faixa branca acima da arte, sem cobrir nada da promoção.</p>
 
-        <!-- Estado 1 · ainda não há logo -->
         <div class="baixar-logo" data-logo-vazia>
             <span class="baixar-logo-marca" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -819,7 +728,6 @@
             <p class="legenda">Nenhuma logo escolhida ainda.</p>
         </div>
 
-        <!-- Estado 2 · a logo já está guardada neste navegador -->
         <div class="baixar-logo" data-logo-cheia hidden>
             <img alt="A logo que você escolheu" data-logo-previa>
             <p class="legenda">
@@ -849,14 +757,6 @@
 
 </main>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     RODAPÉ
-     Cópia do rodapé da home, escrito na sessão dela em 04/09/2026.
-     É persistente: o mesmo em todas as páginas. Não tem âncora
-     interna, então vem sem adaptação — diferente do header, cujas
-     âncoras precisaram virar index.html#.
-     Mudou lá? Copiar de novo. A fonte é o index.html.
-     ═══════════════════════════════════════════════════════════ -->
 <footer class="rodape" id="rodape">
     <div class="container rodape-grade">
 
@@ -928,12 +828,6 @@
 
 <script src="js/site.js?v=20260908-4"></script>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     FILTRO DAS PROMOÇÕES
-     Mora aqui, e não na js/site.js, porque só existe nesta página.
-     Sem JavaScript a grade continua inteira na tela: o filtro
-     acrescenta, não é pré-requisito.
-     ═══════════════════════════════════════════════════════════ -->
 <script>
 (function () {
 'use strict';
@@ -947,21 +841,8 @@ var buscaCpo = document.querySelector('[data-busca]');
 
 if (filtros.length && promos.length) {
 
-    /* ── Validade ────────────────────────────────────────────────
-       Promoção vencida some sozinha. A data de cada uma está no
-       data-vence do card; sem o atributo, ela não vence.
-
-       A comparação é entre textos no formato AAAA-MM-DD, e não entre
-       objetos de data: assim o fuso do computador do agente não muda
-       o resultado no virar do dia.
-
-       Decisões do Lippe em 03/09/2026: a promoção some NO PRÓPRIO dia
-       da validade, e validade sem dia no Notion ("até nov/2026") vira
-       o primeiro dia do mês.
-       ── */
     function hojeTexto() {
-        /* ?hoje=2026-12-01 na URL permite conferir como a grade fica
-           numa data futura. Sem o parâmetro, vale o dia de hoje. */
+
         var forcado = (location.search.match(/[?&]hoje=(\d{4}-\d{2}-\d{2})/) || [])[1];
         if (forcado) return forcado;
 
@@ -980,39 +861,23 @@ if (filtros.length && promos.length) {
         return !!data && HOJE >= data;
     }
 
-    /* Sai da lista de uma vez: filtro, busca, contagem e "ver mais"
-       passam a trabalhar só com o que está no prazo. */
     promos = promos.filter(function (promo) {
         if (!venceu(promo)) return true;
         promo.hidden = true;
         return false;
     });
 
-    /* De seis em seis: duas linhas de três, que é o que cabe sem
-       obrigar a rolar. O resto entra a pedido. */
     var PASSO  = 6;
     var limite = PASSO;
     var tipo   = 'todas';
     var termo  = '';
 
-    /* Sem acento e em minúsculas dos dois lados: quem digita "japao"
-       de pressa precisa achar "Japão". */
     function simplificar(texto) {
         return texto.toLowerCase()
                     .normalize('NFD')
                     .replace(/[\u0300-\u036f]/g, '');
     }
 
-    /* O que a busca lê, montado uma vez por lâmina, de três fontes:
-
-         1. o alt da arte — o que a lâmina é, em uma frase;
-         2. data-termos   — sinônimos, região, mês, cidade de saída.
-            Existe para o alt não virar depósito de palavra-chave:
-            ele é o que uma pessoa cega ouve no lugar da imagem, e
-            encher de sinônimo estragaria a descrição;
-         3. o rótulo do filtro — assim "cruzeiro" acha os cruzeiros
-            sem que ninguém precise repetir a palavra em cada card.
-       ── */
     var rotulos = {};
     filtros.forEach(function (b) {
         rotulos[b.getAttribute('data-filtro')] = b.textContent.trim();
@@ -1027,9 +892,6 @@ if (filtros.length && promos.length) {
         ].join(' '));
     });
 
-    /* Palavra a palavra, todas precisam aparecer — e não a frase
-       inteira em bloco. Sem isso "noronha recife" não acha nada, já
-       que a lâmina diz "saindo de Recife: Fernando de Noronha". */
     var palavras = [];
 
     function combinaBusca(promo) {
@@ -1040,8 +902,8 @@ if (filtros.length && promos.length) {
     }
 
     function aplicar(animarDesde) {
-        var cabem  = 0;   /* quantas passam pelo filtro e pela busca */
-        var vistas = 0;   /* quantas estão na tela agora             */
+        var cabem  = 0;
+        var vistas = 0;
 
         promos.forEach(function (promo) {
             var daCategoria = (tipo === 'todas' || promo.getAttribute('data-tipo') === tipo);
@@ -1053,8 +915,6 @@ if (filtros.length && promos.length) {
             promo.hidden = !mostra;
             if (!mostra) return;
 
-            /* Anima só o que acabou de aparecer: ao trocar de filtro
-               é a grade inteira; no "ver mais", só o lote novo. */
             if (vistas >= animarDesde) {
                 promo.style.setProperty('--i', vistas - animarDesde);
                 promo.classList.remove('entra');
@@ -1094,7 +954,7 @@ if (filtros.length && promos.length) {
                 b.setAttribute('aria-pressed', b === botao ? 'true' : 'false');
             });
             tipo   = botao.getAttribute('data-filtro');
-            limite = PASSO;          /* filtro novo recomeça do zero */
+            limite = PASSO;
             aplicar(0);
         });
     });
@@ -1103,11 +963,10 @@ if (filtros.length && promos.length) {
         buscaCpo.addEventListener('input', function () {
             termo    = simplificar(buscaCpo.value.trim());
             palavras = termo ? termo.split(/\s+/) : [];
-            limite   = PASSO;        /* busca nova recomeça do zero */
+            limite   = PASSO;
             aplicar(0);
         });
 
-        /* Esc limpa o campo: é o que o teclado espera de uma busca. */
         buscaCpo.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && buscaCpo.value) {
                 e.stopPropagation();
@@ -1126,33 +985,21 @@ if (filtros.length && promos.length) {
             limite += PASSO;
             aplicar(antes);
 
-            /* O foco vai para a primeira que chegou. Sem isso quem
-               navega por teclado fica no botão, que mudou de lugar ou
-               sumiu, e perde a referência do que aconteceu. */
             var nova = promos.filter(function (p) { return !p.hidden; })[antes];
             var alvo = nova && nova.querySelector('a');
             if (alvo) alvo.focus({ preventScroll: true });
         });
     }
 
-    /* Sem nenhuma no prazo, filtrar e buscar não têm sentido: some o
-       que não serve e fica só o aviso. */
     if (promos.length === 0) {
         var controles = document.querySelector('.controles');
         if (controles) controles.hidden = true;
         if (maisBtn)   maisBtn.hidden = true;
     }
 
-    /* Primeira pintura sem animação: a página ainda nem rolou. */
     aplicar(Infinity);
 }
 
-
-/* ── Lupa ────────────────────────────────────────────────────────
-   Clicar na arte abre a lâmina grande aqui mesmo. Combinação de
-   teclas para abrir em outra aba continua funcionando, e navegador
-   sem <dialog> segue o link como antes.
-   ── */
 var lupa = document.querySelector('.lupa');
 
 if (lupa && typeof lupa.showModal === 'function') {
@@ -1165,7 +1012,7 @@ if (lupa && typeof lupa.showModal === 'function') {
         var arte = link.querySelector('img');
         lupaImg.src = link.getAttribute('href');
         lupaImg.alt = arte ? arte.alt : '';
-        /* O download da lupa é o mesmo arquivo que está sendo visto. */
+
         lupaBaixar.setAttribute('data-baixar', link.getAttribute('href'));
         lupa.setAttribute('aria-label', lupaImg.alt);
         lupa.classList.remove('fechando');
@@ -1177,15 +1024,11 @@ if (lupa && typeof lupa.showModal === 'function') {
     function fecharLupa() {
         if (lupa.classList.contains('fechando')) return;
 
-        /* Movimento reduzido fecha na hora: não há saída para esperar. */
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             return encerrar();
         }
         lupa.classList.add('fechando');
 
-        /* Relógio, e não o evento 'animationend': em aba de segundo
-           plano o navegador congela a animação, o evento não chega e a
-           lupa ficaria presa aberta. O tempo espelha a saída do CSS. */
         setTimeout(encerrar, 140);
     }
 
@@ -1198,7 +1041,7 @@ if (lupa && typeof lupa.showModal === 'function') {
 
     document.querySelectorAll('.promo-arte a').forEach(function (link) {
         link.addEventListener('click', function (e) {
-            /* Ctrl, Cmd, Shift ou botão do meio: é pedido de nova aba. */
+
             if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
             e.preventDefault();
             abrirLupa(link);
@@ -1207,46 +1050,29 @@ if (lupa && typeof lupa.showModal === 'function') {
 
     lupaFechar.addEventListener('click', fecharLupa);
 
-    /* Clique no fundo, fora da arte. */
     lupa.addEventListener('click', function (e) {
         if (e.target === lupa) fecharLupa();
     });
 
-    /* O Esc fecha sozinho; aqui a saída ganha a mesma animação. */
     lupa.addEventListener('cancel', function (e) {
         e.preventDefault();
         fecharLupa();
     });
 }
 
-/* ── Baixar, com ou sem a logo da agência ────────────────────────
-   Tudo acontece neste navegador: a logo é lida do disco do agente,
-   guardada aqui mesmo e desenhada num <canvas> junto da lâmina.
-   Nada é enviado para servidor nenhum — não há para onde enviar.
-   ── */
 var caixa = document.querySelector('.baixar');
 
 if (caixa && typeof caixa.showModal === 'function') {
 
-    var CHAVE     = 'ofb-central-logo';   /* onde a logo fica guardada */
-    var LIMITE    = 3 * 1024 * 1024;      /* 3 MB de arquivo escolhido */
-    var LADO_LOGO = 640;                  /* a logo é guardada reduzida */
+    var CHAVE     = 'ofb-central-logo';
+    var LIMITE    = 3 * 1024 * 1024;
+    var LADO_LOGO = 640;
 
-    /* A faixa tem altura fixa e a logo se ajusta a ela. Deixar a
-       faixa crescer conforme a marca fazia a lâmina mudar de
-       proporção a cada agência — e uma marca alta virava um bloco
-       branco maior que a própria promoção.
+    var FAIXA       = 0.10;
+    var RESPIRO_V   = 0.13;
+    var LARGURA_MAX = 0.62;
 
-       O respiro vertical é curto de propósito: é ele que decide o
-       tamanho da logo dentro de uma faixa que não cresce. */
-    var FAIXA       = 0.10;   /* altura, sobre a altura da lâmina  */
-    var RESPIRO_V   = 0.13;   /* acima e abaixo, sobre a faixa     */
-    var LARGURA_MAX = 0.62;   /* teto, sobre a largura da lâmina   */
-    /* As logos oficiais que a casa tem vão até 3000 px de lado
-       (EZLINK horizontal HD, com 72 KB). 3500 dá folga para todas e
-       ainda barra o arquivo de 6000 × 6000, que são 36 milhões de
-       pixels para o navegador decodificar de uma vez. */
-    var LADO_MAXIMO = 3500;   /* pixels no maior lado do arquivo   */
+    var LADO_MAXIMO = 3500;
 
     var arteAtual  = '';
     var arqCampo   = caixa.querySelector('[data-arquivo]');
@@ -1289,7 +1115,6 @@ if (caixa && typeof caixa.showModal === 'function') {
         document.body.style.overflow = rolagemBx;
     }
 
-    /* Um clique em qualquer "Baixar a arte", na grade ou na lupa. */
     document.addEventListener('click', function (e) {
         var botao = e.target.closest('[data-baixar]');
         if (!botao) return;
@@ -1302,7 +1127,6 @@ if (caixa && typeof caixa.showModal === 'function') {
     caixa.addEventListener('cancel', function (e) { e.preventDefault(); fecharBaixar(); });
     caixa.addEventListener('click', function (e) { if (e.target === caixa) fecharBaixar(); });
 
-    /* ── Entregar o arquivo ── */
     function entregar(blob, nome) {
         var url = URL.createObjectURL(blob);
         var a = document.createElement('a');
@@ -1311,7 +1135,7 @@ if (caixa && typeof caixa.showModal === 'function') {
         document.body.appendChild(a);
         a.click();
         a.remove();
-        /* O navegador precisa do endereço até começar a gravar. */
+
         setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
     }
 
@@ -1320,7 +1144,6 @@ if (caixa && typeof caixa.showModal === 'function') {
         return base + sufixo + '.jpg';
     }
 
-    /* ── Montar a lâmina com a faixa e a logo ── */
     function montarComLogo(arte, logo, pronto, falhou) {
         var lamina = new Image();
         lamina.onerror = falhou;
@@ -1331,9 +1154,6 @@ if (caixa && typeof caixa.showModal === 'function') {
                 var L = lamina.naturalWidth, A = lamina.naturalHeight;
                 var faixa = Math.round(A * FAIXA);
 
-                /* Marca deitada esbarra na largura; marca em pé ou
-                   quadrada esbarra na altura da faixa. Vale o que
-                   apertar primeiro, e a proporção nunca se perde. */
                 var altUtil  = faixa - Math.round(faixa * RESPIRO_V) * 2;
                 var largUtil = Math.round(L * LARGURA_MAX);
                 var escala   = Math.min(largUtil / marca.naturalWidth,
@@ -1363,7 +1183,6 @@ if (caixa && typeof caixa.showModal === 'function') {
         lamina.src = arte;
     }
 
-    /* ── Ler e guardar a logo escolhida ── */
     function guardarLogo(arquivo, pronto) {
         if (['image/png', 'image/jpeg'].indexOf(arquivo.type) === -1) {
             return mostrarErro('A logo precisa ser PNG ou JPEG.');
@@ -1379,24 +1198,18 @@ if (caixa && typeof caixa.showModal === 'function') {
             var img = new Image();
             img.onerror = function () { mostrarErro('Esse arquivo não abriu como imagem.'); };
             img.onload = function () {
-                /* Peso pequeno não quer dizer imagem pequena: um PNG
-                   de 6000 × 6000 cabe em poucos MB e mesmo assim
-                   obriga o navegador a abrir 36 milhões de pixels, o
-                   que trava celular. O lado também tem limite. */
+
                 if (Math.max(img.naturalWidth, img.naturalHeight) > LADO_MAXIMO) {
                     return mostrarErro('Essa imagem tem ' + img.naturalWidth + ' × ' +
                         img.naturalHeight + ' px. Use uma logo de até ' + LADO_MAXIMO + ' px de lado.');
                 }
 
-                /* Guardada reduzida: o espaço do navegador é pequeno, e
-                   na faixa ela nunca aparece maior que isto. */
                 var escala = Math.min(1, LADO_LOGO / Math.max(img.naturalWidth, img.naturalHeight));
                 var tela = document.createElement('canvas');
                 tela.width  = Math.round(img.naturalWidth  * escala);
                 tela.height = Math.round(img.naturalHeight * escala);
                 tela.getContext('2d').drawImage(img, 0, 0, tela.width, tela.height);
 
-                /* PNG para não perder o fundo transparente da marca. */
                 var dado = tela.toDataURL('image/png');
                 try {
                     localStorage.setItem(CHAVE, dado);
@@ -1430,12 +1243,12 @@ if (caixa && typeof caixa.showModal === 'function') {
     btnComLogo.addEventListener('click', function () {
         var logo = logoGuardada();
         if (logo) return baixarComLogo(logo);
-        arqCampo.click();          /* ainda não há logo: escolher agora */
+        arqCampo.click();
     });
 
     arqCampo.addEventListener('change', function () {
         var arquivo = arqCampo.files && arqCampo.files[0];
-        arqCampo.value = '';       /* permite reescolher o mesmo arquivo */
+        arqCampo.value = '';
         if (arquivo) guardarLogo(arquivo, baixarComLogo);
     });
 
@@ -1449,8 +1262,6 @@ if (caixa && typeof caixa.showModal === 'function') {
         pintarEstado();
     });
 
-    /* Sem logo é o arquivo original, sem passar pelo canvas: nada a
-       recompor, nada a perder. */
     btnSemLogo.addEventListener('click', function () {
         var a = document.createElement('a');
         a.href = arteAtual;

@@ -1,28 +1,7 @@
 <?php
-/* ═══════════════════════════════════════════════════════════════
-   CADASTRO · o único PHP do site
-   Recebe a ficha do cadastro.html e manda por e-mail para o
-   comercial da OFB. Roda só na Locaweb (03_TECNOLOGIA §1): no
-   GitHub Pages este arquivo é servido como texto e nunca executa —
-   por isso o js/cadastro.js nem tenta chamá-lo lá.
-
-   O que ele faz, e só isso:
-   1. aceita POST; qualquer outra coisa recebe 405
-   2. descarta se o campo-armadilha "site" veio preenchido (robô)
-   3. valida de novo tudo o que o JS validou — o cliente não é
-      confiável
-   4. monta um e-mail de texto puro e envia com mail()
-   5. responde JSON ({"ok":true} ou {"ok":false,"erro":"…"}); se o
-      pedido veio sem JavaScript, volta para cadastro.html?enviado=1
-
-   ANTES DE PUBLICAR NA LOCAWEB, conferir com a OFB:
-   · DESTINO: a caixa que recebe as fichas
-   · REMETENTE: precisa ser um e-mail do próprio domínio ofb.com.br,
-     senão a Locaweb recusa o envio ou ele cai em spam
-   ═══════════════════════════════════════════════════════════════ */
 
 const DESTINO   = 'comercial@ofb.com.br';
-const REMETENTE = 'site@ofb.com.br';     // confirmar com a OFB antes de subir
+const REMETENTE = 'site@ofb.com.br';
 const ASSUNTO   = 'Cadastro de agência pelo site';
 
 header('Content-Type: application/json; charset=utf-8');
@@ -45,15 +24,13 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     responder(false, 'método não permitido');
 }
 
-/* 2. armadilha */
 if (!empty($_POST['site'])) {
-    responder(true);      // finge que deu certo; o robô não precisa saber
+    responder(true);
 }
 
-/* 3. validação */
 function campo($nome, $max = 160) {
     $v = trim((string)($_POST[$nome] ?? ''));
-    $v = preg_replace('/[\r\n\t]+/', ' ', $v);     // nada de quebra em cabeçalho de e-mail
+    $v = preg_replace('/[\r\n\t]+/', ' ', $v);
     return mb_substr($v, 0, $max);
 }
 
@@ -94,7 +71,6 @@ if (!filter_var($f['email'], FILTER_VALIDATE_EMAIL))            responder(false,
 if (!preg_match('/^\d{8}$/', preg_replace('/\D/', '', $f['cep']))) responder(false, 'CEP inválido');
 if (!preg_match('/^[A-Z]{2}$/', $f['uf']))                      responder(false, 'UF inválida');
 
-/* 4. o e-mail */
 $corpo = implode("\n", [
     'Ficha de cadastro de agência — site OFB',
     'Recebida em ' . date('d/m/Y H:i') . ' (' . ($_SERVER['REMOTE_ADDR'] ?? '') . ')',
@@ -125,5 +101,4 @@ $assunto = '=?UTF-8?B?' . base64_encode(ASSUNTO . ': ' . $f['nome_fantasia']) . 
 
 $enviou = @mail(DESTINO, $assunto, $corpo, $cabecalhos, '-f' . REMETENTE);
 
-/* 5. resposta */
 responder((bool)$enviou, $enviou ? '' : 'o servidor não conseguiu enviar o e-mail');

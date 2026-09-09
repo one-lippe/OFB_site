@@ -7,19 +7,14 @@
 <title>OFB · Conectando agências ao mundo desde 1987</title>
 <meta name="description" content="A OFB trabalha exclusivamente para agências de viagens: consolidação aérea e operação completa na mesma casa, com suporte de gente do outro lado.">
 
-<!-- Prévia e construção não entram na busca. Sai só na subida em ofb.com.br. -->
 <meta name="robots" content="noindex, nofollow">
 
 <link rel="icon" type="image/png" href="img/favicon.png">
 
-<!-- As duas fontes que aparecem na primeira tela carregam antes. -->
 <link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/site.css?v=20260908-4">
 
-<!-- O quadro de abertura e o pôster entram na primeira leva de downloads,
-     junto com o CSS. Sem isso eles só começam a baixar depois que o JS
-     roda, e o hero fica indefinido por um instante. -->
 <link rel="preload" as="image" href="hero/poster-d.jpg" media="(min-width: 901px)">
 <link rel="preload" as="image" href="hero/poster-m.jpg" media="(max-width: 900px)">
 <link rel="preload" as="image" href="hero/d/0001.avif" type="image/avif" media="(min-width: 901px)">
@@ -29,19 +24,12 @@
 
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     HEADER
-     Três camadas com funções distintas, como manda o mapa do site:
-     a barra de cima sai para os sistemas, o menu navega a home,
-     o botão converte.
-     ═══════════════════════════════════════════════════════════ -->
 <header class="cabecalho">
 
     <div class="topo">
         <div class="container">
             <span class="topo-rotulo">Acessar</span>
 
-            <!-- agente.tur é sistema da casa e pode ser nomeado. -->
             <a class="acesso" href="https://www.agente.tur.br" target="_blank" rel="noopener">
                 agente.tur
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -53,8 +41,6 @@
 
             <span class="topo-sep" aria-hidden="true">|</span>
 
-            <!-- Do lado da consolidação o destino é o portal do parceiro,
-                 então o botão diz Consolidação, nunca o nome dele. -->
             <a class="acesso" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
                 Consolidação
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -77,10 +63,6 @@
                 <span></span>
             </button>
 
-            <!-- O agente.tur não entra aqui: ele já é um dos dois
-                 "Acessar" na barra de cima, e o mesmo nome duas vezes
-                 no topo confunde. Fora do menu, o sistema também
-                 nunca aparece antes da OFB. -->
             <nav class="menu" id="menu-principal" aria-label="Principal">
                 <a href="#pista">Home</a>
                 <a href="#a-ofb">Quem somos</a>
@@ -97,31 +79,8 @@
 </header>
 <div class="veu" aria-hidden="true"></div>
 
-
 <main id="conteudo">
 
-<!-- ═══════════════════════════════════════════════════════════════
-     HERO EM SCRUBBING
-     O vídeo é o pano de fundo contínuo dos quatro primeiros blocos.
-     A pista de rolagem (#pista) tem altura de sobra; #hero fica
-     grudado nela e o conteúdo se sucede em fases.
-
-     As fases saem da medição do vídeo, não de palpite:
-
-       fase   quadros    % vídeo   cena                cor do texto
-       ────   ───────    ───────   ─────────────────   ────────────
-       A      0–24       0–5%      cabine escura       nenhum
-       B      24–140     5–29%     a janela abre       branco
-       C      140–264    29–54%    tela cheia, céu     branco
-       ·      264–302    54–62%    entra na nuvem      nenhum
-       D      302–375    62–77%    dentro da nuvem     GRAFITE
-       ·      375–396    77–81%    sai da nuvem        nenhum
-       E      396–488    81–100%   Salvador            branco
-
-     Branco passa AA de 0 a 54% e de 81 a 100%. Grafite passa AA de
-     62 a 77%, e só ali. As duas viradas não aceitam texto nenhum e
-     por isso carregam o respiro entre um bloco e outro.
-     ═══════════════════════════════════════════════════════════ -->
 <div id="pista">
     <section id="hero" aria-label="Apresentação da OFB">
 
@@ -132,13 +91,8 @@
 
         <div class="hero-palco">
 
-            <!-- BLOCO 1 · Hero · quadros 0–140 · a cabine e a janela abrindo
-                 Entra já no primeiro quadro: a tela não abre vazia. -->
             <div class="fase fase--escura" data-fase="b">
                 <div class="container fase-corpo fase-corpo--centro">
-                    <!-- Abre a frase que a tela 2 fecha. A vírgula no fim é de
-                         propósito: a oração só se completa quando a janela abre.
-                         Não corrigir. -->
                     <h1>Pela janela da OFB,</h1>
                     <p class="subtitulo">Consolidação aérea e operação terrestre,
                        exclusivo para quem vende viagem.</p>
@@ -150,20 +104,11 @@
                 </div>
             </div>
 
-            <!-- BLOCO 2 · Quem é a OFB · quadros 140–290 · a asa sobre as nuvens -->
             <div class="fase fase--escura" data-fase="c" id="a-ofb">
                 <div class="container fase-corpo fase-corpo--alto">
-                    <!-- A assinatura vem truncada de propósito, sem "ao mundo":
-                         essa palavra pertence à tela 4, onde a imagem de
-                         Salvador a justifica. Não completar aqui. O rodapé
-                         não repete a frase (decisão do Lippe em 04/09/2026). -->
                     <h2>Conectando agências desde 1987.</h2>
                     <p class="subtitulo">É esse o alcance que o seu negócio passa a ter.</p>
 
-                    <!-- Os três provam "uma OFB, duas operações" sem uma linha de
-                         texto: tempo de casa, consolidação, operação. Ao trocar o
-                         valor, manter a lógica.
-                         Números oficiais, confirmados pelo Lippe em 02/09/2026. -->
                     <dl class="marcos">
                         <div class="marco">
                             <dt class="numero" data-contador="39">39</dt>
@@ -181,16 +126,11 @@
                 </div>
             </div>
 
-            <!-- BLOCO 6 · Portfólio · quadros 290–400 · a travessia da nuvem
-                 Ocupa o trecho mais branco e mais liso do vídeo, que é onde
-                 a grade pode ser varrida com o olho. Os cards são sólidos e
-                 a camada branca lava a nuvem por baixo deles. -->
             <div class="fase fase--clara" data-fase="d" id="portfolio">
                 <div class="container fase-corpo fase-corpo--centro">
         <span class="filete" aria-hidden="true"></span>
         <h2>Tudo o que o seu cliente precisa, <br>em um só lugar</h2>
 
-        <!-- Os três pilares da casa, com foto. -->
         <div class="pilares" data-revela>
             <article class="pilar">
                 <div class="pilar-foto">
@@ -215,9 +155,6 @@
             </article>
         </div>
 
-        <!-- Categorias complementares: ícone e nome, sem aparência ou
-             comportamento de botão. Os ícones são decorativos porque o
-             rótulo adjacente já comunica o conteúdo. -->
         <ul class="secundarios" data-revela>
             <li>
                 <span class="secundario-icone" aria-hidden="true">
@@ -259,9 +196,6 @@
                 </div>
             </div>
 
-            <!-- FECHAMENTO · a chegada a Salvador
-                 A imagem conclui a viagem; o texto fecha a narrativa e
-                 apresenta a OFB sem abrir outro argumento ou CTA. -->
             <div class="fase fase--escura fase--chegada" data-fase="e">
                 <div class="container fase-corpo fase-corpo--chegada" data-revela>
                     <h2 class="chegada-titulo">
@@ -276,8 +210,6 @@
 
         </div>
 
-        <!-- Nomeia o gesto, não a intenção: quem chega precisa saber que
-             a página se move rolando, e que a viagem começa por aí. -->
         <div class="rolar" aria-hidden="true">
             <span class="rolar-rotulo">Role para começar a viagem</span>
             <span class="rolar-seta">
@@ -290,51 +222,12 @@
     </section>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     Daqui para baixo o hero soltou. Página normal.
-     ═══════════════════════════════════════════════════════════ -->
-
-<!-- ═══════════════════════════════════════════════════════════════
-     CONSOLIDAÇÃO AÉREA · a primeira seção fora do scrubbing
-     Chama-se Consolidação aérea, e não TP Air, porque o sujeito é a
-     frente da OFB, não o parceiro. Um bloco intitulado com a marca de
-     terceiro a poria no mesmo nível da plataforma da casa e feriria a
-     hierarquia OFB > benefício > ferramenta > parceiro (decisão 1.7 do
-     01_MAPA_DO_SITE.md): a TP Air é credencial dentro do conteúdo,
-     nunca marca fixa.
-
-     Vem antes do agente.tur porque a tela 1 do hero promete
-     "consolidação aérea e operação terrestre", nessa ordem, e porque o
-     sistema nunca aparece antes da OFB (regra 2). Sem item de menu e
-     sem página: "Consolidação" já é o botão do Acessar.
-
-     BILHETE À ESQUERDA, TEXTO À DIREITA: zigue-zague com o agente.tur,
-     que é texto à esquerda e tela à direita. No mobile a ordem inverte
-     e o texto vem primeiro.
-
-     A consolidação não tem produto visível; o objeto dela é o bilhete.
-     "Emitido por: Sua Agência de Viagens" e o arco "SUA AGÊNCIA" no
-     carimbo carregam o território do reposicionamento sem escrevê-lo:
-     quem aparece é a agência, a OFB é a retaguarda. Tudo no bilhete é
-     ilustrativo — nenhum dado real, nenhum preço, nenhuma cidade de
-     praça. Copy e desenho: 03_copy/02_SECAO_CONSOLIDACAO_HOME.md §3 e §4.
-     ═══════════════════════════════════════════════════════════ -->
 <section class="secao consolidacao" id="consolidacao">
     <div class="container consolidacao-grade">
 
         <div class="consolidacao-palco">
             <div class="consol-bilhete-wrap">
-                <!-- A sombra é a silhueta exata do bilhete, mordidas
-                     incluídas, desenhada por JS. Não é box-shadow nem
-                     drop-shadow: com máscara e rotação os dois dão
-                     artefato no Safari. Ver §4.1. -->
                 <svg class="consol-sombra" aria-hidden="true">
-                    <!-- O borrão é filtro SVG, não filter:blur() do CSS: o
-                         WebKit não aplica o filter do CSS em filho de SVG, e
-                         no Safari a sombra saía como uma silhueta sólida
-                         deslocada. A região do filtro é folgada, senão o
-                         desfoque corta rente à borda. -->
                     <defs>
                         <filter id="consol-borrao-longe" x="-15%" y="-15%" width="130%" height="140%">
                             <feGaussianBlur stdDeviation="12"/>
@@ -346,9 +239,6 @@
                     <path class="consol-sombra-longe" d="" filter="url(#consol-borrao-longe)"/>
                     <path class="consol-sombra-perto" d="" filter="url(#consol-borrao-perto)"/>
                 </svg>
-                <!-- Discos da cor do fundo, por baixo do bilhete: só
-                     aparecem pelos furos da máscara, e é isso que faz o
-                     papel parecer furado de verdade. -->
                 <div class="consol-furos" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
                 <article class="consol-bilhete" aria-label="Bilhete ilustrativo">
@@ -400,26 +290,17 @@
                     </div>
 
                     <div class="consol-bilhete-rodape">
-                        <!-- O logo da TP Air aparece aqui e só aqui, sem
-                             legenda: no bilhete ele é credencial, não marca
-                             da seção. -->
                         <img src="img/tpair.svg" alt="TP Air" width="250" height="150">
                         <span class="consol-etkt">ETKT 0000 0000 0000</span>
                     </div>
                 </article>
             </div>
 
-            <!-- O carimbo de mesa, em CSS 3D visto de cima. A haste é um
-                 cilindro de facetas geradas por JS. -->
             <div class="consol-carimbo" aria-hidden="true">
                 <div class="consol-carimbo-corpo"><div class="consol-carimbo-botao"></div></div>
             </div>
         </div>
 
-        <!-- No celular os dois botões vêm DEPOIS do bilhete, lado a lado
-             (decisão do Lippe em 08/09/2026, olhando no iPhone). Esta é
-             a cópia que aparece abaixo de 900px; a de dentro da coluna de
-             texto some lá. Mesmos destinos, mesmos rótulos. -->
         <div class="consolidacao-acoes consolidacao-acoes--movel">
             <a class="btn btn--portal" href="https://portal.tpair.com.br/Agencias30/"
                target="_blank" rel="noopener">
@@ -468,10 +349,6 @@
             </ul>
 
             <div class="consolidacao-acoes">
-                <!-- A raiz portal.tpair.com.br devolve 403. O endereço que o
-                     próprio site da TP Air usa é /Agencias30/. O botão herda a
-                     cor do portal, não o formato: diz "portal", nunca o nome
-                     do parceiro. -->
                 <a class="btn btn--portal" href="https://portal.tpair.com.br/Agencias30/"
                    target="_blank" rel="noopener">
                     Acessar o portal
@@ -488,8 +365,6 @@
     </div>
 </section>
 
-<!-- Depois do fechamento sobre a chegada a Salvador, o hero solta.
-     Aqui começa a página normal, com fundo sólido. -->
 <section class="secao agentetur" id="agentetur">
     <div class="container agentetur-grade" data-revela>
         <div class="agentetur-conteudo">
@@ -609,8 +484,6 @@
             <p class="agentetur-nota">Telas reais da plataforma agente.tur.</p>
         </div>
 
-        <!-- No celular o botão vem por último, depois das telas (decisão
-             do Lippe em 08/09/2026). Cópia só para abaixo de 900px. -->
         <a class="btn btn--agentetur agentetur-cta agentetur-cta--movel" href="https://www.agente.tur.br"
            target="_blank" rel="noopener">
             Acessar o agente.tur
@@ -623,15 +496,6 @@
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     CENTRAL DO AGENTE · blocos 7 e 8 da copy, juntos
-     Dois cartões: a Central inteira à esquerda, e a chamada direta
-     para as promoções à direita, sem passar pelo hub (mapa §1.9).
-     O cartão das promoções é grafite com três lâminas reais em
-     leque, para a página mostrar o material em vez de descrevê-lo.
-     As três miniaturas são só amostra: a lista viva é a da Central.
-     Copy: 03_copy/01_COPY_BASE_HOME.md §7 e §8.
-     ═══════════════════════════════════════════════════════════ -->
 <section class="secao secao--cinza central" id="central">
     <div class="container central-grade" data-revela>
 
@@ -661,21 +525,6 @@
 
 </main>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     RODAPÉ · o mesmo bloco em todas as páginas
-     Escrito por extenso em cada arquivo, e não injetado por JS
-     (decisão do Lippe em 04/09/2026): endereço, telefone e CNPJ
-     precisam estar no código-fonte para valerem na busca depois que
-     o noindex sair. São poucas páginas e o bloco quase não muda.
-
-     ⚠️ AO ALTERAR, ALTERAR EM TODAS AS PÁGINAS. Este é o original;
-     central.html, cadastro.html e blog.html copiam daqui, verbatim.
-
-     Absorve o "Fale com a OFB": o wireframe decidiu que página de
-     contato separada não se justifica. Não repete o menu — isso já é o
-     topo, e o Lippe cortou em 04/09/2026.
-     Copy: 03_copy/01_COPY_BASE_HOME.md §10.
-     ═══════════════════════════════════════════════════════════ -->
 <footer class="rodape" id="rodape">
     <div class="container rodape-grade">
 
@@ -744,7 +593,6 @@
         </div>
     </div>
 </footer>
-
 
 <script src="js/site.js?v=20260908-4"></script>
 <script src="js/hero.js?v=20260908-1"></script>

@@ -1,16 +1,7 @@
-/* ═══════════════════════════════════════════════════════════════
-   SITE OFB · comportamento
-   Vanilla, sem dependência. Cada bloco é independente do outro.
-   ═══════════════════════════════════════════════════════════════ */
+
 (function () {
 'use strict';
 
-/* ── Header: encolhe ao rolar ─────────────────────────────────────
-   O bloco fixo sobe pela altura da barra utilitária. Só transform,
-   feito no CSS; aqui só entra e sai a classe.
-   Histerese: encolhe passando de 60px, volta só abaixo de 20px.
-   Sem isso, uma rolagem parada no limiar fica piscando.
-   ── */
 var cabecalho = document.querySelector('.cabecalho');
 var encolhido = false;
 var ticking   = false;
@@ -30,8 +21,6 @@ window.addEventListener('scroll', function () {
 }, { passive: true });
 aoRolar();
 
-
-/* ── Menu do celular ─────────────────────────────────────────── */
 var toggle = document.querySelector('.menu-toggle');
 var menu   = document.querySelector('.menu');
 var veu    = document.querySelector('.veu');
@@ -48,7 +37,6 @@ toggle.addEventListener('click', function () {
 });
 veu.addEventListener('click', function () { abrirMenu(false); });
 
-/* Fecha ao escolher um destino e ao apertar Esc. */
 menu.addEventListener('click', function (e) {
     if (e.target.closest('a')) abrirMenu(false);
 });
@@ -58,17 +46,11 @@ document.addEventListener('keydown', function (e) {
         toggle.focus();
     }
 });
-/* Ao voltar para o desktop, desfaz qualquer estado de drawer. */
+
 window.matchMedia('(min-width: 901px)').addEventListener('change', function (mq) {
     if (mq.matches) abrirMenu(false);
 });
 
-
-/* ── agente.tur: demonstração guiada ────────────────────────────
-   Três abas trocam apenas a prova visual. O conteúdo continua todo
-   no HTML, inclusive sem JavaScript; aqui entram estado, foco e a
-   navegação por setas prevista para um tablist acessível.
-   ── */
 var abasAgenteTur = Array.prototype.slice.call(
     document.querySelectorAll('[data-agentetur-aba]')
 );
@@ -114,19 +96,6 @@ abasAgenteTur.forEach(function (aba, indice) {
     });
 });
 
-
-/* ── Item de menu ativo conforme a seção na tela ────────────────
-   Os três destinos do menu — Home, Quem somos, O que oferecemos —
-   moram todos dentro do hero, empilhados no mesmo ponto da tela e
-   trocando por opacity. Para um IntersectionObserver os três estão
-   visíveis o tempo todo e nunca deixam de estar: ele acende o último
-   que disparar e nunca mais apaga. Era o "O que oferecemos" preso.
-
-   Quem sabe qual bloco está no ar é o hero, e ele avisa por
-   `fase-no-ar`. O observador fica só para destinos fora do hero, que
-   hoje não existem — mas existirão quando o menu ganhar uma seção de
-   verdade abaixo dele.
-   ── */
 var links = Array.prototype.slice.call(document.querySelectorAll('.menu a[href^="#"]'));
 var pista = document.getElementById('pista');
 
@@ -134,8 +103,6 @@ function acender(link) {
     links.forEach(function (l) { l.classList.toggle('ativo', l === link); });
 }
 
-/* Cada link do menu, pela fase que ele representa. O Home aponta para a
-   pista inteira, então vale pela primeira fase dela. */
 var primeiraFase = document.querySelector('.fase[data-fase]');
 var linkDaFase = {};
 var foraDoHero = [];
@@ -153,8 +120,7 @@ links.forEach(function (a) {
 });
 
 document.addEventListener('fase-no-ar', function (e) {
-    /* Nas fases sem bloco — o punch e o fechamento — nada fica aceso:
-       não são seções do menu. */
+
     acender(linkDaFase[e.detail] || null);
 });
 
@@ -170,11 +136,6 @@ if (foraDoHero.length && 'IntersectionObserver' in window) {
     foraDoHero.forEach(function (p) { observador.observe(p.el); });
 }
 
-/* ── Reveal ao rolar ─────────────────────────────────────────────
-   Dispara uma vez por grupo, quando ele entra em cena. O atraso entre
-   os irmãos é do CSS; aqui só entra a classe. Com movimento reduzido
-   não observa nada: o CSS já deixa tudo visível.
-   ── */
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches
     && 'IntersectionObserver' in window) {
 
@@ -183,15 +144,12 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches
         entradas.forEach(function (e) {
             if (!e.isIntersecting) return;
             e.target.classList.add('revelado');
-            olho.unobserve(e.target);      /* uma vez só */
+            olho.unobserve(e.target);
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
 
     Array.prototype.forEach.call(grupos, function (g) { olho.observe(g); });
 
-    /* Dentro do hero o bloco não entra em cena rolando: ele troca por
-       opacity, no mesmo lugar da tela, e o IntersectionObserver não vê
-       isso. A troca de fase avisa. */
     document.addEventListener('fase-no-ar', function (e) {
         var fase = document.querySelector('.fase[data-fase="' + e.detail + '"]');
         if (!fase) return;

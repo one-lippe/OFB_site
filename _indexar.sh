@@ -1,11 +1,4 @@
 #!/bin/bash
-# Liga ou desliga a indexação do site inteiro, de uma vez.
-#
-#   ./_indexar.sh off   → prévia (GitHub Pages): noindex em todo HTML + robots.txt bloqueando
-#   ./_indexar.sh on    → produção (ofb.com.br): tira o noindex e abre o robots.txt
-#
-# Vale para raiz, blog/ e _teste/. O _gerar_blog.py escreve noindex por padrão;
-# depois de regerar o blog em produção, rodar `on` de novo.
 cd "$(dirname "$0")" || exit 1
 META='<meta name="robots" content="noindex, nofollow">'
 case "$1" in

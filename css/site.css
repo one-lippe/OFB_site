@@ -1,12 +1,5 @@
-/* ═══════════════════════════════════════════════════════════════
-   SITE OFB · folha única
-   Tokens e regras vêm de 04_DESIGN_SYSTEM_WEB.md.
-   O que é marca (vermelho, grafite, Montserrat, uso do logo) vem do
-   MANUAL_DE_MARCA_OFB.md e não se altera aqui.
-   ═══════════════════════════════════════════════════════════════ */
 
-/* ── Fontes, self-hosted. Nada de CDN: o site roda igual em local,
-      GitHub Pages e Locaweb. ── */
+
 @font-face { font-family:'Montserrat'; src:url('../fonts/Montserrat-Regular.woff2')   format('woff2');
              font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:'Montserrat'; src:url('../fonts/Montserrat-Medium.woff2')    format('woff2');
@@ -17,31 +10,23 @@
              font-weight:800; font-style:normal; font-display:swap; }
 
 :root {
-    /* Marca — não alterar */
+
     --vermelho:        #E03236;
-    --vermelho-hover:  #CE2E32;   /* 8% mais escuro */
-    --vermelho-active: #C12B2E;   /* 14% mais escuro */
+    --vermelho-hover:  #CE2E32;
+    --vermelho-active: #C12B2E;
     --grafite:         #373435;
 
-    /* Do próprio vídeo: a cor média do céu no trecho do bloco 2,
-       medida no quadro 215. Serve de fundo e de sombra ali. */
     --azul-ceu: #2F5583;
 
-    /* Do agente.tur, colhidas em agente.tur.br em 02/09/2026.
-       Não são cores da OFB: o manual de marca põe o verde-limão e o
-       roxo do sistema fora da paleta. Entram só no botão de acesso
-       ao sistema, por decisão do Lippe. */
     --verde-agentetur:        #83E509;
     --verde-agentetur-hover:  #78D308;
     --verde-agentetur-active: #6DC207;
 
-    /* Neutros deste site (o manual diz que a OFB não tem off-white) */
     --branco:       #FFFFFF;
     --cinza-fundo:  #F5F5F5;
     --cinza-borda:  #E2E2E2;
     --cinza-texto:  #6B6768;
 
-    /* Espaço, escala de 8 */
     --e-1:4px; --e-2:8px; --e-3:16px; --e-4:24px; --e-5:32px;
     --e-6:48px; --e-7:64px; --e-8:96px; --e-9:128px;
 
@@ -49,11 +34,9 @@
     --container: 1240px;
     --raio:      8px;
 
-    /* Movimento — curvas fortes, as built-in do CSS são fracas */
     --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
     --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
-    /* Header: duas barras. A de cima sai ao rolar, a de baixo fica. */
     --h-topo:  38px;
     --h-barra: 76px;
 }
@@ -62,8 +45,7 @@
 
 html {
     scroll-behavior: smooth;
-    /* Âncora para logo abaixo da barra principal, que é o que sobra
-       depois que o header encolhe. */
+
     scroll-padding-top: var(--h-barra);
 }
 
@@ -76,17 +58,15 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    /* Empurra o conteúdo para baixo das duas barras. */
+
     padding-top: calc(var(--h-topo) + var(--h-barra));
 }
 
 img { max-width:100%; height:auto; display:block; }
-/* Qualquer elemento com display próprio ignorava o atributo hidden; a
-   Central e o blog remendavam caso a caso. Vale para o site inteiro. */
+
 [hidden] { display: none !important; }
 a   { color:inherit; text-decoration:none; }
 
-/* ── Tipografia ─────────────────────────────────────────────── */
 h1, h2, h3 { font-weight:800; line-height:1.15; letter-spacing:-0.015em; }
 h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height:1.05; }
 h2 { font-size: clamp(1.75rem, 3.5vw, 3rem); }
@@ -98,7 +78,6 @@ p { max-width: 65ch; }
 .legenda   { font-size: 0.875rem; font-weight:500; line-height:1.5; color:var(--cinza-texto); }
 .numero    { font-size: clamp(2.5rem, 5vw, 4rem); font-weight:600; line-height:1; color:var(--vermelho); }
 
-/* ── Container e seção ──────────────────────────────────────── */
 .container {
     width: min(var(--container), 100% - 2 * var(--gutter));
     margin-inline: auto;
@@ -110,14 +89,9 @@ p { max-width: 65ch; }
 }
 .secao--cinza { background: var(--cinza-fundo); }
 
-/* Cabeça de seção: título e a linha que diz o que fazer ali.
-   Nasceu na Central, o blog copiou, e agora é do site. */
 .secao-cabeca { margin-bottom: var(--e-6); }
 .secao-cabeca .subtitulo { margin-top: var(--e-2); color: var(--cinza-texto); }
 
-/* ── Botões ─────────────────────────────────────────────────────
-   Três níveis, e só três. Alvo de toque mínimo de 44px.
-   ────────────────────────────────────────────────────────────── */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -153,7 +127,6 @@ p { max-width: 65ch; }
     transform: none;
 }
 
-/* Primário — um por tela, no máximo */
 .btn--primario {
     background: var(--vermelho);
     border-color: var(--vermelho);
@@ -182,13 +155,6 @@ p { max-width: 65ch; }
 }
 .btn--primario:active   { background: var(--vermelho-active); border-color: var(--vermelho-active); }
 
-/* ═══════════════════════════════════════════════════════════════
-   HEADER
-   Duas barras dentro de um bloco fixo. Ao rolar, o bloco inteiro
-   sobe por translateY da altura da barra de cima: a utilitária sai
-   de cena e a principal encosta no topo. Só transform — nada de
-   animar height ou padding.
-   ═══════════════════════════════════════════════════════════════ */
 .cabecalho {
     position: fixed;
     inset: 0 0 auto 0;
@@ -199,8 +165,6 @@ p { max-width: 65ch; }
 }
 .cabecalho.encolhido { transform: translateY(calc(-1 * var(--h-topo))); }
 
-/* A linha fina embaixo do header só aparece quando a página rolou,
-   por opacity — box-shadow não se anima. */
 .cabecalho::after {
     content: '';
     position: absolute;
@@ -212,7 +176,6 @@ p { max-width: 65ch; }
 }
 .cabecalho.rolado::after { opacity: 1; }
 
-/* ── Barra de cima: os dois acessos, que saem do site ── */
 .topo {
     height: var(--h-topo);
     background: var(--cinza-fundo);
@@ -250,7 +213,6 @@ p { max-width: 65ch; }
 }
 .topo-sep { color: var(--cinza-borda); user-select: none; }
 
-/* ── Barra principal: marca, menu, conversão ── */
 .barra { height: var(--h-barra); }
 .barra .container {
     display: flex;
@@ -259,8 +221,6 @@ p { max-width: 65ch; }
     height: 100%;
 }
 
-/* A marca sobre bloco sólido branco, como o manual pede. Altura de
-   40px, acima do mínimo; a área de proteção sai do padding. */
 .marca { flex: none; padding-right: var(--e-2); }
 .marca img { height: 40px; width: auto; }
 .marca:focus-visible { outline: 2px solid var(--vermelho); outline-offset: 4px; border-radius: 2px; }
@@ -274,7 +234,7 @@ p { max-width: 65ch; }
     color: var(--grafite);
     transition: color 160ms ease;
 }
-/* Sublinhado que cresce da esquerda: só transform, sem mexer em width */
+
 .menu a::after {
     content: '';
     position: absolute;
@@ -291,12 +251,10 @@ p { max-width: 65ch; }
 }
 .menu a.ativo::after { transform: scaleX(1); }
 
-/* O botão dentro do menu existe só para o drawer do celular. */
 .menu .btn--primario { display: none; }
 
 .barra .btn { flex: none; }
 
-/* Botão do menu no celular */
 .menu-toggle {
     display: none;
     flex: none;
@@ -326,15 +284,9 @@ p { max-width: 65ch; }
 .menu-toggle[aria-expanded="true"] span::before { transform: translateY(7px) rotate(-90deg); }
 .menu-toggle[aria-expanded="true"] span::after  { opacity: 0; }
 
-/* ═══════════════════════════════════════════════════════════════
-   RESPONSIVO — celular primeiro na intenção: o agente abre o site
-   entre um atendimento e outro.
-   ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
     :root { --h-topo: 40px; --h-barra: 64px; }
 
-    /* No celular o header não encolhe: os dois acessos ficam
-       visíveis no topo, como manda o design system. */
     .cabecalho.encolhido { transform: none; }
 
     .topo .container { justify-content: center; gap: var(--e-2); }
@@ -346,11 +298,6 @@ p { max-width: 65ch; }
 
     .barra .btn--primario { display: none; }
 
-    /* Drawer: entra da direita, sai pela direita. Caminho simétrico.
-       Ancorado no header por absolute, não fixed: o header tem
-       transform, e transform em um ancestral vira bloco de contenção
-       de position:fixed — um drawer fixed aqui sairia clipado na
-       altura do header. */
     .menu {
         position: absolute;
         top: 100%;
@@ -403,20 +350,11 @@ p { max-width: 65ch; }
     .veu.visivel { opacity: 1; visibility: visible; transition: opacity 200ms ease, visibility 0s; }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   MOVIMENTO REDUZIDO — menos e mais suave, não zero. O que ajuda a
-   entender continua; o que desloca sai.
-   ═══════════════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
-    /* A inclinação fica: ela é posição, não movimento. O que sai é a
-       reação ao ponteiro. */
+
     .agentetur-janela { transition: none; }
     .agentetur-demonstracao:hover .agentetur-janela {
-        /* A janela é escalada sobre a largura da própria coluna, então
-       escala grande em coluna estreita transborda e é aparada — o que
-       aparece acaba MENOR. Coluna larga com escala pequena rende uma
-       janela maior na tela: aqui são 740px visíveis contra 692px do
-       arranjo anterior, e sem corte nenhum. */
+
     transform: rotateY(-11deg) rotateX(3.5deg) scale(1.06);
     }
 
@@ -431,7 +369,6 @@ p { max-width: 65ch; }
     }
 }
 
-/* ── Acessibilidade: pular para o conteúdo ── */
 .pular {
     position: absolute;
     left: -9999px;
@@ -445,14 +382,6 @@ p { max-width: 65ch; }
 }
 .pular:focus { left: 0; }
 
-/* ═══════════════════════════════════════════════════════════════
-   CENTRAL DO AGENTE · dois cartões
-   O da esquerda é branco e fala da Central inteira; o da direita é
-   grafite, com três lâminas reais em leque, e chama as promoções.
-   O vermelho fica no filete: sobre grafite ele não passa em
-   contraste, e o botão claro resolve o CTA sem pedir o primário,
-   que continua sendo só do "Cadastre sua agência".
-   ═══════════════════════════════════════════════════════════════ */
 .central-grade {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -493,16 +422,12 @@ p { max-width: 65ch; }
 .central-cartao--promos h2 { color: var(--branco); }
 .central-cartao--promos p  { color: rgba(255, 255, 255, 0.78); }
 
-/* Botão claro: contorno branco sobre fundo escuro. É o secundário
-   com as cores invertidas, nada mais. */
 .btn--claro { border-color: var(--branco); color: var(--branco); }
 .btn--claro:active { background: rgba(255, 255, 255, 0.18); }
 @media (hover: hover) and (pointer: fine) {
     .btn--claro:hover { background: var(--branco); color: var(--grafite); }
 }
 
-/* Três lâminas em leque. A do meio fica reta e por cima; as outras
-   duas inclinam para os lados. Só transform, e entra com o reveal. */
 .central-leque {
     position: relative;
     aspect-ratio: 3 / 4;
@@ -536,23 +461,13 @@ p { max-width: 65ch; }
     .central-leque img { width: 30%; }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   CONSOLIDAÇÃO AÉREA · bilhete, carimbo e mapa
-   A consolidação não tem produto visível, então o objeto dela é o
-   bilhete: ele abre a seção à esquerda e o texto fecha à direita,
-   fazendo zigue-zague com o agente.tur. Desenho em
-   03_copy/02_SECAO_CONSOLIDACAO_HOME.md §4; o mockup v31 em
-   02_mapa_e_wireframe/ é a referência de proporção e de tempo.
-   ═══════════════════════════════════════════════════════════════ */
 .consolidacao {
     position: relative;
-    /* O mapa estoura pelos lados de propósito, e o carimbo não pode
-       vazar da faixa no mobile. */
+
     overflow: hidden;
     background: var(--cinza-fundo);
 }
-/* Mapa-múndi pontilhado: 3.336 pontos num path só, o traço já vem em
-   grafite dentro do arquivo — aqui só se define a opacidade. */
+
 .consolidacao::before {
     content: '';
     position: absolute;
@@ -569,16 +484,12 @@ p { max-width: 65ch; }
     align-items: center;
     gap: clamp(40px, 5vw, 72px);
 }
-/* O bilhete abre a seção, o texto fecha.
-   min-width:0 nos dois: item de grade nasce com min-width:auto, e o
-   bilhete de 530px empurrava a coluna para 530px mesmo numa tela de
-   390 — o overflow:hidden da seção escondia o estouro cortando texto
-   e botões, em vez de a coluna encolher. */
+
 .consolidacao-palco { order: 1; min-width: 0; }
 .consolidacao-texto { order: 2; min-width: 0; }
 
 .consolidacao h2 {
-    /* Como o h2 do agente.tur: quebra em duas linhas, e está certo. */
+
     max-width: 15ch;
     margin-bottom: var(--e-3);
 }
@@ -589,11 +500,6 @@ p { max-width: 65ch; }
     line-height: 1.6;
 }
 
-/* ── Os quatro itens ────────────────────────────────────────────
-   Todos acesos o tempo todo: não são controles, são uma lista. O
-   hover mexe só na linha de cima e no disco, que é o mínimo que
-   responde ao ponteiro sem prometer clique.
-   ── */
 .consolidacao-itens {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -602,10 +508,7 @@ p { max-width: 65ch; }
     padding: 0;
     list-style: none;
 }
-/* Cada item no seu cartão branco: sobre a faixa cinza com o mapa
-   pontilhado atrás, o texto corrido perdia legibilidade. O filete de
-   cima continua sendo a borda do próprio cartão, e é ela que acende
-   vermelho no hover. */
+
 .consolidacao-itens li {
     display: flex;
     align-items: flex-start;
@@ -629,8 +532,7 @@ p { max-width: 65ch; }
     line-height: 1.45;
     color: var(--cinza-texto);
 }
-/* O disco é OPACO: translúcido deixaria o mapa do fundo atravessar
-   o ícone. */
+
 .consolidacao-icone {
     flex: none;
     display: flex;
@@ -664,8 +566,6 @@ p { max-width: 65ch; }
 }
 .consolidacao-acoes .btn svg { width: 16px; height: 16px; flex: none; }
 
-/* O botão do portal herda a COR do parceiro e o FORMATO da OFB:
-   padding, raio, peso e altura são os do .btn. */
 .btn--portal {
     background: #0f4f80;
     border-color: #0f4f80;
@@ -676,22 +576,15 @@ p { max-width: 65ch; }
 }
 .btn--portal:active { background: #0a3557; border-color: #0a3557; }
 
-/* ═══ O bilhete ═══════════════════════════════════════════════ */
 .consolidacao-palco {
     position: relative;
     display: flex;
     justify-content: center;
     perspective: 1100px;
 }
-/* O wrap leva o giro e a sombra; o bilhete por dentro leva a
-   máscara dos furos. Separados porque máscara e rotação no mesmo
-   elemento brigam. */
+
 .consol-bilhete-wrap {
-    /* Onde caem as duas linhas de picote, contadas do topo e da base
-       do bilhete. O JS reescreve as duas com a altura real do
-       cabeçalho e do rodapé assim que a Montserrat carrega: a máscara,
-       os discos e a sombra leem daqui, então os três nunca saem de
-       registro. Os valores abaixo são só o ponto de partida. */
+
     --picote-a: 80px;
     --picote-b: 80px;
     position: relative;
@@ -710,15 +603,7 @@ p { max-width: 65ch; }
     overflow: visible;
     pointer-events: none;
 }
-/* O desfoque vem do <filter> dentro do próprio SVG. filter:blur() do
-   CSS aqui não serve: o WebKit não o aplica em filho de SVG e a sombra
-   vira uma silhueta sólida deslocada.
 
-   O desvio-padrão desceu de 16 para 12 e a camada de contato subiu de
-   .10 para .22 porque a mordida tem 24px de diâmetro: um borrão de
-   sigma 16 apaga tudo o que for menor que ~48px, e a sombra saía como
-   um retângulo arredondado sem recorte nenhum. Quem carrega a forma é
-   a camada de contato; a de longe só dá o volume. */
 .consol-sombra-longe { fill: rgba(55, 52, 53, 0.26); transform: translateY(16px); }
 .consol-sombra-perto { fill: rgba(0, 0, 0, 0.22);   transform: translateY(3px); }
 
@@ -729,11 +614,7 @@ p { max-width: 65ch; }
     overflow: hidden;
     pointer-events: none;
 }
-/* Transparente, não "da cor do fundo" como dizia a §4.1: com a cor
-   chapada o disco tapava os pontos do mapa e o furo lia como uma aba
-   cinza colada na borda. Vazado, vê-se o fundo de verdade atravessando
-   o papel, e a sombra interna faz o crescente que denuncia a espessura.
-   A intenção da §4.1 é essa; o que mudou foi o fundo virar padronado. */
+
 .consol-furos i {
     position: absolute;
     width: 24px; height: 24px;
@@ -754,9 +635,7 @@ p { max-width: 65ch; }
     background: var(--branco);
     overflow: hidden;
     transition: transform 500ms var(--ease-out);
-    /* Furos de verdade: duas mordidas na linha de picote de cima e
-       duas na de baixo. mask-composite:intersect é o que faz as
-       quatro conviverem numa máscara só. */
+
     -webkit-mask:
         radial-gradient(circle 12px at 0    var(--picote-a),              transparent 11.5px, #000 12.5px),
         radial-gradient(circle 12px at 100% var(--picote-a),              transparent 11.5px, #000 12.5px),
@@ -846,15 +725,10 @@ p { max-width: 65ch; }
 }
 .consol-campo--emissor span { font-size: 1.125rem; font-weight: 800; }
 
-/* A marca que fica impressa. multiply para a tinta se comportar como
-   tinta sobre o papel e sobre o que já está escrito. */
 .consol-carimbo-marca {
     position: absolute;
     left: 50%; top: 50%;
-    /* 215px sobre o bilhete de 530 é 45,7% da largura do corpo. Em
-       porcentagem em vez de pixel a marca guarda essa proporção quando
-       o bilhete encolhe — fixa em 215px ela cobria dois terços de um
-       bilhete de 350px no celular. */
+
     width: 45.7%;
     aspect-ratio: 1;
     z-index: 2;
@@ -888,11 +762,6 @@ p { max-width: 65ch; }
     color: #9a9797;
 }
 
-/* ═══ O carimbo físico, visto de cima ═════════════════════════
-   Só transform, opacity e filter no wrapper. O perspective() mora
-   dentro do transform do corpo: se ficasse no wrapper, o blur dele
-   achataria o 3D.
-   ═══════════════════════════════════════════════════════════ */
 .consol-carimbo {
     position: absolute;
     left: 50%; top: 50%;
@@ -919,7 +788,7 @@ p { max-width: 65ch; }
                 inset 0 -8px 16px rgba(80,50,20,0.35),
                 inset 0 2px 4px rgba(255,255,255,0.35);
 }
-/* Borda torneada da base. */
+
 .consol-carimbo-corpo::before {
     content: '';
     position: absolute;
@@ -929,7 +798,7 @@ p { max-width: 65ch; }
                 inset 0 6px 10px rgba(255,255,255,0.25),
                 inset 0 -6px 12px rgba(60,35,10,0.3);
 }
-/* Espessura da base: só se vê quando o carimbo está inclinado. */
+
 .consol-carimbo-corpo::after {
     content: '';
     position: absolute;
@@ -962,8 +831,7 @@ p { max-width: 65ch; }
     background: radial-gradient(circle at 40% 35%, #fff, #d9d9d9 70%);
     box-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
-/* Uma tira vertical do cilindro; o JS gera 32 por cilindro e dá o tom
-   de cada uma pela luz. */
+
 .consol-faceta {
     position: absolute;
     left: 50%; top: 50%;
@@ -1002,26 +870,21 @@ p { max-width: 65ch; }
 
 @media (max-width: 900px) {
     .consolidacao-grade { grid-template-columns: 1fr; gap: var(--e-6); }
-    /* No mobile o texto vem primeiro e o bilhete depois. */
+
     .consolidacao-texto { order: 1; }
     .consolidacao-palco { order: 2; }
     .consolidacao-itens { grid-template-columns: 1fr; }
     .consol-bilhete-wrap { transform: none; }
     .consol-cidade { font-size: 1.875rem; }
-    /* Sem isto "OFB · Consolidação" quebra em duas linhas e deixa o
-       ponto vermelho sozinho no fim da primeira. */
+
     .consol-bilhete-topo { padding-inline: 20px; gap: var(--e-3); }
-    /* nowrap: sem isto a marca quebra e o ponto vermelho fica sozinho
-       no fim da primeira linha. Quem quebra é o rótulo da direita, que
-       vira duas linhas curtas sem estranheza. */
+
     .consol-bilhete-marca { font-size: 1rem; white-space: nowrap; }
     .consol-bilhete-tipo { text-align: right; }
     .consol-bilhete-corpo,
     .consol-bilhete-rodape { padding-inline: 20px; }
 }
 
-/* Com movimento reduzido nada anima: o avião já está em LIS e a marca
-   já está impressa. O carimbo físico não entra em cena. */
 @media (prefers-reduced-motion: reduce) {
     .consol-rota::after,
     .consol-carimbo-marca,
@@ -1030,12 +893,6 @@ p { max-width: 65ch; }
     .consol-carimbo { display: none; }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   AGENTE.TUR · DEMONSTRAÇÃO GUIADA
-   A moldura é OFB; o verde do sistema permanece restrito ao CTA e
-   às telas reais. Os seletores são controles de verdade, por isso
-   recebem estados inequívocos de hover, foco e seleção.
-   ═══════════════════════════════════════════════════════════════ */
 .agentetur {
     position: relative;
     overflow: hidden;
@@ -1053,16 +910,11 @@ p { max-width: 65ch; }
     transform: translateY(-50%);
     pointer-events: none;
 }
-/* O vão entre as colunas encurta para a janela inclinada começar mais
-   à esquerda. Alargar a grade não resolvia: a janela é escalada sobre
-   a largura da própria coluna, então crescia junto e transbordava
-   ainda mais. */
+
 .agentetur-grade {
     position: relative;
     display: grid;
-    /* A coluna de texto carrega título, intro, três abas e o CTA; com
-       0,78fr ela ficava com 413px em 1280 e o título quebrava em três
-       linhas. Perto do meio a meio, as duas respiram. */
+
     grid-template-columns: minmax(340px, 0.84fr) minmax(520px, 1.16fr);
     align-items: center;
     gap: clamp(48px, 6vw, 88px);
@@ -1071,17 +923,11 @@ p { max-width: 65ch; }
 
 @media (min-width: 901px) {
     .agentetur-grade {
-        /* A margem esquerda é a mesma do container, para o texto ficar
-           alinhado com o resto da página. À direita a grade vai até a
-           borda da seção — é daí que sai o espaço que a janela pedia.
-           Só alargar a margem não bastava: o .container trava a largura
-           em 1240px, e a margem negativa deslocava sem dar espaço. */
+
         gap: clamp(28px, 3vw, 48px);
     }
 }
-/* Só a linha, sem rótulo: o texto "agente.tur · a plataforma da OFB"
-   dizia o que o título e a própria demonstração já dizem. Mais grossa
-   que o filete das outras seções, porque aqui ela trabalha sozinha. */
+
 .agentetur-filete {
     display: block;
     width: 56px;
@@ -1174,9 +1020,6 @@ p { max-width: 65ch; }
     .agentetur-recurso.ativo:hover { background: rgba(224, 50, 54, 0.065); }
 }
 
-/* A perspectiva mora no pai: é ela que dá a distância do olho até a
-   janela. Quanto maior o valor, mais suave a fuga — 1700px inclina
-   sem distorcer a tela do sistema a ponto de atrapalhar a leitura. */
 .agentetur-demonstracao {
     min-width: 0;
     perspective: 1700px;
@@ -1189,33 +1032,20 @@ p { max-width: 65ch; }
     border-radius: 14px;
     background: var(--branco);
 
-    /* Cresce para a direita e gira em torno da borda esquerda, como
-       uma tela apoiada de lado. A seção tem overflow hidden, então o
-       que passa do container é aparado sem criar rolagem lateral. */
     transform-origin: 12% 50%;
-    /* A janela é escalada sobre a largura da própria coluna, então
-       escala grande em coluna estreita transborda e é aparada — o que
-       aparece acaba MENOR. Coluna larga com escala pequena rende uma
-       janela maior na tela: aqui são 740px visíveis contra 692px do
-       arranjo anterior, e sem corte nenhum. */
+
     transform: rotateY(-11deg) rotateX(3.5deg) scale(1.06);
 
-    /* A sombra acompanha a inclinação: mais longa e deslocada para o
-       lado que se afasta, senão a peça parece recortada e colada. */
     box-shadow: 40px 48px 104px rgba(55, 52, 53, 0.22),
                 12px 14px 34px rgba(55, 52, 53, 0.10);
 
-    /* A transição é longa de propósito: o tilt é reação, não clique.
-       Curto demais vira tique nervoso quando o ponteiro passa raspando. */
     transition: transform 620ms var(--ease-out),
                 box-shadow 620ms var(--ease-out);
     will-change: transform;
 }
 
 @media (hover: hover) and (pointer: fine) {
-    /* Endireita um tico e sobe. A diferença é pequena de propósito —
-       o suficiente para a peça responder ao ponteiro sem virar
-       animação. A sombra encolhe junto, como se ela chegasse perto. */
+
     .agentetur-demonstracao:hover .agentetur-janela {
         transform: rotateY(-7.5deg) rotateX(2deg) scale(1.08) translateY(-6px);
         box-shadow: 30px 40px 96px rgba(55, 52, 53, 0.24),
@@ -1263,9 +1093,7 @@ p { max-width: 65ch; }
     letter-spacing: 0.01em;
 }
 .agentetur-endereco svg { width: 11px; height: 11px; }
-/* Os painéis se empilham na mesma célula do grid em vez de posição
-   absoluta: assim cada um pode ter imagem E legenda em coluna, e a
-   altura do conjunto acompanha o conteúdo. */
+
 .agentetur-paineis {
     display: grid;
     overflow: hidden;
@@ -1300,9 +1128,7 @@ p { max-width: 65ch; }
     object-fit: cover;
     display: block;
 }
-/* A legenda é do site, não da plataforma. Sobreposta à imagem ela era
-   lida como parte da interface do agente.tur e ainda cobria o rodapé
-   da tela. Agora é uma faixa própria, embaixo, no branco da página. */
+
 .agentetur-painel figcaption {
     display: grid;
     gap: 2px;
@@ -1349,8 +1175,6 @@ p { max-width: 65ch; }
     .agentetur-cta { width: 100%; }
     .agentetur-nota { text-align: left; }
 
-    /* Em coluna única a janela ocupa a largura toda: inclinar aqui só
-       encolheria a tela e atrapalharia a leitura. Fica de frente. */
     .agentetur-demonstracao { perspective: none; }
     .agentetur-janela {
         transform: none;
@@ -1382,8 +1206,6 @@ p { max-width: 65ch; }
     }
 }
 
-/* A assinatura do rodapé. É a única vez que a frase aparece inteira
-   na página: na tela 2 ela vem truncada de propósito. */
 .assinatura {
     max-width: none;
     margin-bottom: clamp(28px, 4vh, 48px);
@@ -1394,37 +1216,14 @@ p { max-width: 65ch; }
     color: var(--grafite);
 }
 
-/* Texto só para leitor de tela */
 .sr-only {
     position: absolute; width: 1px; height: 1px;
     padding: 0; margin: -1px; overflow: hidden;
     clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   HERO EM SCRUBBING
-
-   O vídeo é o pano de fundo dos quatro primeiros blocos, não só do
-   primeiro. #pista tem a altura da rolagem que isso consome; #hero
-   fica grudado nela e some quando ela acaba.
-
-   Mapeamento, medido no arquivo (489 quadros · 24 fps · 20,375 s):
-
-     bloco                      quadros    cena
-     ────────────────────────   ───────    ──────────────────────────
-     1 · Hero                     0–140    cabine, a janela abrindo
-     2 · Quem é a OFB           140–290    asa acima das nuvens
-     6 · Portfólio              290–400    a nuvem: o trecho mais branco
-     5 · agente.tur             400–489    a descida e Salvador
-
-   Do bloco 6 em diante o vídeo acabou e a página é fundo sólido.
-   ═══════════════════════════════════════════════════════════════ */
-
 #pista { position: relative; }
 
-/* Enquanto o quadro de abertura não chega, o conteúdo do hero fica
-   fora de cena: texto sobre fundo indefinido é pior que meio segundo
-   de imagem sozinha. */
 #hero {
     position: sticky;
     top: var(--h-barra);
@@ -1452,7 +1251,6 @@ p { max-width: 65ch; }
 
 .hero-palco { position: absolute; inset: 0; z-index: 2; }
 
-/* ── Uma fase ────────────────────────────────────────────────── */
 .fase {
     position: absolute; inset: 0;
     display: flex;
@@ -1470,8 +1268,6 @@ p { max-width: 65ch; }
                 visibility 0s;
 }
 
-/* --conteudo deixa o bloco sair antes do fim da faixa, quando a cena
-   por baixo muda demais para carregá-lo. Quem escreve é o hero.js. */
 .fase-corpo {
     opacity: var(--conteudo, 1);
     position: relative;
@@ -1479,9 +1275,7 @@ p { max-width: 65ch; }
     margin-inline: auto;
 }
 .fase-corpo--centro { margin-block: auto; }
-/* O recuo do topo é uma variável porque o azul do bloco 2 é ancorado
-   nele: mover o texto sem mover a camada deixaria uma faixa sem
-   cobertura em cima. */
+
 .fase-corpo--alto {
     --recuo-topo: clamp(48px, 10vh, 120px);
     margin-top: var(--recuo-topo);
@@ -1491,10 +1285,7 @@ p { max-width: 65ch; }
 
 .fase h1, .fase h2 { margin-bottom: var(--e-3); }
 .fase .subtitulo   { margin-bottom: var(--e-4); }
-/* Linha mais curta que os 65ch do texto corrido. Sobre imagem, a
-   linha longa atravessa regiões de detalhe muito diferentes e a
-   leitura sofre — encurtar resolve por layout o que só se resolveria
-   escurecendo mais o fundo. */
+
 .fase p            { margin-bottom: var(--e-3); max-width: 52ch; }
 .fase .subtitulo   { max-width: 46ch; }
 
@@ -1503,19 +1294,6 @@ p { max-width: 65ch; }
     margin-top: var(--e-4);
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   AS CAMADAS DE CADA BLOCO
-
-   Não existe mais um véu preto chapado sobre o vídeo. Cada bloco tem
-   a camada que a cena dele pede, e a intensidade é escrita pelo JS
-   ao longo da rolagem (--camada), não fixa:
-
-     1 · Hero        nenhuma. A cabine já é escura, e o visitante lê
-                     o texto na abertura, antes de a janela clarear
-     2 · Quem é a OFB  azul do próprio céu, descendo do topo
-     6 · Portfólio     branco de tela inteira, que entra, segura e sai
-     (a chegada)       nenhuma. É o punch do vídeo, e fica limpa
-   ═══════════════════════════════════════════════════════════════ */
 .fase::before {
     content: '';
     position: absolute;
@@ -1525,23 +1303,14 @@ p { max-width: 65ch; }
     opacity: var(--camada, 0);
 }
 
-/* Bloco 2 · o azul desce do topo e morre logo depois do texto.
-
-   Ele é preso ao BLOCO, não à tela. A diferença importa: o mesmo
-   texto ocupa fração diferente da altura conforme a tela, e um
-   degradê medido em % da tela ora sobra e cobre a asa, ora falta e
-   deixa os rótulos sem fundo. Preso ao bloco, ele acaba onde o texto
-   acaba, em qualquer altura de janela.
-
-   Sem borda lateral: os -50vw esticam a faixa de ponta a ponta. */
 .fase[data-fase="c"]::before { background: none; }
 
 .fase[data-fase="c"] .fase-corpo::before {
     content: '';
     position: absolute;
     left: -50vw; right: -50vw;
-    top: calc(-1 * var(--recuo-topo) - 8px);   /* encosta no topo da tela */
-    bottom: -26%;                                      /* a folga onde ele morre */
+    top: calc(-1 * var(--recuo-topo) - 8px);
+    bottom: -26%;
     z-index: -1;
     pointer-events: none;
     background: linear-gradient(to bottom,
@@ -1552,17 +1321,12 @@ p { max-width: 65ch; }
         rgba(47,85,131,0) 100%);
 }
 
-/* Bloco 6 · branco de tela inteira, chapado. Ele não tem forma
-   própria: quem desenha o movimento é a curva no JS, que o traz do
-   zero, segura, e devolve ao zero antes de a cidade aparecer. */
 .fase--clara::before {
     background: #FFFFFF;
 }
 
-/* ── Blocos de texto branco ── */
 .fase--escura, .fase--escura h1, .fase--escura h2, .fase--escura p { color: var(--branco); }
-/* Sombra leve: ela separa o traço do fundo sem virar borrão escuro
-   em volta do texto. */
+
 .fase--escura h1, .fase--escura h2 {
     text-shadow: 0 2px 5px rgba(15,13,14,0.28), 0 3px 26px rgba(15,13,14,0.34);
 }
@@ -1570,8 +1334,6 @@ p { max-width: 65ch; }
     text-shadow: 0 1px 3px rgba(15,13,14,0.42), 0 2px 18px rgba(15,13,14,0.38);
 }
 
-/* No bloco 2 a sombra é do mesmo azul do céu e da camada — assim ela
-   assenta o texto sem sujar de cinza um fundo que é azul. */
 .fase[data-fase="c"] h2 {
     text-shadow: 0 2px 6px rgba(20,44,74,0.46), 0 3px 26px rgba(20,44,74,0.40);
 }
@@ -1579,15 +1341,11 @@ p { max-width: 65ch; }
 .fase[data-fase="c"] .marcos dt {
     text-shadow: 0 1px 3px rgba(20,44,74,0.60), 0 2px 18px rgba(20,44,74,0.46);
 }
-/* Os rótulos são a menor letra do bloco e a que fica mais embaixo,
-   já onde o azul afinou. A sombra fecha o que falta. */
+
 .fase[data-fase="c"] .marcos dd {
     text-shadow: 0 1px 2px rgba(20,44,74,0.78), 0 2px 12px rgba(20,44,74,0.62);
 }
 
-/* ── Fechamento · Salvador ─────────────────────────────────────
-   A cidade e o Farol ficam livres à direita. O texto ocupa o mar,
-   à esquerda, e permanece na tela até o hero soltar. */
 .fase--chegada .fase-corpo--chegada {
     margin-top: auto;
     margin-bottom: clamp(72px, 12vh, 132px);
@@ -1609,20 +1367,12 @@ p { max-width: 65ch; }
     font-weight: 500;
     letter-spacing: -0.01em;
 }
-/* As boas-vindas ganharam parágrafo próprio: o respiro é menor que o
-   do título para o fecho continuar lendo como um bloco só, não como
-   duas frases soltas. */
+
 .fase .chegada-fecho + .chegada-fecho { margin-top: clamp(8px, 1.2vh, 14px); }
 
-/* ── Bloco de texto grafite: a nuvem ── */
 .fase--clara, .fase--clara h2, .fase--clara p, .fase--clara li { color: var(--grafite); }
 .fase--clara h2, .fase--clara p { text-shadow: none; }
 
-/* ── Botão do agente.tur ─────────────────────────────────────────
-   Verde #83E509 colhido do próprio agente.tur.br em 02/09/2026. O
-   texto usa o grafite da OFB (#373435), que sobre esse verde dá
-   7,7:1 e mantém a cor de texto da casa.
-   ── */
 .btn--agentetur {
     background: var(--verde-agentetur);
     border-color: var(--verde-agentetur);
@@ -1639,7 +1389,6 @@ p { max-width: 65ch; }
     border-color: var(--verde-agentetur-active);
 }
 
-/* ── Bloco 2 · os três números ───────────────────────────────── */
 .marcos {
     display: flex; flex-wrap: wrap;
     gap: clamp(24px, 5vw, 72px);
@@ -1661,12 +1410,6 @@ p { max-width: 65ch; }
     text-shadow: 0 1px 3px rgba(15,13,14,0.85), 0 2px 22px rgba(15,13,14,0.75);
 }
 
-/* ── Bloco 6 · Portfólio ─────────────────────────────────────────
-   Hierarquia em vez de lista: três pilares com foto; as categorias
-   complementares usam ícone e nome, sem tratamento de botão.
-   ── */
-/* O filete é a assinatura da marca na seção: o vermelho aparece aqui
-   sem precisar entrar no texto, onde ele não passa em contraste. */
 .filete {
     display: block;
     width: 44px; height: 4px;
@@ -1677,9 +1420,6 @@ p { max-width: 65ch; }
 
 #portfolio h2 { margin-bottom: clamp(18px, 2.6vh, 32px); }
 
-/* Dentro do hero o bloco tem a altura de uma tela, e não a da página:
-   a foto fica mais baixa e os respiros encolhem para o conjunto caber
-   sem cortar. */
 .fase--clara .pilar-foto { aspect-ratio: 16 / 9; }
 .fase--clara .pilar h3   { margin-top: clamp(12px, 1.8vh, 18px); }
 .fase--clara .pilar p    { margin-bottom: clamp(14px, 2vh, 20px); font-size: 0.875rem; }
@@ -1699,32 +1439,28 @@ p { max-width: 65ch; }
     border: 1px solid var(--cinza-borda);
     border-radius: var(--raio);
     overflow: hidden;
-    /* A sombra já existe parada, e o hover só muda o transform: animar
-       box-shadow custa paint a cada quadro. */
+
     box-shadow: 0 1px 2px rgba(30, 28, 29, 0.05), 0 10px 26px rgba(30, 28, 29, 0.07);
     transition: transform 200ms var(--ease-out);
 }
 .pilar-foto {
     aspect-ratio: 3 / 2;
-    overflow: hidden;                 /* segura o avanço da foto */
+    overflow: hidden;
     background: var(--cinza-borda);
 }
 .pilar-foto img {
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
-    transform: scale(1.001);          /* já em transform: o hover só muda o valor */
+    transform: scale(1.001);
     transition: transform 520ms var(--ease-out);
     will-change: transform;
 }
 .pilar--cruzeiros .pilar-foto img {
-    /* A versão expandida preserva o navio inteiro dentro do recorte 16:9. */
+
     object-position: 50% 50%;
 }
 
-/* Uma linha vermelha cresce da esquerda no pé do card. É a assinatura
-   da marca respondendo ao ponteiro, e cresce por scaleX — nada de
-   animar width. */
 .pilar::after {
     content: '';
     position: absolute;
@@ -1738,16 +1474,14 @@ p { max-width: 65ch; }
 .pilar { position: relative; }
 
 @media (hover: hover) and (pointer: fine) {
-    /* O card sobe, a foto avança devagar por trás da moldura e a linha
-       corre. Três tempos diferentes de propósito: o card responde na
-       hora, a foto demora, e é isso que dá a sensação de profundidade. */
+
     .pilar:hover                 { transform: translateY(-6px); }
     .pilar:hover .pilar-foto img { transform: scale(1.06); }
     .pilar:hover::after          { transform: scaleX(1); }
     .pilar:hover h3              { color: var(--vermelho); }
 
 }
-/* O toque não tem hover, mas tem press: o card afunda um tico. */
+
 .pilar:active { transform: translateY(-2px) scale(0.995); }
 
 .pilar h3 { transition: color 200ms ease; }
@@ -1764,9 +1498,6 @@ p { max-width: 65ch; }
     max-width: none;
 }
 
-/* Os seis complementares são informação, não controles. A caixa
-   branca devolve contraste sobre a nuvem, mas não recebe hover nem
-   estado pressionado. O movimento acontece uma vez, na entrada. */
 .secundarios {
     list-style: none;
     display: grid;
@@ -1824,9 +1555,6 @@ p { max-width: 65ch; }
 .secundarios.revelado > li:nth-child(5) .secundario-icone { transition-delay: 320ms, 320ms, 0ms; }
 .secundarios.revelado > li:nth-child(6) .secundario-icone { transition-delay: 380ms, 380ms, 0ms; }
 
-/* Movimento sem affordance de botão: o box não se desloca, não ganha
-   borda ativa e o cursor continua normal. Só o pictograma responde,
-   com um gesto curto ligado à categoria. */
 @media (hover: hover) and (pointer: fine) {
     .secundarios li:hover .secundario-icone {
         background-color: rgba(224, 50, 54, 0.15);
@@ -1839,13 +1567,6 @@ p { max-width: 65ch; }
     .secundarios li:nth-child(6):hover .secundario-icone svg { transform: translateY(-3px) scale(1.04); }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   RODAPÉ · o mesmo em todas as páginas
-   Fundo grafite com o logo negativo, que são as duas únicas versões
-   oficiais da marca sobre fundo escuro (MANUAL_DE_MARCA_OFB §4).
-   O texto secundário é branco a 72%, que sobre o grafite dá 7,3:1 —
-   folgado para AA em corpo de texto.
-   ═══════════════════════════════════════════════════════════════ */
 .rodape {
     --rodape-fraco: rgba(255, 255, 255, 0.72);
     background: var(--grafite);
@@ -1855,20 +1576,17 @@ p { max-width: 65ch; }
 }
 .rodape-grade {
     display: grid;
-    /* A última coluna leva o endereço inteiro e é a que manda na
-       medida: mais estreita que isto e o CEP cai sozinho na terceira
-       linha. */
+
     grid-template-columns: 1.2fr 0.9fr 1.5fr;
     gap: clamp(32px, 4vw, 56px);
     align-items: start;
     padding-bottom: clamp(40px, 6vh, 72px);
 }
 
-/* ── Marca ── */
 .rodape-logo {
     display: block;
     width: 132px; height: auto;
-    /* Herdou o respiro que era da assinatura, retirada em 04/09/2026. */
+
     margin-bottom: var(--e-5);
 }
 .rodape-redes {
@@ -1880,7 +1598,7 @@ p { max-width: 65ch; }
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px; height: 44px;          /* alvo de toque */
+    width: 44px; height: 44px;
     border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 50%;
     color: var(--branco);
@@ -1895,7 +1613,6 @@ p { max-width: 65ch; }
     stroke-linejoin: round;
 }
 
-/* ── Listas de links ── */
 .rodape-rotulo {
     display: block;
     margin-bottom: var(--e-3);
@@ -1926,7 +1643,6 @@ p { max-width: 65ch; }
     stroke-linejoin: round;
 }
 
-/* ── Contato ── */
 .rodape-contato { display: grid; gap: var(--e-2); }
 .rodape-destaque {
     font-weight: 600;
@@ -1940,10 +1656,9 @@ p { max-width: 65ch; }
     font-size: 0.875rem;
     line-height: 1.6;
     color: var(--rodape-fraco);
-    text-wrap: pretty;   /* evita a última linha órfã do endereço */
+    text-wrap: pretty;
 }
 
-/* ── A faixa do CNPJ ── */
 .rodape-base {
     border-top: 1px solid rgba(255, 255, 255, 0.14);
     padding-block: var(--e-4);
@@ -1956,8 +1671,7 @@ p { max-width: 65ch; }
     justify-content: space-between;
     gap: var(--e-2) var(--e-4);
 }
-/* A assinatura da agência que fez o site. Fica na ponta oposta ao CNPJ
-   e no mesmo tom: é crédito, não conteúdo da OFB. */
+
 .rodape-credito { margin-left: auto; }
 @media (max-width: 560px) {
     .rodape-credito { margin-left: 0; }
@@ -1971,8 +1685,7 @@ p { max-width: 65ch; }
         border-color: rgba(255, 255, 255, 0.45);
     }
 }
-/* O foco tem de aparecer sobre o grafite: o vermelho da marca não
-   contrasta o bastante aqui, então o anel é branco. */
+
 .rodape a:focus-visible {
     outline: 2px solid var(--branco);
     outline-offset: 3px;
@@ -1985,22 +1698,14 @@ p { max-width: 65ch; }
 }
 @media (max-width: 560px) {
     .rodape-grade { grid-template-columns: 1fr; }
-    /* Empilhados e no dedo, os links viram alvo de toque: 44px, o mesmo
-       mínimo que o .btn já cumpre no resto do site. O vão entre eles
-       encolhe para a coluna não esticar. */
+
     .rodape-acessar ul { gap: 0; }
     .rodape-acessar a { padding-block: 10px; }
-    /* O e-mail e o telefone são os dois links que mais se toca no
-       celular: entram na mesma conta. */
+
     .rodape-destaque { padding-block: 10px; }
     .rodape-contato { gap: 0; }
 }
 
-/* ── Reveal ao rolar ─────────────────────────────────────────────
-   Uma vez só, quando o grupo entra. Fade curto e um deslocamento
-   pequeno; nada além de transform e opacity. O atraso entre irmãos
-   é o mínimo que se percebe como cascata sem virar espera.
-   ── */
 [data-revela] > * {
     opacity: 0;
     transform: translateY(16px);
@@ -2017,14 +1722,6 @@ p { max-width: 65ch; }
 [data-revela].revelado > *:nth-child(5) { transition-delay: 240ms; }
 [data-revela].revelado > *:nth-child(6) { transition-delay: 300ms; }
 
-/* ── Convite a rolar ────────────────────────────────────────────
-   Fica só na primeira tela e some assim que a rolagem começa: o
-   convite que continua na tela depois de aceito vira ruído.
-
-   Ganhou peso porque era a única instrução da página e passava
-   despercebido — texto maior, com um pedestal escuro por baixo para
-   sobreviver a qualquer quadro, e a seta descendo em vez de um traço.
-   ── */
 .rolar {
     position: absolute;
     left: 50%; bottom: clamp(18px, 3.4vh, 30px);
@@ -2053,7 +1750,6 @@ p { max-width: 65ch; }
 }
 .rolar-seta svg { width: 100%; height: 100%; display: block; }
 
-/* Desce e volta, com uma pausa no fim para não virar pisca-pisca. */
 @keyframes descer {
     0%   { transform: translateY(-3px); opacity: 0.55; }
     35%  { transform: translateY(5px);  opacity: 1; }
@@ -2061,14 +1757,10 @@ p { max-width: 65ch; }
     100% { transform: translateY(-3px); opacity: 0.55; }
 }
 
-/* Movimento reduzido: a seta para, o convite continua. */
 @media (prefers-reduced-motion: reduce) {
     .rolar-seta { animation: none; opacity: 0.9; transform: none; }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   HERO NO CELULAR
-   ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
     #hero { background-image: url('../hero/poster-m.jpg'); }
     .fase-corpo--alto  { --recuo-topo: clamp(32px, 7vh, 72px); }
@@ -2079,14 +1771,10 @@ p { max-width: 65ch; }
     .fase p  { font-size: 1rem; }
     .fase-botoes .btn { width: 100%; }
 
-
     .marcos { gap: var(--e-4) var(--e-5); margin-top: var(--e-4); }
     .marcos dt { font-size: clamp(1.75rem, 8vw, 2.5rem); }
     .marcos dd { font-size: 0.8125rem; }
 
-    /* No hero móvel cada fase precisa caber na área visível. Os três
-       pilares viram linhas compactas; assim as categorias abaixo não
-       ficam cortadas fora do palco. */
     .pilares { grid-template-columns: 1fr; gap: 10px; }
     .fase--clara .pilar {
         display: grid;
@@ -2133,12 +1821,6 @@ p { max-width: 65ch; }
     .secundarios { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   MOVIMENTO REDUZIDO
-   O hero deixa de ser pista: vira um quadro só, e os quatro blocos
-   viram seções empilhadas. Nada de scrubbing, nada de deslocamento
-   e nada de contador — mas o conteúdo continua todo lá.
-   ═══════════════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
     #pista { height: auto !important; }
     #hero  { position: static; height: auto; overflow: visible; }
@@ -2169,32 +1851,17 @@ p { max-width: 65ch; }
     .marcos dt, .marcos dd { text-shadow: none; }
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   CELULAR · revisão do Lippe no iPhone, 08/09/2026
-   Fica no fim da folha de propósito: vence as regras anteriores de
-   mesma especificidade. Tudo aqui só vale abaixo de 900px.
-   ═══════════════════════════════════════════════════════════════ */
-
-/* As cópias móveis dos botões só existem no celular. */
 .consolidacao-acoes--movel,
 .agentetur-cta--movel { display: none; }
 
 @media (max-width: 900px) {
 
-    /* 1 · O header não encolhe no celular: as duas barras ficam. O hero
-       precisa começar abaixo das duas, senão os 40px de cima de cada
-       tela somem atrás da barra utilitária — era o filete e o recuo do
-       título sumindo no print do Lippe. */
     #hero {
         top: calc(var(--h-topo) + var(--h-barra));
         height: calc(100vh - var(--h-topo) - var(--h-barra));
         height: calc(100svh - var(--h-topo) - var(--h-barra));
     }
 
-    /* 2 · Tela 2: tudo à esquerda, e os três números em linhas
-       alinhadas — número numa coluna, rótulo na outra, na mesma linha
-       de base. Empilhados um embaixo do outro eles comiam meia tela. */
     .fase[data-fase="c"] .subtitulo { max-width: 24ch; text-wrap: balance; }
     .marcos {
         display: grid;
@@ -2210,15 +1877,10 @@ p { max-width: 65ch; }
     .marcos dt { font-size: clamp(1.625rem, 7.5vw, 2.125rem); }
     .marcos dd { margin-top: 0; font-size: 0.875rem; line-height: 1.3; }
 
-    /* 3 · Tela 3: o título sem a quebra forçada. */
     .fase--clara h2 br { display: none; }
     .fase--clara h2 { font-size: clamp(1.375rem, 6vw, 1.75rem); margin-bottom: 14px; }
     .fase--clara .filete { margin-bottom: 10px; }
 
-    /* 4 · Tela 4: no celular o texto cai sobre o forte e a grama, os
-       trechos mais claros da chegada. Entra um degradê escuro preso à
-       base da tela, morrendo antes do meio — sem borda, sem caixa. O
-       desktop continua limpo (é o punch do vídeo). */
     .fase--chegada::before {
         opacity: 1;
         background: linear-gradient(to top,
@@ -2235,8 +1897,6 @@ p { max-width: 65ch; }
     .fase .chegada-fecho { font-size: 1.0625rem; max-width: 28ch; line-height: 1.4; }
     .fase .chegada-fecho + .chegada-fecho { margin-top: 10px; font-weight: 600; }
 
-    /* 5 · Consolidação: texto, bilhete e só então os dois botões, lado
-       a lado. A cópia da coluna de texto some. */
     .consolidacao-texto .consolidacao-acoes { display: none; }
     .consolidacao-acoes--movel {
         display: flex;
@@ -2253,24 +1913,18 @@ p { max-width: 65ch; }
     }
     .consolidacao-acoes--movel .btn svg { width: 14px; height: 14px; }
 
-    /* 6 · agente.tur: o botão por último, depois das telas. */
     .agentetur-conteudo .agentetur-cta { display: none; }
     .agentetur-cta--movel { display: inline-flex; width: 100%; margin-top: 0; }
 }
 
-/* Abaixo de 560px a tela do portfólio precisa caber inteira numa tela
-   de iPhone com as barras do Safari (~560px úteis). Os três pilares
-   viram três cartões lado a lado, foto em cima e nome embaixo; a
-   descrição de cada um sai — ela continua no desktop e no tablet. */
 @media (max-width: 560px) {
     .pilares { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
     .fase--clara .pilar { display: block; min-height: 0; }
     .fase--clara .pilar-foto { aspect-ratio: 4 / 3; min-height: 0; height: auto; }
-    /* "Hospedagem" é a palavra mais larga e precisa caber num cartão de
-       ~106px (iPhone de 375): corpo menor, margem menor, sem cortar. */
+
     .fase--clara .pilar h3 {
         margin: 8px 6px 10px;
-        font-size: clamp(0.6875rem, 3.2vw, 0.875rem);   /* 12px em 375, 13,8px em 430 */
+        font-size: clamp(0.6875rem, 3.2vw, 0.875rem);
         line-height: 1.2;
         letter-spacing: -0.015em;
         white-space: nowrap;
