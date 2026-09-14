@@ -127,6 +127,43 @@ function carregarCaptcha() {
     document.head.appendChild(s);
 }
 
+function ligarCep(form, campoCep) {
+    var alvos = {
+        logradouro: form.querySelector('[name="endereco"]'),
+        bairro:     form.querySelector('[name="bairro"]'),
+        localidade: form.querySelector('[name="cidade"]'),
+        uf:         form.querySelector('[name="uf"]')
+    };
+    var ultimo = '';
+    campoCep.addEventListener('input', function () {
+        var cep = campoCep.value.replace(/\D/g, '');
+        if (cep.length !== 8 || cep === ultimo) return;
+        ultimo = cep;
+        fetch('https://viacep.com.br/ws/' + cep + '/json/')
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+                if (!d || d.erro) return;
+                var focar = null;
+                Object.keys(alvos).forEach(function (chave) {
+                    var el = alvos[chave];
+                    if (!el || !d[chave]) return;
+                    if (el.value.trim() && el.getAttribute('data-auto') !== 'cep') return;
+                    el.value = d[chave];
+                    el.setAttribute('data-auto', 'cep');
+                    el.addEventListener('input', function () { el.removeAttribute('data-auto'); }, { once: true });
+                    marcar(el, '');
+                    if (chave === 'logradouro') focar = el;
+                });
+                if (focar) {
+                    focar.value = focar.value + ', ';
+                    focar.focus();
+                    focar.setSelectionRange(focar.value.length, focar.value.length);
+                }
+            })
+            .catch(function () {});
+    });
+}
+
 forms.forEach(function (form) {
     var resultado = form.querySelector('.form-resultado');
     var botao     = form.querySelector('.form-enviar');
@@ -140,6 +177,7 @@ forms.forEach(function (form) {
     campos.forEach(function (campo) {
         var f = MASCARAS[campo.getAttribute('data-mascara')];
         if (f) campo.addEventListener('input', function () { campo.value = f(campo.value.replace(/\D/g, '')); });
+        if (campo.getAttribute('data-mascara') === 'cep') ligarCep(form, campo);
         if (campo.type === 'file') {
             var caixa = campo.closest('.arquivos');
             var nomes = caixa && caixa.querySelector('.arquivos-nomes');

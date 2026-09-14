@@ -36,7 +36,10 @@ começando abaixo das duas barras em qualquer tela. Cadastro reescrito: coluna d
 dos cinco (Cartão CNPJ, contrato social, comprovante de endereço, RG do sócio, dados bancários) e
 **um único campo de arquivos** (até 8, PDF/JPG/PNG, 4 MB cada, 15 MB no total), **que vão anexados
 no e-mail e não ficam no servidor**. Foco de campo com brilho vermelho, erro por campo só no envio
-e sem deslocar a grade, aviso vermelho no rodapé do formulário quando falta campo. Seção "Receba nossos
+e sem deslocar a grade, aviso vermelho no rodapé do formulário quando falta campo.
+CEP preenche endereço, bairro, cidade e UF pelo **ViaCEP** (única chamada externa do site, feita
+pelo navegador só quando o CEP completa; se falhar, nada muda e os campos seguem editáveis).
+A caixa de documentos aceita arrastar e soltar. Seção "Receba nossos
 informativos" na home, abaixo da Central, com `informativos.php`. Um só script para os dois
 formulários (`js/formularios.js`), um só motor de e-mail (`_envio.php`) com e-mail em HTML
 espaçado, rótulo em cima e valor embaixo, e versão em texto. Captcha reCAPTCHA v2 nos dois,
