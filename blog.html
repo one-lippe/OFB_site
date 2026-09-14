@@ -19,7 +19,7 @@
 
 <link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/site.css?v=20260914-2">
+<link rel="stylesheet" href="css/site.css?v=20260914-3">
 <link rel="stylesheet" href="blog/blog.css?v=20260914">
 </head>
 <body>
@@ -102,23 +102,17 @@
                     <circle cx="11" cy="11" r="7"/>
                     <path d="M20 20l-3.5-3.5"/>
                 </svg>
-                <label class="sr-only" for="busca-blog">Buscar post por assunto, destino ou título</label>
+                <label class="sr-only" for="busca-blog">Buscar assunto</label>
                 <input id="busca-blog" type="search" data-busca autocomplete="off"
-                       placeholder="Buscar assunto, destino ou título">
+                       placeholder="Buscar assunto">
             </div>
         </div>
 
-        <div class="filtros filtros--assuntos" role="group" aria-label="Filtrar por assunto">
-            <button class="filtro filtro--assunto" type="button" data-categoria="todas" aria-pressed="true">Todos os assuntos</button>
-            <button class="filtro filtro--assunto" type="button" data-categoria="destino" aria-pressed="false">Destino</button>
-            <button class="filtro filtro--assunto" type="button" data-categoria="tendencia" aria-pressed="false">Tendência</button>
-            <button class="filtro filtro--assunto" type="button" data-categoria="capacitacao" aria-pressed="false">Capacitação</button>
-        </div>
 
         <p class="sr-only" role="status" data-contagem></p>
 
         <ul class="lista">
-            <li class="lista-item" data-trilha="ofb" data-categoria="capacitacao"
+            <li class="lista-item" data-trilha="ofb"
                 data-termos="o que muda quando a agencia emite com uma consolidadora emissao  remarcacao e reembolso deixam de depender de acordo proprio com cada companhia  o que a agencia ganha  e o que continua sendo dela  capacitacao conteudo ofb">
                 <a class="lista-cartao" href="blog/emitir-com-consolidadora.html">
                     <span class="lista-capa">
@@ -136,7 +130,7 @@
                     </span>
                 </a>
             </li>
-            <li class="lista-item" data-trilha="noticia" data-categoria="destino"
+            <li class="lista-item" data-trilha="noticia"
                 data-termos="alta temporada no nordeste  o que fechar antes de outubro aereo e hospedagem no nordeste se comportam de formas diferentes conforme o fim do ano chega  um roteiro do que costuma apertar primeiro  destino noticia de turismo">
                 <a class="lista-cartao" href="blog/alta-temporada-nordeste.html">
                     <span class="lista-capa">
@@ -154,7 +148,7 @@
                     </span>
                 </a>
             </li>
-            <li class="lista-item" data-trilha="noticia" data-categoria="tendencia"
+            <li class="lista-item" data-trilha="noticia"
                 data-termos="reveillon e a viagem que o cliente decide primeiro enquanto o resto do calendario se decide em cima da hora  a virada do ano e planejada com meses de antecedencia  o que isso significa para o funil da agencia  tendencia noticia de turismo">
                 <a class="lista-cartao" href="blog/reveillon-decide-primeiro.html">
                     <span class="lista-capa">
@@ -250,19 +244,18 @@
     </div>
 </footer>
 
-<script src="js/site.js?v=20260914-2"></script>
+<script src="js/site.js?v=20260914-3"></script>
 <script>
 (function () {
 'use strict';
 var trilhas    = Array.prototype.slice.call(document.querySelectorAll('[data-trilha][type]'));
-var categorias = Array.prototype.slice.call(document.querySelectorAll('[data-categoria][type]'));
 var itens      = Array.prototype.slice.call(document.querySelectorAll('.lista-item'));
 var busca      = document.querySelector('[data-busca]');
 var vazio      = document.querySelector('[data-vazio]');
 var conta      = document.querySelector('[data-contagem]');
 if (!itens.length) return;
 
-var trilha = 'todas', categoria = 'todas', termo = '';
+var trilha = 'todas', termo = '';
 
 function simplificar(t) {
     return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]+/g, ' ').trim();
@@ -276,8 +269,7 @@ function aplicar() {
     var palavras = termo ? termo.split(/\s+/) : [];
     var vistos = 0;
     itens.forEach(function (item) {
-        var fica = (trilha === 'todas' || item.getAttribute('data-trilha') === trilha)
-                && (categoria === 'todas' || item.getAttribute('data-categoria') === categoria);
+        var fica = (trilha === 'todas' || item.getAttribute('data-trilha') === trilha);
         if (fica && palavras.length) {
             var indice = item.getAttribute('data-indice');
             fica = palavras.every(function (p) { return indice.indexOf(p) >= 0; });
@@ -302,7 +294,6 @@ function ligar(botoes, atributo, definir) {
     });
 }
 ligar(trilhas, 'data-trilha', function (v) { trilha = v; });
-ligar(categorias, 'data-categoria', function (v) { categoria = v; });
 
 if (busca) {
     busca.addEventListener('input', function () { termo = simplificar(busca.value.trim()); aplicar(); });

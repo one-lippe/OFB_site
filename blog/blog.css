@@ -185,10 +185,3 @@
     .filtro { transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease; }
     .filtro:active { transform: none; }
 }
-
-.filtros--assuntos { margin-top: calc(-1 * var(--e-3)); margin-bottom: var(--e-6); }
-.filtro--assunto { min-height: 36px; padding: 6px 14px; font-size: 0.8125rem; }
-.filtro--assunto[aria-pressed="true"] { background: var(--grafite); border-color: var(--grafite); }
-@media (hover: hover) and (pointer: fine) {
-    .filtro--assunto[aria-pressed="true"]:hover { background: var(--grafite); border-color: var(--grafite); }
-}

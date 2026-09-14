@@ -7,6 +7,7 @@ const REMETENTE     = 'site@ofb.com.br';
 
 const ANEXO_MAX_CADA  = 4 * 1024 * 1024;
 const ANEXO_MAX_TOTAL = 15 * 1024 * 1024;
+const ANEXO_MAX_QTD   = 8;
 const ANEXO_TIPOS     = ['application/pdf' => 'pdf', 'image/jpeg' => 'jpg', 'image/png' => 'png'];
 
 $RECAPTCHA_SECRET = '';
@@ -80,26 +81,30 @@ function captcha_ok() {
     return !empty($j['success']);
 }
 
-function anexos($campos) {
+function anexos($campo) {
     $lista = [];
     $total = 0;
+    $arq = $_FILES[$campo] ?? null;
+    if (!$arq || !is_array($arq['name'])) return [$lista, ''];
+    if (count($arq['name']) > ANEXO_MAX_QTD) return [null, 'no máximo ' . ANEXO_MAX_QTD . ' arquivos'];
     $finfo = function_exists('finfo_open') ? finfo_open(FILEINFO_MIME_TYPE) : null;
-    foreach ($campos as $nome => $rotulo) {
-        $a = $_FILES[$nome] ?? null;
-        if (!$a || ($a['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) continue;
-        if ($a['error'] !== UPLOAD_ERR_OK)          return [null, "falha ao receber: $rotulo"];
-        if ($a['size'] > ANEXO_MAX_CADA)            return [null, "$rotulo passa de 4 MB"];
-        if (!is_uploaded_file($a['tmp_name']))       return [null, "arquivo inválido: $rotulo"];
-        $mime = $finfo ? finfo_file($finfo, $a['tmp_name']) : ($a['type'] ?? '');
-        if (!isset(ANEXO_TIPOS[$mime]))              return [null, "$rotulo precisa ser PDF, JPG ou PNG"];
-        $total += $a['size'];
-        if ($total > ANEXO_MAX_TOTAL)                return [null, 'os documentos juntos passam de 15 MB'];
+    foreach ($arq['name'] as $i => $nome_original) {
+        if (($arq['error'][$i] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) continue;
+        $rotulo = mb_substr(preg_replace('/[^\w.\- ]+/u', '_', (string)$nome_original), 0, 80);
+        if ($arq['error'][$i] !== UPLOAD_ERR_OK)        return [null, "falha ao receber: $rotulo"];
+        if ($arq['size'][$i] > ANEXO_MAX_CADA)          return [null, "$rotulo passa de 4 MB"];
+        if (!is_uploaded_file($arq['tmp_name'][$i]))     return [null, "arquivo inválido: $rotulo"];
+        $mime = $finfo ? finfo_file($finfo, $arq['tmp_name'][$i]) : ($arq['type'][$i] ?? '');
+        if (!isset(ANEXO_TIPOS[$mime]))                  return [null, "$rotulo precisa ser PDF, JPG ou PNG"];
+        $total += $arq['size'][$i];
+        if ($total > ANEXO_MAX_TOTAL)                    return [null, 'os documentos juntos passam de 15 MB'];
+        $base = preg_replace('/\.[^.]+$/', '', $rotulo);
         $lista[] = [
-            'nome'     => $nome . '.' . ANEXO_TIPOS[$mime],
+            'nome'     => ($base !== '' ? $base : 'documento-' . ($i + 1)) . '.' . ANEXO_TIPOS[$mime],
             'rotulo'   => $rotulo,
             'mime'     => $mime,
-            'conteudo' => file_get_contents($a['tmp_name']),
-            'tamanho'  => $a['size'],
+            'conteudo' => file_get_contents($arq['tmp_name'][$i]),
+            'tamanho'  => $arq['size'][$i],
         ];
     }
     if ($finfo) finfo_close($finfo);

@@ -222,14 +222,13 @@ SCRIPT_LISTAGEM = """
 (function () {
 'use strict';
 var trilhas    = Array.prototype.slice.call(document.querySelectorAll('[data-trilha][type]'));
-var categorias = Array.prototype.slice.call(document.querySelectorAll('[data-categoria][type]'));
 var itens      = Array.prototype.slice.call(document.querySelectorAll('.lista-item'));
 var busca      = document.querySelector('[data-busca]');
 var vazio      = document.querySelector('[data-vazio]');
 var conta      = document.querySelector('[data-contagem]');
 if (!itens.length) return;
 
-var trilha = 'todas', categoria = 'todas', termo = '';
+var trilha = 'todas', termo = '';
 
 function simplificar(t) {
     return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9 ]+/g, ' ').trim();
@@ -243,8 +242,7 @@ function aplicar() {
     var palavras = termo ? termo.split(/\s+/) : [];
     var vistos = 0;
     itens.forEach(function (item) {
-        var fica = (trilha === 'todas' || item.getAttribute('data-trilha') === trilha)
-                && (categoria === 'todas' || item.getAttribute('data-categoria') === categoria);
+        var fica = (trilha === 'todas' || item.getAttribute('data-trilha') === trilha);
         if (fica && palavras.length) {
             var indice = item.getAttribute('data-indice');
             fica = palavras.every(function (p) { return indice.indexOf(p) >= 0; });
@@ -269,7 +267,6 @@ function ligar(botoes, atributo, definir) {
     });
 }
 ligar(trilhas, 'data-trilha', function (v) { trilha = v; });
-ligar(categorias, 'data-categoria', function (v) { categoria = v; });
 
 if (busca) {
     busca.addEventListener('input', function () { termo = simplificar(busca.value.trim()); aplicar(); });
@@ -288,7 +285,7 @@ def gerar_listagem(posts, capas, header, rodape, css):
         termos = " ".join([post["titulo"], post["trecho"], post["categoria"],
                            TRILHAS[post["trilha"]], post.get("termos", "")])
         cartoes.append(f"""
-            <li class="lista-item" data-trilha="{post['trilha']}" data-categoria="{slug_categoria(post['categoria'])}"
+            <li class="lista-item" data-trilha="{post['trilha']}"
                 data-termos="{escapar(simplificar(termos))}">
                 <a class="lista-cartao" href="blog/{post['slug']}.html">
                     <span class="lista-capa">
@@ -306,13 +303,6 @@ def gerar_listagem(posts, capas, header, rodape, css):
                     </span>
                 </a>
             </li>""")
-
-    presentes = []
-    for post in posts:
-        if post["categoria"] not in presentes:
-            presentes.append(post["categoria"])
-    assuntos = ['\n            <button class="filtro filtro--assunto" type="button" data-categoria="%s" aria-pressed="false">%s</button>'
-                % (slug_categoria(c), escapar(c)) for c in CATEGORIAS if c in presentes]
 
     pagina = cabeca("Blog · OFB",
                     "Notícias de turismo e conteúdo da OFB para agências de viagens.",
@@ -342,15 +332,12 @@ def gerar_listagem(posts, capas, header, rodape, css):
                     <circle cx="11" cy="11" r="7"/>
                     <path d="M20 20l-3.5-3.5"/>
                 </svg>
-                <label class="sr-only" for="busca-blog">Buscar post por assunto, destino ou título</label>
+                <label class="sr-only" for="busca-blog">Buscar assunto</label>
                 <input id="busca-blog" type="search" data-busca autocomplete="off"
-                       placeholder="Buscar assunto, destino ou título">
+                       placeholder="Buscar assunto">
             </div>
         </div>
 
-        <div class="filtros filtros--assuntos" role="group" aria-label="Filtrar por assunto">
-            <button class="filtro filtro--assunto" type="button" data-categoria="todas" aria-pressed="true">Todos os assuntos</button>{''.join(assuntos)}
-        </div>
 
         <p class="sr-only" role="status" data-contagem></p>
 

@@ -75,8 +75,7 @@
     height: 2px;
     background: var(--vermelho);
 }
-.cad-lado h2 + .cad-lista { margin-top: calc(-1 * var(--e-2)); }
-.cad-lado .legenda + h2 { margin-top: var(--e-6); }
+.cad-lista li { line-height: 1.5; }
 .cad-passos {
     list-style: none;
     counter-reset: passo;

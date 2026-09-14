@@ -12,6 +12,7 @@ var PREVIA  = (h === 'localhost' || h === '127.0.0.1' || h === '' || /\.github\.
 var ANEXO_MAX_CADA  = 4 * 1024 * 1024;
 var ANEXO_MAX_TOTAL = 15 * 1024 * 1024;
 var ANEXO_TIPOS     = ['application/pdf', 'image/jpeg', 'image/png'];
+var ANEXO_MAX_QTD   = 8;
 
 var MASCARAS = {
     cnpj: function (d) {
@@ -33,7 +34,8 @@ var MASCARAS = {
 
 var MENSAGENS = {
     vazio:    'Preencha este campo.',
-    arquivo:  'Anexe este documento.',
+    arquivo:  'Anexe os documentos.',
+    quantidade: 'No máximo 8 arquivos.',
     cnpj:     'Confira o CNPJ: são 14 dígitos e o número não bateu.',
     telefone: 'Informe o DDD e o número, com 10 ou 11 dígitos.',
     email:    'Informe um e-mail válido, como nome@agencia.com.br.',
@@ -58,17 +60,22 @@ function cnpjValido(v) {
     return dv(d, p1) === parseInt(d[12], 10) && dv(d, p2) === parseInt(d[13], 10);
 }
 
-function mensagemDe(campo) {
+function mensagemDe(campo, noEnvio) {
     if (campo.type === 'file') {
-        var f = campo.files && campo.files[0];
-        if (campo.required && !f) return MENSAGENS.arquivo;
-        if (!f) return '';
-        if (ANEXO_TIPOS.indexOf(f.type) < 0) return MENSAGENS.tipo;
-        if (f.size > ANEXO_MAX_CADA) return MENSAGENS.tamanho;
+        var lista = campo.files ? Array.prototype.slice.call(campo.files) : [];
+        if (campo.required && !lista.length) return noEnvio ? MENSAGENS.arquivo : '';
+        if (lista.length > ANEXO_MAX_QTD) return MENSAGENS.quantidade;
+        var total = 0;
+        for (var i = 0; i < lista.length; i++) {
+            if (ANEXO_TIPOS.indexOf(lista[i].type) < 0) return MENSAGENS.tipo;
+            if (lista[i].size > ANEXO_MAX_CADA) return MENSAGENS.tamanho;
+            total += lista[i].size;
+        }
+        if (total > ANEXO_MAX_TOTAL) return MENSAGENS.total;
         return '';
     }
     var v = campo.value.trim();
-    if (campo.required && !v) return MENSAGENS.vazio;
+    if (campo.required && !v) return noEnvio ? MENSAGENS.vazio : '';
     if (!v) return '';
     var m = campo.getAttribute('data-mascara');
     if (m === 'cnpj'     && !cnpjValido(v))                                  return MENSAGENS.cnpj;
@@ -95,15 +102,6 @@ function marcar(campo, msg) {
 function rotuloDe(campo) {
     var l = campo.closest('.campo') && campo.closest('.campo').querySelector('label');
     return l ? l.textContent.trim() : campo.name;
-}
-
-function nomeArquivo(campo) {
-    var caixa = campo.closest('.campo');
-    var saida = caixa && caixa.querySelector('.arquivo-nome');
-    if (!saida) return;
-    var f = campo.files && campo.files[0];
-    saida.textContent = f ? f.name + ' · ' + Math.max(1, Math.round(f.size / 1024)) + ' KB' : '';
-    caixa.classList.toggle('com-arquivo', !!f);
 }
 
 function captchaToken(form) {
@@ -133,6 +131,7 @@ forms.forEach(function (form) {
     var resultado = form.querySelector('.form-resultado');
     var botao     = form.querySelector('.form-enviar');
     var captcha   = form.querySelector('.captcha');
+    var aviso     = form.querySelector('.form-aviso');
     var assunto   = form.getAttribute('data-assunto') || 'Formulário do site OFB';
     var campos    = Array.prototype.slice.call(form.querySelectorAll('.campo input, .campo select, .campo textarea'));
 
@@ -141,7 +140,7 @@ forms.forEach(function (form) {
     campos.forEach(function (campo) {
         var f = MASCARAS[campo.getAttribute('data-mascara')];
         if (f) campo.addEventListener('input', function () { campo.value = f(campo.value.replace(/\D/g, '')); });
-        if (campo.type === 'file') campo.addEventListener('change', function () { nomeArquivo(campo); marcar(campo, mensagemDe(campo)); });
+        if (campo.type === 'file') campo.addEventListener('change', function () { marcar(campo, mensagemDe(campo)); });
         campo.addEventListener('blur', function () { marcar(campo, mensagemDe(campo)); });
         campo.addEventListener('input', function () {
             if (campo.closest('.campo').classList.contains('invalido')) marcar(campo, mensagemDe(campo));
@@ -149,15 +148,10 @@ forms.forEach(function (form) {
     });
 
     function validarTudo() {
-        var primeiro = null, total = 0;
+        var primeiro = null;
         campos.forEach(function (campo) {
-            if (!marcar(campo, mensagemDe(campo)) && !primeiro) primeiro = campo;
-            if (campo.type === 'file' && campo.files && campo.files[0]) total += campo.files[0].size;
+            if (!marcar(campo, mensagemDe(campo, true)) && !primeiro) primeiro = campo;
         });
-        if (!primeiro && total > ANEXO_MAX_TOTAL) {
-            var ultimo = campos.filter(function (c) { return c.type === 'file' && c.files && c.files[0]; }).pop();
-            if (ultimo) { marcar(ultimo, MENSAGENS.total); primeiro = ultimo; }
-        }
         if (!primeiro && captcha && !captcha.hidden) {
             var token = captchaToken(form);
             var erro = captcha.querySelector('.campo-erro');
@@ -170,6 +164,7 @@ forms.forEach(function (form) {
                 captcha.classList.remove('invalido');
             }
         }
+        if (aviso) aviso.textContent = primeiro ? (form.getAttribute('data-aviso') || 'Preencha os campos obrigatórios.') : '';
         if (primeiro && primeiro.focus) primeiro.focus();
         if (primeiro && primeiro.scrollIntoView && !primeiro.focus) primeiro.scrollIntoView({ block: 'center' });
         return !primeiro;
@@ -179,8 +174,8 @@ forms.forEach(function (form) {
         var out = [assunto, ''];
         campos.forEach(function (c) {
             if (c.type === 'file') {
-                var f = c.files && c.files[0];
-                out.push(rotuloDe(c) + ': ' + (f ? f.name + ' (anexar a este e-mail)' : 'não enviado'));
+                var nomes = c.files ? Array.prototype.map.call(c.files, function (f) { return f.name; }) : [];
+                out.push('Documentos: ' + (nomes.length ? nomes.join(', ') + ' (anexar a este e-mail)' : 'não enviados'));
             } else if (c.type !== 'hidden') {
                 out.push(rotuloDe(c) + ': ' + c.value.trim());
             }
@@ -208,7 +203,7 @@ forms.forEach(function (form) {
     }
 
     function enviarPrevia() {
-        var temAnexo = campos.some(function (c) { return c.type === 'file' && c.files && c.files[0]; });
+        var temAnexo = campos.some(function (c) { return c.type === 'file' && c.files && c.files.length; });
         mostrar('ok',
             '<p><b>' + (form.getAttribute('data-previa-titulo') || 'Pronto.') + '</b> Nesta prévia o envio automático '
             + 'ainda não está ligado: ele passa a funcionar quando o site subir para ofb.com.br.</p>'

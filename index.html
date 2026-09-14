@@ -13,7 +13,7 @@
 
 <link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/site.css?v=20260914-2">
+<link rel="stylesheet" href="css/site.css?v=20260914-3">
 
 <link rel="preload" as="image" href="hero/poster-d.jpg" media="(min-width: 901px)">
 <link rel="preload" as="image" href="hero/poster-m.jpg" media="(max-width: 900px)">
@@ -534,7 +534,7 @@
 
         <form class="informativos-form" id="informativos-form" action="informativos.php" method="post"
               novalidate data-formulario data-assunto="Informativos" data-assunto-campo="agencia"
-              data-previa-titulo="Cadastro pronto."
+              data-previa-titulo="Cadastro pronto." data-aviso="Preencha os campos obrigatórios."
               data-ok="Cadastro feito. Os informativos da OFB passam a chegar no seu e-mail.">
 
             <div class="armadilha" aria-hidden="true">
@@ -573,7 +573,7 @@
             </div>
 
             <div class="form-rodape">
-                <p class="legenda">Só para os informativos da OFB. Você pode sair da lista quando quiser.</p>
+                <p class="form-aviso" aria-live="polite"></p>
                 <button class="btn btn--primario form-enviar" type="submit">
                     <span class="form-enviar-texto">Cadastrar</span>
                     <span class="form-enviar-espera" aria-hidden="true"></span>
@@ -658,10 +658,10 @@
 </footer>
 
 <script src="js/config.js?v=20260914-1"></script>
-<script src="js/site.js?v=20260914-2"></script>
+<script src="js/site.js?v=20260914-3"></script>
 <script src="js/hero.js?v=20260908-1"></script>
 <script src="js/contador.js"></script>
 <script src="js/consolidacao.js?v=20260904-2"></script>
-<script src="js/formularios.js?v=20260914-1"></script>
+<script src="js/formularios.js?v=20260914-2"></script>
 </body>
 </html>

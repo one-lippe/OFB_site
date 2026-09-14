@@ -29,18 +29,19 @@ cartões da Central reescritos; banner da Central em branco sobre véu escuro; l
 "Dados da empresa" e "Seu contato". Detalhe em `03_copy/03_REVISAO_LOCAL_2026-09-08.md`.
 **O Codex edita sem commit e sem subir `?v=`**: ao retomar, `git status` primeiro.
 
-**Leva de 14/09/2026 (Lippe), aplicada:** barra "Acessar" sempre visível, com os dois acessos em
-botão (verde do agente.tur, azul do portal), e o hero começando abaixo das duas barras em qualquer
-tela. Cadastro reescrito: coluna da esquerda com "O que você vai precisar" (o que a categoria pede:
-CNPJ ativo e os cinco documentos, como Rextur e Trend fazem em "Seja cliente"), "Como funciona" em
-três passos sem frase promocional, e "Fale conosco"; cinco anexos obrigatórios (Cartão CNPJ,
-contrato social, comprovante de endereço, RG do sócio, dados bancários) em PDF/JPG/PNG, 4 MB
-cada, 15 MB no total, **que vão anexados no e-mail e não ficam no servidor**. Seção "Receba nossos
+**Leva de 14/09/2026 (Lippe), aplicada e corrigida na mesma tarde:** barra "Acessar" sempre
+visível, acessos em texto com só a seta colorida (verde do agente.tur, azul do portal), e o hero
+começando abaixo das duas barras em qualquer tela. Cadastro reescrito: coluna da esquerda com
+"Depois do envio" em três linhas e "Fale conosco"; no formulário, bloco "Documentos" com a lista
+dos cinco (Cartão CNPJ, contrato social, comprovante de endereço, RG do sócio, dados bancários) e
+**um único campo de arquivos** (até 8, PDF/JPG/PNG, 4 MB cada, 15 MB no total), **que vão anexados
+no e-mail e não ficam no servidor**. Foco de campo com brilho vermelho, erro por campo só no envio
+e sem deslocar a grade, aviso vermelho no rodapé do formulário quando falta campo. Seção "Receba nossos
 informativos" na home, abaixo da Central, com `informativos.php`. Um só script para os dois
 formulários (`js/formularios.js`), um só motor de e-mail (`_envio.php`) com e-mail em HTML
 espaçado, rótulo em cima e valor embaixo, e versão em texto. Captcha reCAPTCHA v2 nos dois,
-ligado só quando houver chave (`js/config.js`). Hero: "Bem-vindo (a) à OFB.". Blog com busca e
-filtro por assunto, no mesmo desenho da Central; filtro e busca viraram padrão da `site.css`.
+ligado só quando houver chave (`js/config.js`). Hero: "Bem-vindo (a) à OFB.". Blog com busca por
+assunto, no mesmo desenho da Central; filtro e busca viraram padrão da `site.css`.
 Estilos de campo de formulário também (`.campo`, `.form-bloco`, `.form-resultado`).
 
 **Revisão no iPhone (Lippe, 08/09 à tarde), aplicada e publicada:** no celular o hero começa

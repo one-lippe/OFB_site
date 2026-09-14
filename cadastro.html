@@ -13,8 +13,8 @@
 <link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="css/site.css?v=20260914-2">
-<link rel="stylesheet" href="css/cadastro.css?v=20260914-1">
+<link rel="stylesheet" href="css/site.css?v=20260914-3">
+<link rel="stylesheet" href="css/cadastro.css?v=20260914-2">
 </head>
 <body>
 
@@ -98,23 +98,12 @@
     <div class="container cad-grade">
 
         <aside class="cad-lado" data-revela>
-            <h2>O que você vai precisar</h2>
+            <h2>Depois do envio</h2>
             <ul class="cad-lista">
-                <li>CNPJ ativo da agência</li>
-                <li>Cartão CNPJ</li>
-                <li>Contrato social, com a última alteração</li>
-                <li>Comprovante de endereço da agência</li>
-                <li>RG do sócio</li>
-                <li>Dados bancários</li>
+                <li>O comercial da OFB confere a ficha e os documentos.</li>
+                <li>Você recebe o contato por telefone ou e-mail, em horário comercial.</li>
+                <li>Com o cadastro aberto, sua agência recebe os acessos e começa a operar.</li>
             </ul>
-            <p class="legenda">Documentos em PDF, JPG ou PNG, até 4 MB cada.</p>
-
-            <h2>Como funciona</h2>
-            <ol class="cad-passos">
-                <li><b>Você envia a ficha e os documentos.</b></li>
-                <li><b>O comercial da OFB confere e fala com você.</b><span>Por telefone ou e-mail, em horário comercial.</span></li>
-                <li><b>Cadastro aberto, acessos liberados.</b><span>Sua agência começa a operar.</span></li>
-            </ol>
 
             <div class="cad-contato">
                 <p class="cad-contato-rotulo">Fale conosco</p>
@@ -127,7 +116,7 @@
         <form class="cad-form" id="cad-form" action="cadastro.php" method="post"
               enctype="multipart/form-data" novalidate data-revela
               data-formulario data-assunto="Cadastro de agência" data-assunto-campo="nome_fantasia"
-              data-previa-titulo="Ficha pronta."
+              data-previa-titulo="Ficha pronta." data-aviso="Preencha os campos obrigatórios e anexe os documentos."
               data-ok="Ficha enviada. O comercial da OFB confere os documentos e entra em contato com você em horário comercial.">
 
             <div class="armadilha" aria-hidden="true">
@@ -235,43 +224,21 @@
 
             <fieldset class="form-bloco">
                 <legend>Documentos</legend>
+                <ul class="campo-lista">
+                    <li>Cartão CNPJ</li>
+                    <li>Contrato social, com a última alteração</li>
+                    <li>Comprovante de endereço da agência</li>
+                    <li>RG do sócio</li>
+                    <li>Dados bancários</li>
+                </ul>
+                <div class="campo campo--arquivo campo--largo">
+                    <label for="documentos">Escolher os arquivos</label>
+                    <input type="file" id="documentos" name="documentos[]" multiple required
+                           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+                    <p class="campo-erro" id="documentos-erro" aria-live="polite"></p>
+                </div>
                 <p class="campo-nota">PDF, JPG ou PNG, até 4 MB cada. Eles seguem direto para o
                    comercial da OFB e não ficam guardados no site.</p>
-
-                <div class="campo campo--arquivo">
-                    <label for="doc-cartao-cnpj">Cartão CNPJ</label>
-                    <input type="file" id="doc-cartao-cnpj" name="doc_cartao_cnpj" required
-                           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
-                    <p class="campo-erro" id="doc-cartao-cnpj-erro" aria-live="polite"></p>
-                </div>
-
-                <div class="campo campo--arquivo">
-                    <label for="doc-contrato">Contrato social</label>
-                    <input type="file" id="doc-contrato" name="doc_contrato" required
-                           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
-                    <p class="campo-erro" id="doc-contrato-erro" aria-live="polite"></p>
-                </div>
-
-                <div class="campo campo--arquivo">
-                    <label for="doc-endereco">Comprovante de endereço</label>
-                    <input type="file" id="doc-endereco" name="doc_endereco" required
-                           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
-                    <p class="campo-erro" id="doc-endereco-erro" aria-live="polite"></p>
-                </div>
-
-                <div class="campo campo--arquivo">
-                    <label for="doc-rg-socio">RG do sócio</label>
-                    <input type="file" id="doc-rg-socio" name="doc_rg_socio" required
-                           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
-                    <p class="campo-erro" id="doc-rg-socio-erro" aria-live="polite"></p>
-                </div>
-
-                <div class="campo campo--arquivo campo--largo">
-                    <label for="doc-bancarios">Dados bancários</label>
-                    <input type="file" id="doc-bancarios" name="doc_bancarios" required
-                           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
-                    <p class="campo-erro" id="doc-bancarios-erro" aria-live="polite"></p>
-                </div>
             </fieldset>
 
             <div class="captcha">
@@ -280,8 +247,7 @@
             </div>
 
             <div class="form-rodape">
-                <p class="legenda">Seus dados e documentos são usados só para abrir o cadastro
-                   da sua agência na OFB.</p>
+                <p class="form-aviso" aria-live="polite"></p>
                 <button class="btn btn--primario form-enviar" type="submit">
                     <span class="form-enviar-texto">Cadastrar</span>
                     <span class="form-enviar-espera" aria-hidden="true"></span>
@@ -367,7 +333,7 @@
 
 
 <script src="js/config.js?v=20260914-1"></script>
-<script src="js/site.js?v=20260914-2"></script>
-<script src="js/formularios.js?v=20260914-1"></script>
+<script src="js/site.js?v=20260914-3"></script>
+<script src="js/formularios.js?v=20260914-2"></script>
 </body>
 </html>

@@ -28,21 +28,13 @@ if (!filter_var($f['email'], FILTER_VALIDATE_EMAIL))             responder(false
 if (!preg_match('/^\d{8}$/', preg_replace('/\D/', '', $f['cep']))) responder(false, 'CEP inválido', 'cadastro.html');
 if (!preg_match('/^[A-Z]{2}$/', $f['uf']))                       responder(false, 'UF inválida', 'cadastro.html');
 
-$DOCUMENTOS = [
-    'doc_cartao_cnpj'  => 'Cartão CNPJ',
-    'doc_endereco'     => 'Comprovante de endereço',
-    'doc_rg_socio'     => 'RG do sócio',
-    'doc_contrato'     => 'Contrato social',
-    'doc_bancarios'    => 'Dados bancários',
-];
-list($anexos, $erro_anexo) = anexos($DOCUMENTOS);
+list($anexos, $erro_anexo) = anexos('documentos');
 if ($erro_anexo !== '') responder(false, $erro_anexo, 'cadastro.html');
+if (!$anexos) responder(false, 'anexe os documentos', 'cadastro.html');
 
 $recebidos = [];
-foreach ($DOCUMENTOS as $nome => $rotulo) {
-    $tem = false;
-    foreach ($anexos as $a) if ($a['rotulo'] === $rotulo) { $tem = true; $recebidos[$rotulo] = $a['nome'] . ' · ' . round($a['tamanho'] / 1024) . ' KB'; }
-    if (!$tem) $recebidos[$rotulo] = 'não enviado';
+foreach ($anexos as $i => $a) {
+    $recebidos['Arquivo ' . ($i + 1)] = $a['rotulo'] . ' · ' . round($a['tamanho'] / 1024) . ' KB';
 }
 
 $grupos = [
