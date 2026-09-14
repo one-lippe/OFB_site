@@ -29,6 +29,20 @@ cartões da Central reescritos; banner da Central em branco sobre véu escuro; l
 "Dados da empresa" e "Seu contato". Detalhe em `03_copy/03_REVISAO_LOCAL_2026-09-08.md`.
 **O Codex edita sem commit e sem subir `?v=`**: ao retomar, `git status` primeiro.
 
+**Leva de 14/09/2026 (Lippe), aplicada:** barra "Acessar" sempre visível, com os dois acessos em
+botão (verde do agente.tur, azul do portal), e o hero começando abaixo das duas barras em qualquer
+tela. Cadastro reescrito: coluna da esquerda com "O que você vai precisar" (o que a categoria pede:
+CNPJ ativo e os cinco documentos, como Rextur e Trend fazem em "Seja cliente"), "Como funciona" em
+três passos sem frase promocional, e "Fale conosco"; cinco anexos obrigatórios (Cartão CNPJ,
+contrato social, comprovante de endereço, RG do sócio, dados bancários) em PDF/JPG/PNG, 4 MB
+cada, 15 MB no total, **que vão anexados no e-mail e não ficam no servidor**. Seção "Receba nossos
+informativos" na home, abaixo da Central, com `informativos.php`. Um só script para os dois
+formulários (`js/formularios.js`), um só motor de e-mail (`_envio.php`) com e-mail em HTML
+espaçado, rótulo em cima e valor embaixo, e versão em texto. Captcha reCAPTCHA v2 nos dois,
+ligado só quando houver chave (`js/config.js`). Hero: "Bem-vindo (a) à OFB.". Blog com busca e
+filtro por assunto, no mesmo desenho da Central; filtro e busca viraram padrão da `site.css`.
+Estilos de campo de formulário também (`.campo`, `.form-bloco`, `.form-resultado`).
+
 **Revisão no iPhone (Lippe, 08/09 à tarde), aplicada e publicada:** no celular o hero começa
 abaixo das duas barras do header (antes 40 px de cada tela sumiam atrás da barra de cima); tela 2
 com os três números em linhas alinhadas; tela 3 com três cartões lado a lado sem descrição e o
@@ -56,10 +70,12 @@ Tudo construído sem perguntar, como pedido. O que é decisão sua e pode mudar:
   Você faz a foto definitiva no Photoshop; ao trocar, manter o texto fora da imagem (`06_CENTRAL` §2b)
 
 ### 2. Antes da Locaweb, confirmar com a OFB
-- `cadastro.php`: **`REMETENTE`** precisa ser um e-mail real do domínio `ofb.com.br`, e
-  **`DESTINO`** (`comercial@ofb.com.br`) precisa ser quem recebe ficha. Está tudo em
-  `PUBLICAR.md` §3.1
-- A hospedagem Locaweb **roda PHP?** Sem isso o formulário não envia em produção
+- `_envio.php`: **`REMETENTE`** precisa ser um e-mail real do domínio `ofb.com.br`. **`DESTINO`**
+  está em `philippe@ofb.com.br` para teste (decisão de 14/09) e vira `comercial@ofb.com.br` na
+  subida. Está tudo em `PUBLICAR.md` §3.1, junto com HTTPS, limites de upload e captcha
+- A hospedagem Locaweb **roda PHP?** Sem isso os dois formulários não enviam em produção
+- **Chaves do reCAPTCHA** (v2, "Não sou um robô"): você cria, eu ponho no lugar. Até lá o
+  captcha fica escondido e os formulários funcionam sem ele
 
 ### 3. GitHub Pages · no ar desde 08/09
 `https://one-lippe.github.io/OFB_site/`, repositório `one-lippe/OFB_site`. Atualizar é commit + push
@@ -86,8 +102,10 @@ não mexer; fica registrado.
 ## Com quem pegar o projeto
 
 ### 8. O que não deu para testar nesta máquina
-- **`cadastro.php`**: não há PHP local. Sintaxe conferida a olho, lógica espelha o JS. Testar na
-  Locaweb com uma ficha real (`PUBLICAR.md` §3.2)
+- **`_envio.php`, `cadastro.php` e `informativos.php`**: não há PHP local. Sintaxe conferida a olho,
+  lógica espelha o JS. Testar na Locaweb com uma ficha real com os cinco anexos e um cadastro
+  de informativo (`PUBLICAR.md` §3.2). O e-mail em HTML foi desenhado sem cliente de e-mail
+  para abrir: conferir no Gmail e no Outlook
 - **Fallback WebP no Safari antigo**: não há Safari < 16.4 aqui. O caminho foi conferido no
   código (detecção por imagem AVIF de 1×1, troca de pasta e extensão); a prova real é abrir num
   iPhone com iOS 15
@@ -119,7 +137,9 @@ Continuam esperando o site na Locaweb (`05_CADASTRO_DE_PROMOCOES.md` §7, `07_BL
 | `_teste/medir-avif.html` | mede o custo de AVIF e WebP no navegador em que abrir |
 | `_teste/capturar.mjs` | captura de tela pelo DevTools Protocol do Chrome (`node _teste/capturar.mjs '<json>'`): celular, movimento reduzido, JS antes da foto. O `chrome --screenshot` travava neste site |
 | `js/consolidacao.js` | bilhete e carimbo. `TESTE=true` põe em ciclo |
-| `js/cadastro.js` | máscaras, validação e envio da ficha |
+| `js/formularios.js` | máscaras, validação (inclusive anexos), captcha e envio de qualquer `form[data-formulario]` |
+| `js/config.js` | chave do site do reCAPTCHA e o e-mail de destino da prévia |
+| `_envio.php` | motor de e-mail dos formulários: validação, anexos, HTML + texto, captcha. `cadastro.php` e `informativos.php` usam |
 
 **Versões de arquivo por página (a mão):** `central.css` 20260908-4 · `cadastro.css` 20260908-1 ·
 `hero.js` 20260908-1 · `consolidacao.js` 20260904-2 · `cadastro.js` 20260908-1.

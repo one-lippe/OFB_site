@@ -19,8 +19,8 @@
 
 <link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/site.css?v=20260908-4">
-<link rel="stylesheet" href="blog/blog.css?v=20260908">
+<link rel="stylesheet" href="css/site.css?v=20260914-2">
+<link rel="stylesheet" href="blog/blog.css?v=20260914">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
         <div class="container">
             <span class="topo-rotulo">Acessar</span>
 
-            <a class="acesso" href="https://www.agente.tur.br" target="_blank" rel="noopener">
+            <a class="acesso acesso--agentetur" href="https://www.agente.tur.br" target="_blank" rel="noopener">
                 agente.tur
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -42,7 +42,7 @@
 
             <span class="topo-sep" aria-hidden="true">|</span>
 
-            <a class="acesso" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
+            <a class="acesso acesso--portal" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
                 Consolidação
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -90,16 +90,36 @@
             <p class="subtitulo">Notícia de turismo e conteúdo da OFB, para quem vende viagem.</p>
         </div>
 
-        <div class="filtros" role="group" aria-label="Filtrar por tipo">
-            <button class="filtro" type="button" data-trilha="todas"    aria-pressed="true">Todos</button>
-            <button class="filtro" type="button" data-trilha="noticia"  aria-pressed="false">Notícia de turismo</button>
-            <button class="filtro" type="button" data-trilha="ofb"      aria-pressed="false">Conteúdo OFB</button>
+        <div class="controles">
+            <div class="filtros" role="group" aria-label="Filtrar por tipo">
+                <button class="filtro" type="button" data-trilha="todas"    aria-pressed="true">Todos</button>
+                <button class="filtro" type="button" data-trilha="noticia"  aria-pressed="false">Notícia de turismo</button>
+                <button class="filtro" type="button" data-trilha="ofb"      aria-pressed="false">Conteúdo OFB</button>
+            </div>
+            <div class="busca">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7"/>
+                    <path d="M20 20l-3.5-3.5"/>
+                </svg>
+                <label class="sr-only" for="busca-blog">Buscar post por assunto, destino ou título</label>
+                <input id="busca-blog" type="search" data-busca autocomplete="off"
+                       placeholder="Buscar assunto, destino ou título">
+            </div>
+        </div>
+
+        <div class="filtros filtros--assuntos" role="group" aria-label="Filtrar por assunto">
+            <button class="filtro filtro--assunto" type="button" data-categoria="todas" aria-pressed="true">Todos os assuntos</button>
+            <button class="filtro filtro--assunto" type="button" data-categoria="destino" aria-pressed="false">Destino</button>
+            <button class="filtro filtro--assunto" type="button" data-categoria="tendencia" aria-pressed="false">Tendência</button>
+            <button class="filtro filtro--assunto" type="button" data-categoria="capacitacao" aria-pressed="false">Capacitação</button>
         </div>
 
         <p class="sr-only" role="status" data-contagem></p>
 
         <ul class="lista">
-            <li class="lista-item" data-trilha="ofb">
+            <li class="lista-item" data-trilha="ofb" data-categoria="capacitacao"
+                data-termos="o que muda quando a agencia emite com uma consolidadora emissao  remarcacao e reembolso deixam de depender de acordo proprio com cada companhia  o que a agencia ganha  e o que continua sendo dela  capacitacao conteudo ofb">
                 <a class="lista-cartao" href="blog/emitir-com-consolidadora.html">
                     <span class="lista-capa">
                         <img src="blog/img/emitir-com-consolidadora-capa.jpg" alt="" loading="lazy"
@@ -116,7 +136,8 @@
                     </span>
                 </a>
             </li>
-            <li class="lista-item" data-trilha="noticia">
+            <li class="lista-item" data-trilha="noticia" data-categoria="destino"
+                data-termos="alta temporada no nordeste  o que fechar antes de outubro aereo e hospedagem no nordeste se comportam de formas diferentes conforme o fim do ano chega  um roteiro do que costuma apertar primeiro  destino noticia de turismo">
                 <a class="lista-cartao" href="blog/alta-temporada-nordeste.html">
                     <span class="lista-capa">
                         <img src="blog/img/alta-temporada-nordeste-capa.jpg" alt="" loading="lazy"
@@ -133,7 +154,8 @@
                     </span>
                 </a>
             </li>
-            <li class="lista-item" data-trilha="noticia">
+            <li class="lista-item" data-trilha="noticia" data-categoria="tendencia"
+                data-termos="reveillon e a viagem que o cliente decide primeiro enquanto o resto do calendario se decide em cima da hora  a virada do ano e planejada com meses de antecedencia  o que isso significa para o funil da agencia  tendencia noticia de turismo">
                 <a class="lista-cartao" href="blog/reveillon-decide-primeiro.html">
                     <span class="lista-capa">
                         <img src="blog/img/reveillon-decide-primeiro-capa.jpg" alt="" loading="lazy"
@@ -228,38 +250,67 @@
     </div>
 </footer>
 
-<script src="js/site.js?v=20260908-4"></script>
+<script src="js/site.js?v=20260914-2"></script>
 <script>
 (function () {
 'use strict';
-var filtros = Array.prototype.slice.call(document.querySelectorAll('[data-trilha][type]'));
-var itens   = Array.prototype.slice.call(document.querySelectorAll('.lista-item'));
-var vazio   = document.querySelector('[data-vazio]');
-var conta   = document.querySelector('[data-contagem]');
-if (!filtros.length || !itens.length) return;
+var trilhas    = Array.prototype.slice.call(document.querySelectorAll('[data-trilha][type]'));
+var categorias = Array.prototype.slice.call(document.querySelectorAll('[data-categoria][type]'));
+var itens      = Array.prototype.slice.call(document.querySelectorAll('.lista-item'));
+var busca      = document.querySelector('[data-busca]');
+var vazio      = document.querySelector('[data-vazio]');
+var conta      = document.querySelector('[data-contagem]');
+if (!itens.length) return;
 
-function aplicar(trilha) {
+var trilha = 'todas', categoria = 'todas', termo = '';
+
+function simplificar(t) {
+    return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]+/g, ' ').trim();
+}
+
+itens.forEach(function (item) {
+    item.setAttribute('data-indice', simplificar(item.getAttribute('data-termos') || item.textContent));
+});
+
+function aplicar() {
+    var palavras = termo ? termo.split(/\s+/) : [];
     var vistos = 0;
     itens.forEach(function (item) {
-        var fica = (trilha === 'todas' || item.getAttribute('data-trilha') === trilha);
+        var fica = (trilha === 'todas' || item.getAttribute('data-trilha') === trilha)
+                && (categoria === 'todas' || item.getAttribute('data-categoria') === categoria);
+        if (fica && palavras.length) {
+            var indice = item.getAttribute('data-indice');
+            fica = palavras.every(function (p) { return indice.indexOf(p) >= 0; });
+        }
         item.hidden = !fica;
         if (fica) vistos++;
     });
-    if (vazio) vazio.hidden = vistos > 0;
-    if (conta) conta.textContent = vistos === 0
-        ? 'Nenhum post deste tipo.'
-        : vistos + (vistos === 1 ? ' post na tela.' : ' posts na tela.');
+    if (vazio) {
+        vazio.hidden = vistos > 0;
+        vazio.textContent = termo ? 'Nada encontrado para “' + busca.value.trim() + '”.' : 'Nenhum post deste tipo ainda.';
+    }
+    if (conta) conta.textContent = vistos === 0 ? 'Nenhum post na tela.' : vistos + (vistos === 1 ? ' post na tela.' : ' posts na tela.');
 }
 
-filtros.forEach(function (botao) {
-    botao.addEventListener('click', function () {
-        filtros.forEach(function (b) {
-            b.setAttribute('aria-pressed', b === botao ? 'true' : 'false');
+function ligar(botoes, atributo, definir) {
+    botoes.forEach(function (botao) {
+        botao.addEventListener('click', function () {
+            botoes.forEach(function (b) { b.setAttribute('aria-pressed', b === botao ? 'true' : 'false'); });
+            definir(botao.getAttribute(atributo));
+            aplicar();
         });
-        aplicar(botao.getAttribute('data-trilha'));
     });
-});
-aplicar('todas');
+}
+ligar(trilhas, 'data-trilha', function (v) { trilha = v; });
+ligar(categorias, 'data-categoria', function (v) { categoria = v; });
+
+if (busca) {
+    busca.addEventListener('input', function () { termo = simplificar(busca.value.trim()); aplicar(); });
+    busca.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && busca.value) { busca.value = ''; termo = ''; aplicar(); }
+    });
+}
+aplicar();
 })();
 </script>
 </body>

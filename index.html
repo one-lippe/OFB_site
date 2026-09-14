@@ -13,7 +13,7 @@
 
 <link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/site.css?v=20260908-4">
+<link rel="stylesheet" href="css/site.css?v=20260914-2">
 
 <link rel="preload" as="image" href="hero/poster-d.jpg" media="(min-width: 901px)">
 <link rel="preload" as="image" href="hero/poster-m.jpg" media="(max-width: 900px)">
@@ -30,7 +30,7 @@
         <div class="container">
             <span class="topo-rotulo">Acessar</span>
 
-            <a class="acesso" href="https://www.agente.tur.br" target="_blank" rel="noopener">
+            <a class="acesso acesso--agentetur" href="https://www.agente.tur.br" target="_blank" rel="noopener">
                 agente.tur
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -41,7 +41,7 @@
 
             <span class="topo-sep" aria-hidden="true">|</span>
 
-            <a class="acesso" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
+            <a class="acesso acesso--portal" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
                 Consolidação
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -204,7 +204,7 @@
                     </h2>
                     <p class="chegada-fecho">Do primeiro contato ao pós-venda,
                        conte com a gente.</p>
-                    <p class="chegada-fecho">Bem-vindo à OFB.</p>
+                    <p class="chegada-fecho">Bem-vindo (a) à OFB.</p>
                 </div>
             </div>
 
@@ -523,6 +523,69 @@
     </div>
 </section>
 
+<section class="secao informativos" id="informativos" aria-labelledby="informativos-titulo">
+    <div class="container informativos-grade" data-revela>
+
+        <div class="informativos-texto">
+            <span class="filete" aria-hidden="true"></span>
+            <h2 id="informativos-titulo">Receba nossos informativos</h2>
+            <p>Promoções, novidades e conteúdo da OFB, direto no e-mail da sua agência.</p>
+        </div>
+
+        <form class="informativos-form" id="informativos-form" action="informativos.php" method="post"
+              novalidate data-formulario data-assunto="Informativos" data-assunto-campo="agencia"
+              data-previa-titulo="Cadastro pronto."
+              data-ok="Cadastro feito. Os informativos da OFB passam a chegar no seu e-mail.">
+
+            <div class="armadilha" aria-hidden="true">
+                <label for="info-site">Site</label>
+                <input type="text" id="info-site" name="site" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="form-bloco">
+                <div class="campo">
+                    <label for="info-nome">Nome</label>
+                    <input type="text" id="info-nome" name="nome" required autocomplete="name" maxlength="80">
+                    <p class="campo-erro" id="info-nome-erro" aria-live="polite"></p>
+                </div>
+                <div class="campo">
+                    <label for="info-agencia">Agência</label>
+                    <input type="text" id="info-agencia" name="agencia" required autocomplete="organization" maxlength="120">
+                    <p class="campo-erro" id="info-agencia-erro" aria-live="polite"></p>
+                </div>
+                <div class="campo">
+                    <label for="info-email">E-mail</label>
+                    <input type="email" id="info-email" name="email" required autocomplete="email" maxlength="120">
+                    <p class="campo-erro" id="info-email-erro" aria-live="polite"></p>
+                </div>
+                <div class="campo">
+                    <label for="info-telefone">Telefone</label>
+                    <input type="tel" id="info-telefone" name="telefone" required inputmode="tel"
+                           autocomplete="tel-national" placeholder="(71) 90000-0000"
+                           data-mascara="telefone" maxlength="15">
+                    <p class="campo-erro" id="info-telefone-erro" aria-live="polite"></p>
+                </div>
+            </div>
+
+            <div class="captcha">
+                <div class="g-recaptcha"></div>
+                <p class="campo-erro" id="info-captcha-erro" aria-live="polite"></p>
+            </div>
+
+            <div class="form-rodape">
+                <p class="legenda">Só para os informativos da OFB. Você pode sair da lista quando quiser.</p>
+                <button class="btn btn--primario form-enviar" type="submit">
+                    <span class="form-enviar-texto">Cadastrar</span>
+                    <span class="form-enviar-espera" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <div class="form-resultado" role="status" aria-live="polite" hidden></div>
+        </form>
+
+    </div>
+</section>
+
 </main>
 
 <footer class="rodape" id="rodape">
@@ -594,9 +657,11 @@
     </div>
 </footer>
 
-<script src="js/site.js?v=20260908-4"></script>
+<script src="js/config.js?v=20260914-1"></script>
+<script src="js/site.js?v=20260914-2"></script>
 <script src="js/hero.js?v=20260908-1"></script>
 <script src="js/contador.js"></script>
 <script src="js/consolidacao.js?v=20260904-2"></script>
+<script src="js/formularios.js?v=20260914-1"></script>
 </body>
 </html>

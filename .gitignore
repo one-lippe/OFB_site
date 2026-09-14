@@ -14,3 +14,5 @@ _blog_fonte/notion_cache/
 
 # Perfil do Chrome de captura de tela, se alguém rodar aqui dentro.
 chrome-profile*/
+
+_segredos.php

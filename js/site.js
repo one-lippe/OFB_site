@@ -3,16 +3,10 @@
 'use strict';
 
 var cabecalho = document.querySelector('.cabecalho');
-var encolhido = false;
 var ticking   = false;
 
 function aoRolar() {
-    var y = window.scrollY;
-
-    if (!encolhido && y > 60)      { encolhido = true;  cabecalho.classList.add('encolhido'); }
-    else if (encolhido && y < 20)  { encolhido = false; cabecalho.classList.remove('encolhido'); }
-
-    cabecalho.classList.toggle('rolado', y > 8);
+    cabecalho.classList.toggle('rolado', window.scrollY > 8);
     ticking = false;
 }
 

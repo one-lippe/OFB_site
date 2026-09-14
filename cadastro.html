@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <title>Cadastre sua agência · OFB</title>
-<meta name="description" content="Preencha a ficha e o time comercial da OFB entra em contato para abrir o cadastro da sua agência de viagens.">
-
+<meta name="description" content="Preencha a ficha, anexe os documentos e o time comercial da OFB entra em contato para abrir o cadastro da sua agência de viagens.">
 <meta name="robots" content="noindex, nofollow">
 
 <link rel="icon" type="image/png" href="img/favicon.png">
@@ -14,8 +13,8 @@
 <link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="css/site.css?v=20260908-4">
-<link rel="stylesheet" href="css/cadastro.css?v=20260908-1">
+<link rel="stylesheet" href="css/site.css?v=20260914-2">
+<link rel="stylesheet" href="css/cadastro.css?v=20260914-1">
 </head>
 <body>
 
@@ -27,7 +26,7 @@
         <div class="container">
             <span class="topo-rotulo">Acessar</span>
 
-            <a class="acesso" href="https://www.agente.tur.br" target="_blank" rel="noopener">
+            <a class="acesso acesso--agentetur" href="https://www.agente.tur.br" target="_blank" rel="noopener">
                 agente.tur
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -38,7 +37,7 @@
 
             <span class="topo-sep" aria-hidden="true">|</span>
 
-            <a class="acesso" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
+            <a class="acesso acesso--portal" href="https://portal.tpair.com.br/Agencias30/" target="_blank" rel="noopener">
                 Consolidação
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -76,6 +75,7 @@
 </header>
 <div class="veu" aria-hidden="true"></div>
 
+
 <main id="conteudo">
 
 <section class="cad-abertura" aria-labelledby="cad-titulo">
@@ -98,15 +98,26 @@
     <div class="container cad-grade">
 
         <aside class="cad-lado" data-revela>
-            <h2>O que acontece depois</h2>
+            <h2>O que você vai precisar</h2>
+            <ul class="cad-lista">
+                <li>CNPJ ativo da agência</li>
+                <li>Cartão CNPJ</li>
+                <li>Contrato social, com a última alteração</li>
+                <li>Comprovante de endereço da agência</li>
+                <li>RG do sócio</li>
+                <li>Dados bancários</li>
+            </ul>
+            <p class="legenda">Documentos em PDF, JPG ou PNG, até 4 MB cada.</p>
+
+            <h2>Como funciona</h2>
             <ol class="cad-passos">
-                <li><b>Você envia a ficha.</b><span>Preencha os dados da empresa e seu contato.</span></li>
-                <li><b>O comercial da OFB fala com você.</b><span>Por telefone ou e-mail, em horário comercial.</span></li>
-                <li><b>Cadastro aberto, sua agência começa a operar.</b><span>Consolidação aérea e operação terrestre, na mesma casa.</span></li>
+                <li><b>Você envia a ficha e os documentos.</b></li>
+                <li><b>O comercial da OFB confere e fala com você.</b><span>Por telefone ou e-mail, em horário comercial.</span></li>
+                <li><b>Cadastro aberto, acessos liberados.</b><span>Sua agência começa a operar.</span></li>
             </ol>
 
             <div class="cad-contato">
-                <p class="cad-contato-rotulo">Prefere falar direto?</p>
+                <p class="cad-contato-rotulo">Fale conosco</p>
                 <a href="mailto:comercial@ofb.com.br">comercial@ofb.com.br</a>
                 <a href="tel:+557133415100">(71) 3341-5100</a>
                 <p class="legenda">Segunda a sexta das 9h às 19h · Sábados das 9h às 13h</p>
@@ -114,96 +125,99 @@
         </aside>
 
         <form class="cad-form" id="cad-form" action="cadastro.php" method="post"
-              novalidate data-revela>
+              enctype="multipart/form-data" novalidate data-revela
+              data-formulario data-assunto="Cadastro de agência" data-assunto-campo="nome_fantasia"
+              data-previa-titulo="Ficha pronta."
+              data-ok="Ficha enviada. O comercial da OFB confere os documentos e entra em contato com você em horário comercial.">
 
-            <div class="cad-armadilha" aria-hidden="true">
+            <div class="armadilha" aria-hidden="true">
                 <label for="cad-site">Site</label>
                 <input type="text" id="cad-site" name="site" tabindex="-1" autocomplete="off">
             </div>
 
-            <fieldset class="cad-bloco">
+            <fieldset class="form-bloco">
                 <legend>Dados da empresa</legend>
 
-                <div class="cad-campo cad-campo--largo">
+                <div class="campo campo--largo">
                     <label for="cad-razao">Razão social</label>
                     <input type="text" id="cad-razao" name="razao_social" required
                            autocomplete="organization" maxlength="120">
-                    <p class="cad-erro" id="cad-razao-erro" aria-live="polite"></p>
+                    <p class="campo-erro" id="cad-razao-erro" aria-live="polite"></p>
                 </div>
 
-                <div class="cad-campo">
+                <div class="campo">
                     <label for="cad-fantasia">Nome fantasia</label>
                     <input type="text" id="cad-fantasia" name="nome_fantasia" required maxlength="120">
-                    <p class="cad-erro" id="cad-fantasia-erro" aria-live="polite"></p>
+                    <p class="campo-erro" id="cad-fantasia-erro" aria-live="polite"></p>
                 </div>
 
-                <div class="cad-campo">
+                <div class="campo">
                     <label for="cad-cnpj">CNPJ</label>
                     <input type="text" id="cad-cnpj" name="cnpj" required inputmode="numeric"
                            placeholder="00.000.000/0000-00" data-mascara="cnpj"
                            pattern="\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}" maxlength="18">
-                    <p class="cad-erro" id="cad-cnpj-erro" aria-live="polite"></p>
+                    <p class="campo-erro" id="cad-cnpj-erro" aria-live="polite"></p>
                 </div>
             </fieldset>
 
-            <fieldset class="cad-bloco">
+            <fieldset class="form-bloco">
                 <legend>Seu contato</legend>
 
-                <div class="cad-campo cad-campo--largo">
+                <div class="campo campo--largo">
                     <label for="cad-nome">Seu nome</label>
                     <input type="text" id="cad-nome" name="responsavel" required
                            autocomplete="name" maxlength="80">
-                    <p class="cad-erro" id="cad-nome-erro" aria-live="polite"></p>
+                    <p class="campo-erro" id="cad-nome-erro" aria-live="polite"></p>
                 </div>
 
-                <div class="cad-campo">
+                <div class="campo">
                     <label for="cad-telefone">Telefone ou WhatsApp</label>
                     <input type="tel" id="cad-telefone" name="telefone" required inputmode="tel"
                            autocomplete="tel-national" placeholder="(71) 90000-0000"
                            data-mascara="telefone" maxlength="15">
-                    <p class="cad-erro" id="cad-telefone-erro" aria-live="polite"></p>
+                    <p class="campo-erro" id="cad-telefone-erro" aria-live="polite"></p>
                 </div>
 
-                <div class="cad-campo">
+                <div class="campo">
                     <label for="cad-email">E-mail</label>
                     <input type="email" id="cad-email" name="email" required
                            autocomplete="email" maxlength="120">
-                    <p class="cad-erro" id="cad-email-erro" aria-live="polite"></p>
+                    <p class="campo-erro" id="cad-email-erro" aria-live="polite"></p>
                 </div>
             </fieldset>
 
-            <fieldset class="cad-bloco">
+            <fieldset class="form-bloco">
                 <legend>Endereço</legend>
 
-                <div class="cad-campo cad-campo--curto">
+                <div class="campo campo--curto">
                     <label for="cad-cep">CEP</label>
                     <input type="text" id="cad-cep" name="cep" required inputmode="numeric"
                            autocomplete="postal-code" placeholder="00000-000"
                            data-mascara="cep" pattern="\d{5}-\d{3}" maxlength="9">
-                    <p class="cad-erro" id="cad-cep-erro" aria-live="polite"></p>
+                    <p class="campo-erro" id="cad-cep-erro" aria-live="polite"></p>
                 </div>
 
-                <div class="cad-campo cad-campo--largo">
+                <div class="campo campo--largo">
                     <label for="cad-endereco">Endereço</label>
                     <input type="text" id="cad-endereco" name="endereco" required
                            autocomplete="street-address" placeholder="Rua, número e complemento" maxlength="160">
-                    <p class="cad-erro" id="cad-endereco-erro" aria-live="polite"></p>
+                    <p class="campo-erro" id="cad-endereco-erro" aria-live="polite"></p>
                 </div>
 
-                <div class="cad-campo">
+                <div class="campo">
                     <label for="cad-bairro">Bairro</label>
                     <input type="text" id="cad-bairro" name="bairro" required maxlength="80">
-                    <p class="cad-erro" id="cad-bairro-erro" aria-live="polite"></p>
+                    <p class="campo-erro" id="cad-bairro-erro" aria-live="polite"></p>
                 </div>
 
-                <div class="cad-campo">
+                <div class="campo">
                     <label for="cad-cidade">Cidade</label>
                     <input type="text" id="cad-cidade" name="cidade" required
                            autocomplete="address-level2" maxlength="80">
-                    <p class="cad-erro" id="cad-cidade-erro" aria-live="polite"></p>
+                    <p class="campo-erro" id="cad-cidade-erro" aria-live="polite"></p>
                 </div>
 
-                <div class="cad-campo cad-campo--curto">
+                <div class="campo campo--curto">
                     <label for="cad-uf">Estado</label>
                     <select id="cad-uf" name="uf" required autocomplete="address-level1">
                         <option value="">UF</option>
@@ -215,19 +229,66 @@
                         <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
                         <option>SP</option><option>SE</option><option>TO</option>
                     </select>
-                    <p class="cad-erro" id="cad-uf-erro" aria-live="polite"></p>
+                    <p class="campo-erro" id="cad-uf-erro" aria-live="polite"></p>
                 </div>
             </fieldset>
 
-            <div class="cad-rodape">
-                <p class="legenda">Seus dados são usados só para o contato comercial da OFB.</p>
-                <button class="btn btn--primario cad-enviar" type="submit">
-                    <span class="cad-enviar-texto">Cadastrar</span>
-                    <span class="cad-enviar-espera" aria-hidden="true"></span>
+            <fieldset class="form-bloco">
+                <legend>Documentos</legend>
+                <p class="campo-nota">PDF, JPG ou PNG, até 4 MB cada. Eles seguem direto para o
+                   comercial da OFB e não ficam guardados no site.</p>
+
+                <div class="campo campo--arquivo">
+                    <label for="doc-cartao-cnpj">Cartão CNPJ</label>
+                    <input type="file" id="doc-cartao-cnpj" name="doc_cartao_cnpj" required
+                           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+                    <p class="campo-erro" id="doc-cartao-cnpj-erro" aria-live="polite"></p>
+                </div>
+
+                <div class="campo campo--arquivo">
+                    <label for="doc-contrato">Contrato social</label>
+                    <input type="file" id="doc-contrato" name="doc_contrato" required
+                           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+                    <p class="campo-erro" id="doc-contrato-erro" aria-live="polite"></p>
+                </div>
+
+                <div class="campo campo--arquivo">
+                    <label for="doc-endereco">Comprovante de endereço</label>
+                    <input type="file" id="doc-endereco" name="doc_endereco" required
+                           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+                    <p class="campo-erro" id="doc-endereco-erro" aria-live="polite"></p>
+                </div>
+
+                <div class="campo campo--arquivo">
+                    <label for="doc-rg-socio">RG do sócio</label>
+                    <input type="file" id="doc-rg-socio" name="doc_rg_socio" required
+                           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+                    <p class="campo-erro" id="doc-rg-socio-erro" aria-live="polite"></p>
+                </div>
+
+                <div class="campo campo--arquivo campo--largo">
+                    <label for="doc-bancarios">Dados bancários</label>
+                    <input type="file" id="doc-bancarios" name="doc_bancarios" required
+                           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+                    <p class="campo-erro" id="doc-bancarios-erro" aria-live="polite"></p>
+                </div>
+            </fieldset>
+
+            <div class="captcha">
+                <div class="g-recaptcha"></div>
+                <p class="campo-erro" id="cad-captcha-erro" aria-live="polite"></p>
+            </div>
+
+            <div class="form-rodape">
+                <p class="legenda">Seus dados e documentos são usados só para abrir o cadastro
+                   da sua agência na OFB.</p>
+                <button class="btn btn--primario form-enviar" type="submit">
+                    <span class="form-enviar-texto">Cadastrar</span>
+                    <span class="form-enviar-espera" aria-hidden="true"></span>
                 </button>
             </div>
 
-            <div class="cad-resultado" role="status" aria-live="polite" hidden></div>
+            <div class="form-resultado" role="status" aria-live="polite" hidden></div>
         </form>
 
     </div>
@@ -304,7 +365,9 @@
     </div>
 </footer>
 
-<script src="js/site.js?v=20260908-4"></script>
-<script src="js/cadastro.js?v=20260908-1"></script>
+
+<script src="js/config.js?v=20260914-1"></script>
+<script src="js/site.js?v=20260914-2"></script>
+<script src="js/formularios.js?v=20260914-1"></script>
 </body>
 </html>

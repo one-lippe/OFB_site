@@ -67,9 +67,21 @@ Dentro do limite do Pages (1 GB), mas o primeiro push demora.
 
 - [ ] Hospedagem Locaweb da OFB: qual plano, **roda PHP?** (o `cadastro.php` precisa), tem painel/cPanel, qual a pasta pública (`public_html/` ou equivalente)
 - [ ] Credenciais de FTP: as mesmas da skill `email-mkt-ofb`. Reutilizar, não duplicar
-- [ ] `cadastro.php`, linha `REMETENTE`: precisa ser um e-mail do domínio `ofb.com.br` que exista
+- [ ] `_envio.php`, linha `REMETENTE`: precisa ser um e-mail do domínio `ofb.com.br` que exista
   (a Locaweb recusa `From` de fora do domínio). Confirmar com a OFB qual
-- [ ] `cadastro.php`, linha `DESTINO`: `comercial@ofb.com.br` recebe as fichas? Confirmar
+- [ ] **`_envio.php`, linha `DESTINO`: hoje aponta para `DESTINO_TESTE` (`philippe@ofb.com.br`).
+  Na subida para ofb.com.br trocar para `DESTINO_FINAL` (`comercial@ofb.com.br`).** Decisão do
+  Lippe em 14/09/2026. O mesmo vale para `js/config.js` (`window.OFB.destino`), que é o e-mail
+  que a prévia usa no `mailto:`
+- [ ] **HTTPS ligado na Locaweb antes de o cadastro receber documentos** (Let's Encrypt no painel).
+  O formulário anexa contrato social, RG e dados bancários: sem HTTPS eles viajam abertos
+- [ ] **PHP: `upload_max_filesize` ≥ 8M e `post_max_size` ≥ 24M** (o cadastro aceita 5 documentos
+  de até 4 MB, 15 MB no total). Conferir no painel ou num `phpinfo()` temporário
+- [ ] **reCAPTCHA v2 ("Não sou um robô")**: criar as chaves em https://www.google.com/recaptcha/admin
+  com os domínios `ofb.com.br`, `www.ofb.com.br`, `one-lippe.github.io` e `localhost`. A **chave do
+  site** vai em `js/config.js` (`recaptchaSiteKey`); a **chave secreta** vai num arquivo
+  `_segredos.php` criado à mão no servidor (modelo em `_segredos.exemplo.php`; o `.gitignore`
+  impede que suba). Sem a chave do site o captcha não aparece e o servidor não exige
 - [ ] O post `[TESTE]` do Notion segue em Rascunho; o blog no ar sobe com os três posts de
   exemplo **ou** com posts reais já em `Publicado` na base. Decidir e regerar
   (`python3 _gerar_blog.py --fonte notion`; ver `_blog_fonte/LEIA.md`)
