@@ -13,7 +13,7 @@
 <link rel="preload" href="fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Montserrat-Regular.woff2"   as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="css/site.css?v=20260914-3">
+<link rel="stylesheet" href="css/site.css?v=20260914-4">
 <link rel="stylesheet" href="css/cadastro.css?v=20260914-3">
 </head>
 <body>
@@ -226,8 +226,12 @@
                 </ul>
                 <div class="campo campo--arquivo campo--largo">
                     <label for="documentos">Escolher os arquivos</label>
-                    <input type="file" id="documentos" name="documentos[]" multiple required
-                           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+                    <div class="arquivos">
+                        <input type="file" id="documentos" name="documentos[]" multiple required
+                               accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+                        <span class="arquivos-botao" aria-hidden="true">Escolher arquivos</span>
+                        <span class="arquivos-nomes" aria-live="polite">Nenhum arquivo escolhido</span>
+                    </div>
                     <p class="campo-erro" id="documentos-erro" aria-live="polite"></p>
                 </div>
                 <p class="campo-nota">PDF, JPG ou PNG, até 4 MB cada. Eles seguem direto para o
@@ -326,7 +330,7 @@
 
 
 <script src="js/config.js?v=20260914-1"></script>
-<script src="js/site.js?v=20260914-3"></script>
-<script src="js/formularios.js?v=20260914-2"></script>
+<script src="js/site.js?v=20260914-4"></script>
+<script src="js/formularios.js?v=20260914-3"></script>
 </body>
 </html>

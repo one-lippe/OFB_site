@@ -140,7 +140,27 @@ forms.forEach(function (form) {
     campos.forEach(function (campo) {
         var f = MASCARAS[campo.getAttribute('data-mascara')];
         if (f) campo.addEventListener('input', function () { campo.value = f(campo.value.replace(/\D/g, '')); });
-        if (campo.type === 'file') campo.addEventListener('change', function () { marcar(campo, mensagemDe(campo)); });
+        if (campo.type === 'file') {
+            var caixa = campo.closest('.arquivos');
+            var nomes = caixa && caixa.querySelector('.arquivos-nomes');
+            campo.addEventListener('change', function () {
+                if (nomes) {
+                    var lista = campo.files ? Array.prototype.slice.call(campo.files) : [];
+                    nomes.innerHTML = lista.length
+                        ? lista.map(function (f) { return '<span>' + f.name.replace(/[<>&]/g, '') + '</span>'; }).join('')
+                        : 'Nenhum arquivo escolhido';
+                }
+                marcar(campo, mensagemDe(campo));
+            });
+            if (caixa) {
+                ['dragenter', 'dragover'].forEach(function (ev) {
+                    caixa.addEventListener(ev, function (e) { e.preventDefault(); caixa.classList.add('arrastando'); });
+                });
+                ['dragleave', 'drop'].forEach(function (ev) {
+                    caixa.addEventListener(ev, function () { caixa.classList.remove('arrastando'); });
+                });
+            }
+        }
         campo.addEventListener('blur', function () { marcar(campo, mensagemDe(campo)); });
         campo.addEventListener('input', function () {
             if (campo.closest('.campo').classList.contains('invalido')) marcar(campo, mensagemDe(campo));

@@ -2072,27 +2072,53 @@ p { max-width: 65ch; }
 
 .enviado > :not(.form-resultado) { display: none; }
 
-.campo--arquivo input[type="file"] {
-    padding: 8px 10px;
-    font-size: 0.9375rem;
-    color: var(--cinza-texto);
+.arquivos {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 14px;
+    min-height: 124px;
+    padding: 20px;
+    border: 1.5px dashed #C9C6C7;
+    border-radius: var(--raio);
+    background: var(--branco);
+    transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+.arquivos input[type="file"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
     cursor: pointer;
 }
-.campo--arquivo input[type="file"]::file-selector-button {
-    margin-right: 12px;
-    padding: 7px 14px;
+.arquivos-botao {
+    padding: 9px 18px;
     border: 1.5px solid var(--grafite);
     border-radius: 999px;
-    background: var(--branco);
-    color: var(--grafite);
-    font: inherit;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     font-weight: 600;
-    cursor: pointer;
+    color: var(--grafite);
     transition: background-color 160ms ease, color 160ms ease;
 }
+.arquivos-nomes {
+    font-size: 0.9375rem;
+    color: var(--cinza-texto);
+    text-align: center;
+    line-height: 1.5;
+}
+.arquivos-nomes span { display: block; color: var(--grafite); }
+.arquivos:focus-within,
+.arquivos.arrastando {
+    border-color: var(--vermelho);
+    box-shadow: 0 0 0 4px rgba(224, 50, 54, 0.16);
+}
+.arquivos.arrastando { background: rgba(224, 50, 54, 0.04); }
+.campo.invalido .arquivos { border-color: var(--vermelho); }
 @media (hover: hover) and (pointer: fine) {
-    .campo--arquivo input[type="file"]:hover::file-selector-button { background: var(--grafite); color: var(--branco); }
+    .arquivos:hover .arquivos-botao { background: var(--grafite); color: var(--branco); }
 }
 .campo-nota {
     grid-column: 1 / -1;
@@ -2122,6 +2148,7 @@ p { max-width: 65ch; }
     background: var(--vermelho);
 }
 .campo--arquivo .campo-erro { position: static; margin-top: 0; white-space: normal; }
+.campo--arquivo .campo-erro { grid-row: 3; }
 .captcha { grid-column: 1 / -1; display: grid; gap: 6px; margin-bottom: var(--e-5); position: relative; }
 .captcha.invalido .campo-erro { display: block; }
 .captcha .g-recaptcha { min-height: 78px; }
