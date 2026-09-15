@@ -1012,6 +1012,40 @@ p { max-width: 65ch; }
 .agentetur-cta { margin-top: var(--e-5); }
 .agentetur-cta svg { width: 16px; height: 16px; }
 
+/* Faixa de benefícios · fecha a seção depois da grade (15/09/2026) */
+.agentetur-beneficios {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(24px, 3vw, 48px);
+    margin-top: clamp(48px, 6vh, 72px);
+    padding-top: clamp(28px, 3.5vh, 40px);
+    border-top: 1px solid var(--cinza-borda);
+    list-style: none;
+}
+.agentetur-beneficios::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 56px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--vermelho);
+}
+.agentetur-beneficio { min-width: 0; }
+.agentetur-beneficio strong {
+    display: block;
+    margin-bottom: var(--e-2);
+    font-weight: 600;
+    line-height: 1.35;
+}
+.agentetur-beneficio p {
+    color: var(--cinza-texto);
+    font-size: clamp(0.9375rem, 1.1vw, 1rem);
+    line-height: 1.6;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .agentetur-recurso:hover { background: rgba(224, 50, 54, 0.035); }
     .agentetur-recurso:hover .agentetur-recurso-icone { transform: translateX(3px); }
@@ -1172,6 +1206,7 @@ p { max-width: 65ch; }
     .agentetur-recurso { min-height: 74px; }
     .agentetur-cta { width: 100%; }
     .agentetur-nota { text-align: left; }
+    .agentetur-beneficios { grid-template-columns: 1fr; gap: var(--e-4); margin-top: var(--e-6); padding-top: var(--e-4); }
 
     .agentetur-demonstracao { perspective: none; }
     .agentetur-janela {

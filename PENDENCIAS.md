@@ -47,6 +47,11 @@ ligado só quando houver chave (`js/config.js`). Hero: "Bem-vindo (a) à OFB.". 
 assunto, no mesmo desenho da Central; filtro e busca viraram padrão da `site.css`.
 Estilos de campo de formulário também (`.campo`, `.form-bloco`, `.form-resultado`).
 
+**Faixa de benefícios no agente.tur (15/09/2026):** três itens (Cote junto com a OFB · Responda
+na hora · Salve como Ideia) fechando a seção depois da grade, filete cinza com traço vermelho,
+mesmo reveal com stagger da página. Copy aprovada, registrada no `01_COPY_BASE_HOME.md` bloco 5.
+`site.css` em `?v=20260914-5`. Commit local, **não publicado**: push depende do ok do Lippe.
+
 **Revisão no iPhone (Lippe, 08/09 à tarde), aplicada e publicada:** no celular o hero começa
 abaixo das duas barras do header (antes 40 px de cada tela sumiam atrás da barra de cima); tela 2
 com os três números em linhas alinhadas; tela 3 com três cartões lado a lado sem descrição e o
