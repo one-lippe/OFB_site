@@ -51,7 +51,7 @@ Estilos de campo de formulário também (`.campo`, `.form-bloco`, `.form-resulta
 na hora · Salve como Ideia) fechando a seção depois da grade, em três cartões no desenho do site
 do agente.tur: ícone vermelho num círculo sobre a borda, título e texto centralizados. Mesmo
 reveal com stagger da página. Copy aprovada, registrada no `01_COPY_BASE_HOME.md` bloco 5.
-`site.css` em `?v=20260914-6`. Commit local, **não publicado**: push depende do ok do Lippe.
+`site.css` em `?v=20260914-6`. Publicado na prévia do GitHub Pages em 14/09 à noite, com o ok do Lippe.
 
 **Revisão no iPhone (Lippe, 08/09 à tarde), aplicada e publicada:** no celular o hero começa
 abaixo das duas barras do header (antes 40 px de cada tela sumiam atrás da barra de cima); tela 2
